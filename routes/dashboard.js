@@ -3,15 +3,15 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.redirect('/dashboard.html');
+    res.redirect('/dashboard');
 });
 
-router.get('/:page.html', function(req, res) {
+router.get('/:page', function(req, res) {
     res.render(req.param('page'));
 });
 
 
-router.get('/:dir/:page.html', function(req, res) {
+router.get('/:dir/:page', function(req, res) {
     res.render(req.param('dir')+'/'+req.param('page'));//.replace(".html", ""));
 });
 
