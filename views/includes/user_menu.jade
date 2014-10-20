@@ -1,21 +1,21 @@
 // User Account: style can be found in dropdown.less
-li.dropdown.user.user-menu
+li.dropdown.user.user-menu(ng-app="redrumApp", ng-controller="UserMenuController", ng-init="init()")
 	a.dropdown-toggle(href='#', data-toggle='dropdown')
 		i.glyphicon.glyphicon-user
 		span
-			| Jane Doe
+			| {{user_full_name}}
 			i.caret
 	ul.dropdown-menu
 		// User image
 		li.user-header.bg-light-blue
 			img.img-circle(src='/img/avatar3.png', alt='User Image')
 			p
-				| Jane Doe 
-				small Member since Nov. 2012
+				| {{user_full_name}}
+				small Member since {{user_member_since}}
 		// Menu Body
 		li.user-body
 			.col-xs-12.text-center
-				a(href='/market') Inventory
+				a(href='/market#inventory') Inventory
 		// Menu Footer
 		li.user-footer
 			.pull-left

@@ -1,16 +1,16 @@
 // Left side column. contains the logo and sidebar
 aside.left-side.sidebar-offcanvas
 	// sidebar: style can be found in sidebar.less
-	section.sidebar
+	section.sidebar(ng-app="redrumApp", ng-controller="LeftMenuController", ng-init="init()")
 		// Sidebar user panel
 		.user-panel
 			.pull-left.image
-				img.img-circle(src='/img/avatar3.png', alt='User Image')
+				img.img-circle(src='/img/avatar3.png', alt='User Avatar')
 			.pull-left.info
-				p Hello, Jane
-				a(href='#')
+				p Hello, {{user_name}}
+				a(href='/profile')
 					i.fa.fa-circle.text-success
-					| Online
+					| {{user_status}}
 		// sidebar menu: : style can be found in sidebar.less
 		ul.sidebar-menu
 			li.active
@@ -28,64 +28,30 @@ aside.left-side.sidebar-offcanvas
 					i.fa.fa-angle-left.pull-right
 				ul.treeview-menu
 					li
-						a(href='/market')
+						a(href='/market#products')
 							i.fa.fa-angle-double-right
 							| Products
-							small.badge.pull-right.bg-red 56
+							small.badge.pull-right.bg-red {{product_count}}
 					li
-						a(href='/market')
+						a(href='/market#cart')
 							i.fa.fa-angle-double-right
-							| Shopping
-							small.badge.pull-right.bg-yellow 12
+							| Your shopping cart
+							small.badge.pull-right.bg-yellow {{cart_items_size}}
 					li
-						a(href='/market')
+						a(href='/market#inventory')
 							i.fa.fa-angle-double-right
 							| Your inventory
 					li
-						a(href='/market')
+						a(href='/market#orders')
 							i.fa.fa-angle-double-right
 							| Your orders
-							small.badge.pull-right.bg-light-blue 2345
+							small.badge.pull-right.bg-light-blue {{user_orders_size}}
 					li
-						a(href='/market')
+						a(href='/market#redeem')
 							i.fa.fa-angle-double-right
 							| Redeem coupons
 					li
-						a(href='/market')
+						a(href='/market#credit')
 							i.fa.fa-angle-double-right
 							| Buy game credit
-			li.treeview
-				a(href='#')
-					i.fa.fa-folder
-					span Examples
-					i.fa.fa-angle-left.pull-right
-				ul.treeview-menu
-					li
-						a(href='/examples/invoice.html')
-							i.fa.fa-angle-double-right
-							| Invoice
-					li
-						a(href='/examples/login.html')
-							i.fa.fa-angle-double-right
-							| Login
-					li
-						a(href='/examples/register.html')
-							i.fa.fa-angle-double-right
-							| Register
-					li
-						a(href='/examples/lockscreen.html')
-							i.fa.fa-angle-double-right
-							| Lockscreen
-					li
-						a(href='/examples/404.html')
-							i.fa.fa-angle-double-right
-							| 404 Error
-					li
-						a(href='/examples/500.html')
-							i.fa.fa-angle-double-right
-							| 500 Error
-					li
-						a(href='/examples/blank.html')
-							i.fa.fa-angle-double-right
-							| Blank Page
 	// /.sidebar
