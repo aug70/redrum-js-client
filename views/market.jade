@@ -15,36 +15,44 @@ block content
                 |  Market
         // Main content
         section.content
+              include ./includes/alerts
               .row
                 .col-md-12
                   // Custom Tabs
                   .nav-tabs-custom
                     ul.nav.nav-tabs
                       li.active
-                        a(href='#tab_1', data-toggle='tab') Products
+                        a(href='#products', data-toggle='tab') Products
                       li
-                        a(href='#tab_2', data-toggle='tab') Shopping Cart
+                        a(href='#cart', data-toggle='tab') Shopping Cart
                       li
-                        a(href='#tab_3', data-toggle='tab') Inventory
+                        a(href='#inventory', data-toggle='tab') Inventory
                       li
-                        a(href='#tab_4', data-toggle='tab') Orders
+                        a(href='#orders', data-toggle='tab') Orders
                       li
-                        a(href='#tab_5', data-toggle='tab') Coupons
+                        a(href='#coupons', data-toggle='tab') Coupons
                       li
-                        a(href='#tab_6', data-toggle='tab') Game Credit
+                        a(href='#credit', data-toggle='tab') Game Credit
                     .tab-content
-                      #tab_1.tab-pane.active
+                      #products.tab-pane.active
                         include ./includes/market/products
                       // /.tab-pane
-                      #tab_2.tab-pane
-                        | The European languages are members of the same family. Their separate existence is a myth.
-                        | For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                        | in their grammar, their pronunciation and their most common words. Everyone realizes why a
-                        | new common language would be desirable: one could refuse to pay expensive translators. To
-                        | achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-                        | words. If several languages coalesce, the grammar of the resulting language is more simple
-                        | and regular than that of the individual languages.
+                      #cart.tab-pane
+                        include ./includes/market/cart
                       // /.tab-pane
+                      #inventory.tab-pane
+                        include ./includes/market/inventory
+                      // /.tab-pane
+                      #orders.tab-pane
+                        include ./includes/market/orders
+                      // /.tab-pane
+                      #coupons.tab-pane
+                        include ./includes/market/coupons
+                      // /.tab-pane
+                      #credit.tab-pane
+                        include ./includes/market/credit
+                      // /.tab-pane
+
                     // /.tab-content
                   // nav-tabs-custom
                 // /.col
