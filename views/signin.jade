@@ -1,20 +1,22 @@
 extends popup_layout
 block title
-  title Redrum | Register
+  title Redrum | Sign in
 block content
   #login-box.form-box
-    .header Register New Membership
+    .header Sign In
     form(action='/dashboard', method='post')
       .body.bg-gray
-        .form-group
-          input.form-control(type='text', name='name', placeholder='Full name')
         .form-group
           input.form-control(type='text', name='userid', placeholder='User ID')
         .form-group
           input.form-control(type='password', name='password', placeholder='Password')
         .form-group
-          input.form-control(type='password', name='password2', placeholder='Retype password')
+          input(type='checkbox', name='remember_me')
+          | Remember me
       .footer
-        button.btn.bg-olive.btn-block(type='submit') Sign me up
-        a.text-center(href='/signin') I already have a membership
+        button.btn.bg-olive.btn-block(type='submit') Sign me in
+        p
+          a(href='#') I forgot my password
+        a.text-center(href='/register') Register a new membership
+    .margin.text-center
     include ./includes/social_buttons
