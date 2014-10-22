@@ -1,15 +1,7 @@
 /*
 @import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic);
-@import url(//fonts.googleapis.com/css?family=Kaushan+Script);
 */
 @import url(/css/font-SourceSansPro.css);
-@import url(/css/font-KaushanScript.css);
-/*!
- *   AdminLTE v1.2
- *   Author: AlmsaeedStudio.com
- *   License: Open source - MIT
- *           Please visit http://opensource.org/licenses/MIT for more information
-!*/
 /*
     Core: General style
 ----------------------------
@@ -404,7 +396,7 @@ body > .header .logo {
   text-align: center;
   padding: 0 10px;
   width: 220px;
-  font-family: 'Kaushan Script', cursive;
+  font-family: 'Helvetica', cursive;
   font-weight: 500;
   height: 50px;
   display: block;
