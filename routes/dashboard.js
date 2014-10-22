@@ -15,6 +15,13 @@ router.get('/:page', function(req, res) {
 });
 
 
+router.post('/:page', function(req, res) {
+	var path = req.param('page');
+	console.log('Response render path: ' + path);
+	res.render(path);
+});
+
+
 router.get('/:dir/:page', function(req, res) {
 	var path = req.param('dir')+'/'+req.param('page');
 	console.log('Response render path: ' + path);
