@@ -1,8 +1,39 @@
 .box
 	.box-header
-		h3.box-title Inventory
+		h3.box-title Your inventory
 	// /.box-header
 	.box-body
-		| Inventory
+		// Table row
+		.row
+			.col-xs-12.table-responsive
+				table.table.table-striped
+					thead
+						tr
+							th Product
+							th Validity
+					tbody
+						tr
+							td Call of Duty
+							td
+								p.text-light-blue Valid for 20 games
+
+						tr
+							td Need for Speed IV
+							td 
+								p.text-aqua Valid for 13 games
+						tr
+							td Monsters DVD
+							td 
+								p.text-red Valid for 2 games
+						tr
+							td Grown Ups Blue Ray
+							td 
+								p.text-yellow Valid for 5 games
+						tr
+							td Tousled lomo letterpress
+							td
+								p.text-green Valid for 103 games
+			// /.col
+		// /.row
 	// /.box-body
 // /.box

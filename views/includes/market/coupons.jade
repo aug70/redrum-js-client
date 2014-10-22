@@ -1,8 +1,14 @@
 .box
 	.box-header
-		h3.box-title Coupons
+		h3.box-title Redeem coupons
 	// /.box-header
 	.box-body
-		| Coupons
+		.row
+			.col-xs-5
+				// /input-group
+				.input-group.input-group-sm
+					input.form-control(type='text', placeholder='Enter coupon code here')
+					span.input-group-btn
+						button.btn.btn-info.btn-flat(type='button') Redeem!
 	// /.box-body
 // /.box

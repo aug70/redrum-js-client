@@ -1,8 +1,71 @@
 .box
 	.box-header
-		h3.box-title Shopping Cart
+		h3.box-title Your shopping cart
 	// /.box-header
 	.box-body
-		| Cart
+		// Table row
+		.row
+			.col-xs-12.table-responsive
+				table.table.table-striped
+					thead
+						tr
+							th Qty
+							th Product
+							th Description
+							th Subtotal
+							th Action
+					tbody
+						tr
+							td 1
+							td Call of Duty
+							td El snort testosterone trophy driving gloves handsome
+							td $64.50
+							td
+								.btn-group-vertical
+									button.btn.btn-xs.btn-success(type='button') Add [+1]
+									button.btn.btn-xs.btn-warning(type='button') Remove [-1]
+									button.btn.btn-xs.btn-danger(type='button') Remove All
+						tr
+							td 1
+							td Need for Speed IV
+							td Wes Anderson umami biodiesel
+							td $50.00
+							td
+								.btn-group-vertical
+									button.btn.btn-xs.btn-success(type='button') Add [+1]
+									button.btn.btn-xs.btn-warning(type='button') Remove [-1]
+									button.btn.btn-xs.btn-danger(type='button') Remove All
+						tr
+							td 1
+							td Monsters DVD
+							td Terry Richardson helvetica tousled street art master
+							td $10.70
+							td
+								.btn-group-vertical
+									button.btn.btn-xs.btn-success(type='button') Add [+1]
+									button.btn.btn-xs.btn-warning(type='button') Remove [-1]
+									button.btn.btn-xs.btn-danger(type='button') Remove All
+						tr
+							td 1
+							td Grown Ups Blue Ray
+							td Tousled lomo letterpress
+							td $25.99
+							td
+								.btn-group-vertical
+									button.btn.btn-xs.btn-success(type='button') Add [+1]
+									button.btn.btn-xs.btn-warning(type='button') Remove [-1]
+									button.btn.btn-xs.btn-danger(type='button') Remove All
+						tr
+							td
+							td
+							th Total Amount Due:
+							td $265.24
+							td
+								a.btn.btn-primary.btn-xs Purchase Cart
+								| 
+								a.btn.btn-danger.btn-xs Empty Cart
+
+			// /.col
+		// /.row
 	// /.box-body
-// /.box
+// /.box	
