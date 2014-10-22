@@ -9,7 +9,7 @@ function DashBoardController($scope, $http) {
 			box_link : '/market'
 		};
 		$scope.stats = { 
-			box_header : '%56 success',
+			box_header : 'Measure',
 			box_text : 'See your stats',
 			box_link : '/stats'
 		};
@@ -19,7 +19,7 @@ function DashBoardController($scope, $http) {
 			box_link : '/profile'
 		};
 		$scope.product = { 
-			box_header : '56',
+			box_header : 'Browse',
 			box_text : 'Unique products',
 			box_link : '/market#products'
 		};
@@ -42,13 +42,7 @@ function DashBoardController($scope, $http) {
 			box_header : 'Solve',
 			box_text : 'Play a game and solve a murder',
 			box_link : '/game'
-		};
-
-
-
-
-
-		
+		};		
 	}
 }
 
