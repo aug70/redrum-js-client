@@ -1,16 +1,16 @@
 // Left side column. contains the logo and sidebar
 aside.left-side.sidebar-offcanvas
 	// sidebar: style can be found in sidebar.less
-	section.sidebar(ng-app="redrumApp", ng-controller="LeftMenuController", ng-init="init()")
+	section.sidebar(ng-app="redrumApp", ng-controller="MenuController")
 		// Sidebar user panel
 		.user-panel
 			.pull-left.image
 				img.img-circle(src='/img/avatar3.png', alt='User Avatar')
 			.pull-left.info
-				p Hello, {{user_name}}
+				p Hello, {{userData.user_name}}
 				a(href='/profile')
 					i.fa.fa-circle.text-success
-					| {{user_status}}
+					| {{userData.user_status}}
 		// sidebar menu: : style can be found in sidebar.less
 		ul.sidebar-menu
 			li.active
@@ -31,12 +31,12 @@ aside.left-side.sidebar-offcanvas
 						a(href='/market#products')
 							i.fa.fa-angle-double-right
 							| Products
-							small.badge.pull-right.bg-red {{product_count}}
+							small.badge.pull-right.bg-red {{userData.product_count}}
 					li
 						a(href='/market#cart')
 							i.fa.fa-angle-double-right
 							| Your shopping cart
-							small.badge.pull-right.bg-yellow {{cart_items_size}}
+							small.badge.pull-right.bg-yellow {{userData.cart_items_size}}
 					li
 						a(href='/market#inventory')
 							i.fa.fa-angle-double-right
@@ -45,7 +45,7 @@ aside.left-side.sidebar-offcanvas
 						a(href='/market#orders')
 							i.fa.fa-angle-double-right
 							| Your orders
-							small.badge.pull-right.bg-light-blue {{user_orders_size}}
+							small.badge.pull-right.bg-light-blue {{userData.user_orders_size}}
 					li
 						a(href='/market#coupons')
 							i.fa.fa-angle-double-right
