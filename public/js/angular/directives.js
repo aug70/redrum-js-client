@@ -1,7 +1,7 @@
 'use strict';
 
 /* Directives */
-angular.module('redrumApp.directives', []).
+angular.module('redrumAppDirectives', []).
 	directive('appVersion', ['version', function(version) {
 		return function(scope, elm, attrs) {
 			elm.text(version);
