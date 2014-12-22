@@ -14,49 +14,26 @@ block content
               i.fa.fa-shopping-cart
                 |  Market
         // Main content
-        section.content
-              include ./includes/alerts
-              .row
-                .col-md-12
-                  // Custom Tabs
-                  .nav-tabs-custom
-                    ul.nav.nav-tabs
-                      li.active
-                        a(href='#products', data-toggle='tab') Products
-                      li
-                        a(href='#cart', data-toggle='tab') Shopping Cart
-                      li
-                        a(href='#inventory', data-toggle='tab') Inventory
-                      li
-                        a(href='#orders', data-toggle='tab') Orders
-                      li
-                        a(href='#coupons', data-toggle='tab') Coupons
-                      li
-                        a(href='#credit', data-toggle='tab') Game Credit
-                    .tab-content
-                      #products.tab-pane.active
-                        include ./includes/market/products
-                      // /.tab-pane
-                      #cart.tab-pane
-                        include ./includes/market/cart
-                      // /.tab-pane
-                      #inventory.tab-pane
-                        include ./includes/market/inventory
-                      // /.tab-pane
-                      #orders.tab-pane
-                        include ./includes/market/orders
-                      // /.tab-pane
-                      #coupons.tab-pane
-                        include ./includes/market/coupons
-                      // /.tab-pane
-                      #credit.tab-pane
-                        include ./includes/market/credit
-                      // /.tab-pane
-
-                    // /.tab-content
-                  // nav-tabs-custom
-                // /.col
-              // /.row
+        section.content(ng-app="redrumApp", ng-controller="MarketController")
+          include ./includes/alerts
+          .row
+            .col-md-12
+              // Custom Tabs
+              tabset
+                tab(heading="Products")
+                  include ./includes/market/products
+                tab(heading="Shopping Cart")
+                  include ./includes/market/cart
+                tab(heading="Inventory")
+                  include ./includes/market/inventory
+                tab(heading="Orders")
+                  include ./includes/market/orders
+                tab(heading="Coupons")
+                  include ./includes/market/coupons
+                tab(heading="Game Credit")
+                  include ./includes/market/credit
+            // /.col
+          // /.row
         // /.content
 block javascript
     // jQuery 2.0.2

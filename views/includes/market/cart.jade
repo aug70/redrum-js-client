@@ -9,61 +9,34 @@
 				table.table.table-striped
 					thead
 						tr
-							th Qty
 							th Product
-							th Description
-							th Subtotal
+							th Qty
+							th Cost
 							th Action
 					tbody
-						tr
-							td 1
-							td Call of Duty
-							td El snort testosterone trophy driving gloves handsome
-							td $64.50
+						tr(ng-repeat="cartItem in cart.cartItems")
+							td {{cartItem.name}}
+							td {{cartItem.quantity}}
+							td {{cartItem.price}}
 							td
-								.btn-group-vertical
-									button.btn.btn-xs.btn-success(type='button') Add [+1]
-									button.btn.btn-xs.btn-warning(type='button') Remove [-1]
-									button.btn.btn-xs.btn-danger(type='button') Remove All
-						tr
-							td 1
-							td Need for Speed IV
-							td Wes Anderson umami biodiesel
-							td $50.00
-							td
-								.btn-group-vertical
-									button.btn.btn-xs.btn-success(type='button') Add [+1]
-									button.btn.btn-xs.btn-warning(type='button') Remove [-1]
-									button.btn.btn-xs.btn-danger(type='button') Remove All
-						tr
-							td 1
-							td Monsters DVD
-							td Terry Richardson helvetica tousled street art master
-							td $10.70
-							td
-								.btn-group-vertical
-									button.btn.btn-xs.btn-success(type='button') Add [+1]
-									button.btn.btn-xs.btn-warning(type='button') Remove [-1]
-									button.btn.btn-xs.btn-danger(type='button') Remove All
-						tr
-							td 1
-							td Grown Ups Blue Ray
-							td Tousled lomo letterpress
-							td $25.99
-							td
-								.btn-group-vertical
-									button.btn.btn-xs.btn-success(type='button') Add [+1]
-									button.btn.btn-xs.btn-warning(type='button') Remove [-1]
-									button.btn.btn-xs.btn-danger(type='button') Remove All
+								div
+									span(ng-repeat="link in cartItem.links | filter: {rel: 'add'}")
+										a.btn.btn-primary.btn-xs(href="" ng-click="addToCart(link.href)") {{link.label}}	
+									span(ng-repeat="link in cartItem.links | filter: {rel: 'remove'}")
+										a.btn.btn-info.btn-xs(href="" ng-click="removeFromCart(link.href)") {{link.label}}
 						tr
 							td
+							th(align="right") Total Amount Due:
+							td {{cart.cartTotal}}
 							td
-							th Total Amount Due:
-							td $265.24
-							td
-								a.btn.btn-primary.btn-xs Purchase Cart
-								| 
-								a.btn.btn-danger.btn-xs Empty Cart
+								div
+									span(ng-repeat="link in cart.links | filter: {rel: 'emptyCart'}")
+										a.btn.btn-danger.btn-xs {{link.label}}
+									| 
+									span(ng-repeat="link in cart.links | filter: {rel: 'purchase'}")
+										a.btn.btn-success.btn-xs {{link.label}}
+								
+								
 
 			// /.col
 		// /.row

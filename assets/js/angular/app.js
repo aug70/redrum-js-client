@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('redrumApp', ['ngRoute', 'ngResource', 'redrumAppFilters', 'redrumAppServices', 'redrumAppDirectives']).
+angular.module('redrumApp', ['ui.bootstrap', 'ngRoute', 'ngResource', 'redrumAppFilters', 'redrumAppServices', 'redrumAppDirectives']).
  	
 	config(['$routeProvider', '$resourceProvider', '$locationProvider', function($routeProvider, $resourceProvider, $locationProvider) {
 		

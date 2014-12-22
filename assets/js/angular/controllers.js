@@ -8,12 +8,14 @@ function DashBoardController($scope, redrumAppServices) {
 
 function MenuController($scope, redrumAppServices) {
 	
-	console.log('DashBoard Controller ..........');
+	console.log('Menu Controller ..........');
 	$scope.userData = redrumAppServices.userData();
 }
 
-function MarketController($scope, $resource) {
-	
+function MarketController($scope, redrumAppServices) {
+	console.log('Market Controller ..........');
+	$scope.cart = redrumAppServices.cart();
+	console.log($scope);
 }
 
 function ProfileController($scope, $resource) {
