@@ -1,3 +1,5 @@
+[![Build Status](https://api.shippable.com/projects/5496e0c1d46935d5fbc0c0f4/badge?branchName=master)](https://app.shippable.com/projects/5496e0c1d46935d5fbc0c0f4/builds/latest)
+
 redrum-js-client
 ================
 
