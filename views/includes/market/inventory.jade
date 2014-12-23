@@ -12,27 +12,14 @@
 							th Product
 							th Validity
 					tbody
-						tr
-							td Call of Duty
+						tr(ng-repeat="inventoryItem in inventory.inventoryItems")
+							td {{inventoryItem.name}}
 							td
-								p.text-light-blue Valid for 20 games
-
-						tr
-							td Need for Speed IV
-							td 
-								p.text-aqua Valid for 13 games
-						tr
-							td Monsters DVD
-							td 
-								p.text-red Valid for 2 games
-						tr
-							td Grown Ups Blue Ray
-							td 
-								p.text-yellow Valid for 5 games
-						tr
-							td Tousled lomo letterpress
-							td
-								p.text-green Valid for 103 games
+								p.text-light-blue {{inventoryItem.validity}}
+								p.text-aqua {{inventoryItem.validity}}
+								p.text-red {{inventoryItem.validity}}
+								p.text-yellow {{inventoryItem.validity}}
+								p.text-green {{inventoryItem.validity}}
 			// /.col
 		// /.row
 	// /.box-body

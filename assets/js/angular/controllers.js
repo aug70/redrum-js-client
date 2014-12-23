@@ -15,6 +15,8 @@ function MenuController($scope, redrumAppServices) {
 function MarketController($scope, redrumAppServices) {
 	console.log('Market Controller ..........');
 	$scope.cart = redrumAppServices.cart();
+	$scope.storeProducts = redrumAppServices.storeProducts();
+	$scope.inventory = redrumAppServices.inventory();
 	console.log($scope);
 }
 
