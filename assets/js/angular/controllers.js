@@ -2,22 +2,39 @@
 
 function DashBoardController($scope, redrumAppServices) {
 
-	console.log('DashBoard Controller ..........');
-	$scope.dashboard = redrumAppServices.dashboard();
+	redrumAppServices.dashboard().then(
+		function(data) {
+			$scope.dashboard = data;
+		});
 }
 
 function MenuController($scope, redrumAppServices) {
 	
-	console.log('Menu Controller ..........');
-	$scope.userData = redrumAppServices.userData();
+	redrumAppServices.user().then(
+		function(data) {
+			$scope.user = data;
+		});
 }
 
 function MarketController($scope, redrumAppServices) {
-	console.log('Market Controller ..........');
-	$scope.cart = redrumAppServices.cart();
-	$scope.storeProducts = redrumAppServices.storeProducts();
-	$scope.inventory = redrumAppServices.inventory();
-	console.log($scope);
+	
+	redrumAppServices.storeProducts().then(
+		function(data) {
+			$scope.storeProducts = data;
+			console.log('Products done.');
+		});
+	
+	redrumAppServices.cart().then(
+		function(data) {
+			$scope.cart = data;
+			console.log('Cart done.');
+		});
+
+	redrumAppServices.inventory().then(
+		function(data) {
+			$scope.inventory = data;
+			console.log('Inventory done.');
+		});
 }
 
 function ProfileController($scope, $resource) {
