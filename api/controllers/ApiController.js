@@ -9,8 +9,9 @@ module.exports = {
 
 	dashboard : function(req, res) {
 
-		if(CacheService.hasKey('user_dashboard')) {
-			res.json(CacheService.get('user_dashboard'));
+		var cacheKey = CacheService.makeKey(req, 'user_dashboard');
+		if(CacheService.hasKey(cacheKey)) {
+			res.json(CacheService.get(cacheKey));
 			return;
 		}
 		var money = '$58.000';
@@ -64,14 +65,15 @@ module.exports = {
 				box_link   : '/game'
 			}
 		};
-		CacheService.add('user_dashboard', result);
+		CacheService.add(cacheKey, result);
 		res.json(result);
 	},
 
 	user : function(req, res) {
 
-		if(CacheService.hasKey('user_result')) {
-			res.json(CacheService.get('user_result'));
+		var cacheKey = CacheService.makeKey(req, 'user_summary');
+		if(CacheService.hasKey(cacheKey)) {
+			res.json(CacheService.get(cacheKey));
 			return;
 		}
 
@@ -90,7 +92,7 @@ module.exports = {
 				cartSize : jsonObject.hasOwnProperty('cartSize')? jsonObject.cartSize : '',
 				ordersSize : jsonObject.hasOwnProperty('ordersSize')? jsonObject.ordersSize : ''
 			};
-			CacheService.add('user_result', value);
+			CacheService.add(cacheKey, value);
 			res.json(value);
 		});
 		
@@ -98,29 +100,30 @@ module.exports = {
 
 	cart : function(req, res) {
 
-		if(CacheService.hasKey('user_cart')) {
-			res.json(CacheService.get('user_cart'));
+		var cacheKey = CacheService.makeKey(req, 'user_cart');
+		if(CacheService.hasKey(cacheKey)) {
+			res.json(CacheService.get(cacheKey));
 			return;
 		}
 
 		RedrumApiService.invokeEndPoint('/market/cart', 'GET', function(result){
 			var resultJSON = JSON.parse(result);
-			CacheService.add('user_cart', resultJSON);
+			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
 		});
 
 	},
 
 	storeProducts : function(req, res) {
-
-		if(CacheService.hasKey('products')) {
-			res.json(CacheService.get('products'));
+		var cacheKey = 'products';
+		if(CacheService.hasKey(cacheKey)) {
+			res.json(CacheService.get(cacheKey));
 			return;
 		}
 
 		RedrumApiService.invokeEndPoint('/products', 'GET', function(result){
 			var resultJSON = JSON.parse(result);
-			CacheService.add('products', resultJSON);
+			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
 		});
 
@@ -128,14 +131,15 @@ module.exports = {
 
 	inventory : function(req, res) {
 
-		if(CacheService.hasKey('user_inventory')) {
-			res.json(CacheService.get('user_inventory'));
+		var cacheKey = CacheService.makeKey(req, 'user_inventory');
+		if(CacheService.hasKey(cacheKey)) {
+			res.json(CacheService.get(cacheKey));
 			return;
 		}
 
 		RedrumApiService.invokeEndPoint('/inventory', 'GET', function(result){
 			var resultJSON = JSON.parse(result);
-			CacheService.add('user_inventory', resultJSON);
+			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
 		});
 

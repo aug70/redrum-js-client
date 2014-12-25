@@ -22,6 +22,10 @@ module.exports = {
 
 	get : function(key) {
 		return cache.get(key);
+	},
+
+	makeKey : function(req, prefix) {
+		return prefix + '_' + '12318465';
 	}
 
 };
