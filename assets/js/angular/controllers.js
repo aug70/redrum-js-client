@@ -21,19 +21,16 @@ function MarketController($scope, redrumAppServices) {
 	redrumAppServices.storeProducts().then(
 		function(data) {
 			$scope.storeProducts = data;
-			console.log('Products done.');
 		});
 	
 	redrumAppServices.cart().then(
 		function(data) {
 			$scope.cart = data;
-			console.log('Cart done.');
 		});
 
 	redrumAppServices.inventory().then(
 		function(data) {
 			$scope.inventory = data;
-			console.log('Inventory done.');
 		});
 }
 
