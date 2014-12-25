@@ -3,15 +3,15 @@ li.dropdown.user.user-menu(ng-app="redrumApp", ng-controller="MenuController")
 	a.dropdown-toggle(href='#', data-toggle='dropdown')
 		i.glyphicon.glyphicon-user
 		span
-			| {{user.full_name}}
+			| {{user.fullName}}
 			i.caret
 	ul.dropdown-menu
 		// User image
 		li.user-header.bg-light-blue
 			img.img-circle(src='/img/avatar3.png', alt='User Image')
 			p
-				| {{user.full_name}}
-				small Member since {{user.member_since}}
+				| {{user.fullName}}
+				small Member since {{user.memberSince}}
 		// Menu Body
 		li.user-body
 			.col-xs-12.text-center

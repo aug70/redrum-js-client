@@ -7,7 +7,7 @@ aside.left-side.sidebar-offcanvas
 			.pull-left.image
 				img.img-circle(src='/img/avatar3.png', alt='User Avatar')
 			.pull-left.info
-				p Hello, {{user.name}}
+				p Hello, {{user.userName}}
 				a(href='/profile')
 					i.fa.fa-circle.text-success
 					| {{user.status}}
@@ -35,17 +35,17 @@ aside.left-side.sidebar-offcanvas
 						a(href='/market#cart').text-yellow
 							i.fa.fa-angle-double-right
 							| Your shopping cart
-							small.badge.pull-right.bg-yellow {{user.cart_items_size}}
+							small.badge.pull-right.bg-yellow {{user.cartSize}}
 					li
 						a(href='/market#inventory').text-red
 							i.fa.fa-angle-double-right
 							| Your inventory
-							small.badge.pull-right.bg-red {{user.inventory_size}}
+							small.badge.pull-right.bg-red {{user.inventorySize}}
 					li
 						a(href='/market#orders').text-light-blue
 							i.fa.fa-angle-double-right
 							| Your orders
-							small.badge.pull-right.bg-light-blue {{user.orders_size}}
+							small.badge.pull-right.bg-light-blue {{user.ordersSize}}
 					li
 						a(href='/market#coupons')
 							i.fa.fa-angle-double-right
