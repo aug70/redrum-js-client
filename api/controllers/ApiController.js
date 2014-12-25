@@ -64,32 +64,38 @@ module.exports = {
 
 	user : function(req, res) {
 
-		var result = {
-			avatar : '/img/avatar3.png',
-			name : 'Jane',
-			full_name : 'Jane Doe',
-			member_since : 'Nov. 2012',
-			status : 'Online',
-			budget : '$58.000,00',
-			inventory_size : 56,
-			cart_items_size : 4,
-			orders_size : 12
-		};
-		res.json(result);
+		RedrumApiService.invokeEndPoint('/account/summary', 'GET', function(result){
+
+			var jsonObject = JSON.parse(result);
+			var value = {
+				avatar : '/img/avatar3.png',
+				user_name : jsonObject.hasOwnProperty('username')? jsonObject.username : 'Unknown',
+				full_name : jsonObject.hasOwnProperty('fullName')? jsonObject.fullName : 'Unknown',
+				email : jsonObject.hasOwnProperty('email')? jsonObject.email : null,
+				member_since : jsonObject.hasOwnProperty('dateCreated')? jsonObject.dateCreated : 'Unknown',
+				status : 'Online',
+				budget : jsonObject.hasOwnProperty('budget')? jsonObject.budget : 'Unknown',
+				inventory_size : jsonObject.hasOwnProperty('inventorySize')? jsonObject.inventorySize : '',
+				cart_items_size : jsonObject.hasOwnProperty('cartSize')? jsonObject.cartSize : '',
+				orders_size : jsonObject.hasOwnProperty('ordersSize')? jsonObject.ordersSize : ''
+			};
+			res.json(value);
+		});
+		
 	},
 
 	cart : function(req, res) {
 
 		RedrumApiService.invokeEndPoint('/market/cart', 'GET', function(result){
-			res.json(result);
+			res.json(JSON.parse(result));
 		});
-		
+
 	},
 
 	storeProducts : function(req, res) {
 
 		RedrumApiService.invokeEndPoint('/products', 'GET', function(result){
-			res.json(result);
+			res.json(JSON.parse(result));
 		});
 
 	},
@@ -97,7 +103,7 @@ module.exports = {
 	inventory : function(req, res) {
 
 		RedrumApiService.invokeEndPoint('/inventory', 'GET', function(result){
-			res.json(result);
+			res.json(JSON.parse(result));
 		});
 
 	}

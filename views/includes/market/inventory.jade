@@ -6,11 +6,14 @@
 		// Table row
 		.row
 			.col-xs-12.table-responsive
+				p {{inventory}}
 				table.table.table-striped
 					thead
 						tr
 							th Product
 							th Validity
+						tr
+							td(colspan="2") You have {{inventory.budget}}	
 					tbody
 						tr(ng-repeat="inventoryItem in inventory.inventoryItems")
 							td {{inventoryItem.name}}
