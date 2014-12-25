@@ -91,7 +91,8 @@ module.exports = {
 			full_name : 'Jane Doe',
 			member_since : 'Nov. 2012',
 			status : 'Online',
-			product_count : 56,
+			budget : '$58.000,00',
+			inventory_size : 56,
 			cart_items_size : 4,
 			orders_size : 12
 		};

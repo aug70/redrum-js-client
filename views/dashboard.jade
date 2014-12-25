@@ -12,6 +12,19 @@ block content
 	// Main content
 	section.content(ng-app="redrumApp", ng-controller="DashBoardController")
 		.row
+			.col-lg-3.col-xs-6
+				// small box
+				.small-box.bg-blue
+					.inner
+						h3
+							| {{dashboard.game.box_header}}
+						p
+							| {{dashboard.game.box_text}}
+					.icon
+						i.ion.ion-eye
+					a.small-box-footer(href='{{dashboard.game.box_link}}')
+						| {{dashboard.game.box_label}} 
+						i.fa.fa-arrow-circle-right
 			// ./col-lg-3
 			.col-lg-3.col-xs-6
 				// small box
@@ -55,6 +68,10 @@ block content
 						| {{dashboard.profile.box_label}} 
 						i.fa.fa-arrow-circle-right
 			// ./col-lg-3
+			// ./col
+		// /.row
+		// top row
+		.row
 			.col-lg-3.col-xs-6
 				// small box
 				.small-box.bg-maroon
@@ -67,23 +84,6 @@ block content
 						i.fa.fa-credit-card
 					a.small-box-footer(href='{{dashboard.buy.box_link}}')
 						| {{dashboard.buy.box_label}} 
-						i.fa.fa-arrow-circle-right
-			// ./col
-		// /.row
-		// top row
-		.row
-			.col-lg-3.col-xs-6
-				// small box
-				.small-box.bg-blue
-					.inner
-						h3
-							| {{dashboard.game.box_header}}
-						p
-							| {{dashboard.game.box_text}}
-					.icon
-						i.ion.ion-eye
-					a.small-box-footer(href='{{dashboard.game.box_link}}')
-						| {{dashboard.game.box_label}} 
 						i.fa.fa-arrow-circle-right
 			// ./col-lg-3
 			.col-lg-3.col-xs-6
@@ -102,20 +102,6 @@ block content
 			// ./col-lg-3
 			.col-lg-3.col-xs-6
 				// small box
-				.small-box.bg-teal
-					.inner
-						h3
-							| {{dashboard.shop.box_header}}
-						p
-							| {{dashboard.shop.box_text}}
-					.icon
-						i.ion.ion-ios7-cart
-					a.small-box-footer(href='{{dashboard.shop.box_link}}')
-						| {{dashboard.shop.box_label}} 
-						i.fa.fa-arrow-circle-right
-			// ./col-lg-3
-			.col-lg-3.col-xs-6
-				// small box
 				.small-box.bg-purple
 					.inner
 						h3
@@ -126,6 +112,20 @@ block content
 						i.ion.ion-egg
 					a.small-box-footer(href='{{dashboard.redeem.box_link}}')
 						| {{dashboard.redeem.box_label}} 
+						i.fa.fa-arrow-circle-right
+			// ./col-lg-3
+			.col-lg-3.col-xs-6
+				// small box
+				.small-box.bg-teal
+					.inner
+						h3
+							| {{dashboard.shop.box_header}}
+						p
+							| {{dashboard.shop.box_text}}
+					.icon
+						i.ion.ion-ios7-cart
+					a.small-box-footer(href='{{dashboard.shop.box_link}}')
+						| {{dashboard.shop.box_label}} 
 						i.fa.fa-arrow-circle-right
 			// ./col-lg-3
 			// ./col

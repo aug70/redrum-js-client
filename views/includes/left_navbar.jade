@@ -31,18 +31,18 @@ aside.left-side.sidebar-offcanvas
 						a(href='/market#products')
 							i.fa.fa-angle-double-right
 							| Products
-							small.badge.pull-right.bg-red {{user.product_count}}
 					li
-						a(href='/market#cart')
+						a(href='/market#cart').text-yellow
 							i.fa.fa-angle-double-right
 							| Your shopping cart
 							small.badge.pull-right.bg-yellow {{user.cart_items_size}}
 					li
-						a(href='/market#inventory')
+						a(href='/market#inventory').text-red
 							i.fa.fa-angle-double-right
 							| Your inventory
+							small.badge.pull-right.bg-red {{user.inventory_size}}
 					li
-						a(href='/market#orders')
+						a(href='/market#orders').text-light-blue
 							i.fa.fa-angle-double-right
 							| Your orders
 							small.badge.pull-right.bg-light-blue {{user.orders_size}}
