@@ -1,7 +1,7 @@
 /**
  * ApiController
  *
- * @description :: Server-side logic for managing markets
+ * @description :: Server-side api
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
@@ -14,7 +14,7 @@ module.exports = {
 			res.json(CacheService.get(cacheKey));
 			return;
 		}
-		var money = '$58.000';
+		var money = '$$$';
 	    var result = {
 			budget : { 
 				box_header : money,
