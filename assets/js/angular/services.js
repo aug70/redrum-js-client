@@ -27,8 +27,8 @@ service.factory('redrumAppServices', function($http) {
 				});
 			},
 
-		storeProducts : function() {
-			return $http.get('/api/storeProducts').then(
+		products : function() {
+			return $http.get('/api/products').then(
 				function(result) {
 					return result.data;
 				});

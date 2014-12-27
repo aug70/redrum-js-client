@@ -6,15 +6,15 @@
 		table#example1.table.table-bordered.table-striped
 			thead
 				tr
+					th
 					th Product
-					th Description
 					th Price
 					th Action
 			tbody
 				tr(ng-repeat="product in products")
+					td {{$index+1}}
 					td
 						{{product.name}}
-					td
 						| {{product.description}}
 					td
 						span(ng-if="product.price===product.discountedPrice") {{product.price}}

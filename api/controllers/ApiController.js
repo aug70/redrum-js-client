@@ -114,7 +114,7 @@ module.exports = {
 
 	},
 
-	storeProducts : function(req, res) {
+	products : function(req, res) {
 
 		var cacheKey = 'products';
 		if(CacheService.hasKey(cacheKey)) {

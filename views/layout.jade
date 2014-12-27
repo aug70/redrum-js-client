@@ -1,17 +1,21 @@
 doctype html
 html(ng-app="redrumApp")
+	
 	include ./includes/header.jade
+	
 	body.skin-blue(ng-controller="MenuController")
+		
 		// header logo: style can be found in header.less
 		header.header
 			a.logo(href='/dashboard')
 				// Add the class icon to your logo image or logo icon to add the margining
 				| Redrum
 			include ./includes/header_navbar
+		
 		.wrapper.row-offcanvas.row-offcanvas-left
 			include ./includes/left_navbar
 			include ./includes/right_navbar
+		// ./wrapper
 
-		// ./wrapper		
 		block message-modal
 		block javascript

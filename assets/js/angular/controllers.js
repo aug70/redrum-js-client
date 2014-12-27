@@ -18,7 +18,7 @@ redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', func
 redrumApp.controller('MarketController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
 	
 	$scope.getProducts = function() {
-		redrumAppServices.storeProducts().then(
+		redrumAppServices.products().then(
 			function(data) {
 				$scope.products = data.products;
 			});
