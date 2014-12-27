@@ -11,18 +11,18 @@
 					th Price
 					th Action
 			tbody
-				tr(ng-repeat="storeProduct in storeProducts.products")
+				tr(ng-repeat="product in products")
 					td
-						a(href="" ng-click="productDetail(link.href)") {{storeProduct.name}}
+						{{product.name}}
 					td
-						| {{storeProduct.description}}
+						| {{product.description}}
 					td
-						span(ng-if="storeProduct.price===storeProduct.discountedPrice") {{storeProduct.price}}
-						span(ng-if="storeProduct.price!==storeProduct.discountedPrice") 
-							strike {{storeProduct.price}}
-							|  {{storeProduct.discountedPrice}}
-					td 
-						div(ng-repeat="link in storeProduct.links | filter: {rel: 'addToCart'}")
+						span(ng-if="product.price===product.discountedPrice") {{product.price}}
+						span(ng-if="product.price!==product.discountedPrice") 
+							strike {{product.price}}
+							|  {{product.discountedPrice}}
+					td
+						div(ng-repeat="link in product.links | filter: {rel: 'addToCart'}")
 							a.btn.btn-primary.btn-xs(href="" ng-click="addToCart(link.href)") {{link.label}}
 	// /.box-body
 // /.box

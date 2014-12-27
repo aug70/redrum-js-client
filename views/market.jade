@@ -20,18 +20,18 @@ block content
             .col-md-12
               // Custom Tabs
               tabset
-                tab(heading="Products")
-                  include ./includes/market/products
-                tab(heading="Shopping Cart")
-                  include ./includes/market/cart
-                tab(heading="Inventory")
-                  include ./includes/market/inventory
-                tab(heading="Orders")
-                  include ./includes/market/orders
-                tab(heading="Coupons")
-                  include ./includes/market/coupons
                 tab(heading="Game Credit")
                   include ./includes/market/credit
+                tab(heading="Coupons")
+                  include ./includes/market/coupons
+                tab(heading="Products", select="getProducts()")
+                  include ./includes/market/products
+                tab(heading="Shopping Cart", select="getCart()")
+                  include ./includes/market/cart
+                tab(heading="Inventory", select="getInventory()")
+                  include ./includes/market/inventory
+                tab(heading="Orders", select="getOrders()")
+                  include ./includes/market/orders
             // /.col
           // /.row
         // /.content
