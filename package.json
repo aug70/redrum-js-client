@@ -1,7 +1,7 @@
 {
   "name": "redrum-sails",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Nodejs client for Redrum Rest API",
   "keywords": [],
   "dependencies": {
@@ -20,13 +20,14 @@
     "include-all": "~0.1.3",
     "jade": "^1.8.2",
     "rc": "~0.5.0",
-    "redrum-js-sdk": "^0.0.5",
+    "redrum-js-sdk": "^0.0.6",
     "sails": "~0.10.5",
     "sails-disk": "~0.10.0",
     "lru-cache": "2.5.0"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "sails lift --verbose",
+    "test": "mocha",
     "debug": "node debug app.js"
   },
   "main": "app.js",
@@ -34,10 +35,19 @@
     "type": "git",
     "url": "https://github.com/aug70/redrum-js-client"
   },
-  "author": "yalimaytul",
-  "license": "",
+  "author": "Yalim Aytul",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.githubusercontent.com/aug70/redrum-js-client/master/LICENSE"
+    }
+  ],
   "devDependencies": {
     "assert": "^1.1.2",
-    "request": "^2.51.0"
+    "grunt-mocha": "^0.4.11",
+    "grunt-mocha-test": "^0.12.4",
+    "mocha": "^2.1.0",
+    "request": "^2.51.0",
+    "xunit-file": "0.0.5"
   }
 }

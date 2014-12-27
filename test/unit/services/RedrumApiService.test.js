@@ -1,25 +1,10 @@
 'use strict';
 
-var Sails = require('sails');
+require('../../bootstrap.test.js');
 var assert = require('assert');
-var redrumApiService = require('../api/services/RedrumApiService');
+var redrumApiService = require('../../../api/services/RedrumApiService');
 
 describe('Redrum API Service tests', function() {
-
-	var sails;
-
-	before(function(done) {
-		this.timeout(5000);
-		(new Sails.constructor()).lift({log: {level: 'silent'}}, function(err, _sails) {
-			sails = _sails;
-			return done(err);
-		});
-
-	});
-
-	after(function(done) {
-		sails.lower(done);
-	})
 
 	it('isApiOffline method should return false', function(done) {
 
