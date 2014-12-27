@@ -1,7 +1,7 @@
 doctype html
 html(ng-app="redrumApp")
 	include ./includes/header.jade
-	body.skin-blue
+	body.skin-blue(ng-controller="MenuController", style="border:1px solid red;")
 		// header logo: style can be found in header.less
 		header.header
 			a.logo(href='/dashboard')
@@ -11,6 +11,7 @@ html(ng-app="redrumApp")
 		.wrapper.row-offcanvas.row-offcanvas-left
 			include ./includes/left_navbar
 			include ./includes/right_navbar
+
 		// ./wrapper		
 		block message-modal
 		block javascript

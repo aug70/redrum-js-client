@@ -1,23 +1,21 @@
 'use strict';
 
-function DashBoardController($scope, redrumAppServices) {
-
-	redrumAppServices.dashboard().then(
-		function(data) {
-			$scope.dashboard = data;
-		});
-}
-
-function MenuController($scope, redrumAppServices) {
-	
+redrumApp.controller('MenuController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
 	redrumAppServices.user().then(
 		function(data) {
 			$scope.user = data;
 		});
-}
+}]);
 
-function MarketController($scope, redrumAppServices) {
-	
+
+redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
+	redrumAppServices.dashboard().then(
+		function(data) {
+			$scope.dashboard = data;
+		});
+}]);
+
+redrumApp.controller('MarketController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
 	redrumAppServices.storeProducts().then(
 		function(data) {
 			$scope.storeProducts = data;
@@ -32,12 +30,10 @@ function MarketController($scope, redrumAppServices) {
 		function(data) {
 			$scope.inventory = data;
 		});
-}
+}]);
 
-function ProfileController($scope, $resource) {
-	
-}
+redrumApp.controller('ProfileController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
+}]);
 
-function StatsController($scope, $resource) {
-
-}	
+redrumApp.controller('StatsController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
+}]);

@@ -156,4 +156,30 @@ nav.navbar.navbar-static-top(role='navigation')
 							// end task item
 					li.footer
 						a(href='#') View all tasks
-			include ./user_menu
+			// User Account: style can be found in dropdown.less
+			li.dropdown.user.user-menu
+				a.dropdown-toggle(href='#', data-toggle='dropdown')
+					i.glyphicon.glyphicon-user
+					span
+						| {{user.fullName}}
+						i.caret
+				ul.dropdown-menu
+					// User image
+					li.user-header.bg-light-blue
+						img.img-circle(src='/img/avatar3.png', alt='User Image')
+						p
+							| {{user.fullName}}
+							small Member since {{user.memberSince}}
+					// Menu Body
+					li.user-body
+						.col-xs-12.text-center
+							a(href='/dashboard') Dashboard 
+					// Menu Footer
+					li.user-footer
+						.pull-left
+							a.btn.btn-default.btn-flat(href='/profile') Profile
+						.pull-left
+							a.btn.btn-default.btn-flat(href='/market#inventory') Inventory
+						.pull-left
+							a.btn.btn-default.btn-flat(href='/signin') Sign out
+
