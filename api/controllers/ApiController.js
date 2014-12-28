@@ -14,12 +14,22 @@ module.exports = {
 			res.json(CacheService.get(cacheKey));
 			return;
 		}
-		var money = '$$$';
+
+
+		var budgetBoxHeader = '$$$';
+		var budgetBoxLabel = 'See your shopping cart! ';
+		var userSummaryCacheKey = CacheService.makeKey(req, 'user_summary');
+		if(CacheService.hasKey(userSummaryCacheKey)) {
+			var userSummaryCacheValue = CacheService.get(userSummaryCacheKey);
+			budgetBoxHeader = userSummaryCacheValue.budget;
+			budgetBoxLabel =  userSummaryCacheValue.cartSize + ' items in your shopping cart';
+		}
+
 	    var result = {
 			budget : { 
-				box_header : money,
+				box_header : budgetBoxHeader,
 				box_text   : 'In your budget',
-				box_label  : 'Check your shopping cart! ',
+				box_label  : budgetBoxLabel,
 				box_link   : '/market'
 			},
 			stats : { 
@@ -65,7 +75,9 @@ module.exports = {
 				box_link   : '/game'
 			}
 		};
-		CacheService.add(cacheKey, result);
+		if(budgetBoxHeader!=='$$$') {
+			CacheService.add(cacheKey, result);
+		}
 		res.json(result);
 	},
 
