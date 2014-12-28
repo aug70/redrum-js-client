@@ -14,7 +14,9 @@ block content
               i.ion.ion-stats-bars
                 |  Stats
         // Main content
-        section.content
+        section.content(ng-controller="StatsController")
+          include ./includes/alerts
+          include ./includes/stats/stats
         // /.content
 block javascript
     // jQuery 2.0.2

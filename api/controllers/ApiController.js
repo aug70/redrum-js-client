@@ -102,8 +102,10 @@ module.exports = {
 				budget : jsonObject.hasOwnProperty('budget')? jsonObject.budget : 'Unknown',
 				inventorySize : jsonObject.hasOwnProperty('inventorySize')? jsonObject.inventorySize : '',
 				cartSize : jsonObject.hasOwnProperty('cartSize')? jsonObject.cartSize : '',
-				ordersSize : jsonObject.hasOwnProperty('ordersSize')? jsonObject.ordersSize : ''
+				ordersSize : jsonObject.hasOwnProperty('ordersSize')? jsonObject.ordersSize : '',
+				statistics : jsonObject.hasOwnProperty('statistics')? jsonObject.statistics : null
 			};
+
 			CacheService.add(cacheKey, value);
 			res.json(value);
 		});
@@ -156,6 +158,55 @@ module.exports = {
 			res.json(resultJSON);
 		});
 
+	},
+
+	stats : function(req,res) {
+		
+		var cacheKey = CacheService.makeKey(req, 'user_stats');
+		if(CacheService.hasKey(cacheKey)) {
+			res.json(CacheService.get(cacheKey));
+			return;
+		}
+
+		var userSummaryCacheValue = CacheService.get(CacheService.makeKey(req, 'user_summary'));
+
+
+		var result = 
+			[{
+				order: 0,
+				label : 'Played',
+				value: userSummaryCacheValue.statistics.gamesPlayed,
+				type: 'primary',
+				percentClass: 'badge bg-blue',
+				percent: userSummaryCacheValue.statistics.gamesPlayedPercentage + '%'
+			},
+			{
+				order: 1,
+				label : 'Won',
+				value: userSummaryCacheValue.statistics.gamesWon,
+				type: 'success',
+				percentClass: 'badge bg-green',
+				percent: userSummaryCacheValue.statistics.gamesWonPercentage + '%'
+			},
+			{
+				order: 2,
+				label : 'Abandoned',
+				value: userSummaryCacheValue.statistics.gamesAbandoned,
+				type: 'warning',
+				percentClass: 'badge bg-yellow',
+				percent: userSummaryCacheValue.statistics.gamesAbandonedPercentage + '%'
+			},
+			{
+				order: 3,
+				label : 'Lost',
+				value: userSummaryCacheValue.statistics.gamesLost,
+				type: 'danger',
+				percentClass: 'badge bg-red',
+				percent: userSummaryCacheValue.statistics.gamesLostPercentage + '%'
+			}]
+		
+		CacheService.add(cacheKey, result);
+		res.json(result);
 	}
 
 };

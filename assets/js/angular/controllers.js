@@ -45,4 +45,14 @@ redrumApp.controller('ProfileController', ['$scope', 'redrumAppServices', functi
 }]);
 
 redrumApp.controller('StatsController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
+
+	redrumAppServices.stats().then(
+			function(data) {
+				$scope.stats = data;
+			});
+
+	$scope.filterFunction = function(element) {
+  		return element.label.match(/^Played/) ? false : true;
+	};
+
 }]);
