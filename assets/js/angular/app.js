@@ -4,7 +4,10 @@ var redrumApp = angular.module('redrumApp', ['ui.bootstrap', 'ngRoute', 'ngResou
  	
 	config(['$routeProvider', '$resourceProvider', '$locationProvider', function($routeProvider, $resourceProvider, $locationProvider) {
 		
-		$locationProvider.html5Mode(true);
+		$locationProvider.html5Mode({
+		  enabled: true,
+		  requireBase: false
+		});
 	
 	}]);
 

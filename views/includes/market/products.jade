@@ -14,7 +14,7 @@
 				tr(ng-repeat="product in products")
 					td {{$index+1}}
 					td
-						{{product.name}}
+						| {{product.name}}
 						| {{product.description}}
 					td
 						span(ng-if="product.price===product.discountedPrice") {{product.price}}

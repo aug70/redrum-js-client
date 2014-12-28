@@ -5,7 +5,7 @@ aside.left-side.sidebar-offcanvas
 		// Sidebar user panel
 		.user-panel
 			.pull-left.image
-				img.img-circle(src='/img/avatar3.png', alt='User Avatar')
+				img.img-circle(src='/img/avatar3.png', alt='{{user.userName}}')
 			.pull-left.info
 				p Hello, {{user.userName}}
 				a(href='/profile')
@@ -28,6 +28,14 @@ aside.left-side.sidebar-offcanvas
 					i.fa.fa-angle-left.pull-right
 				ul.treeview-menu
 					li
+						a(href='/market#credit')
+							i.fa.fa-angle-double-right
+							| Buy game credit
+					li
+						a(href='/market#coupons')
+							i.fa.fa-angle-double-right
+							| Redeem coupons
+					li
 						a(href='/market#products')
 							i.fa.fa-angle-double-right
 							| Products
@@ -46,14 +54,6 @@ aside.left-side.sidebar-offcanvas
 							i.fa.fa-angle-double-right
 							| Your orders
 							small.badge.pull-right.bg-light-blue {{user.ordersSize}}
-					li
-						a(href='/market#coupons')
-							i.fa.fa-angle-double-right
-							| Redeem coupons
-					li
-						a(href='/market#credit')
-							i.fa.fa-angle-double-right
-							| Buy game credit
 			li
 				a(href='/stats')
 					i.ion.ion-stats-bars
