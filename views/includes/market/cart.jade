@@ -6,7 +6,12 @@
 		// Table row
 		.row
 			.col-xs-12.table-responsive
-				table.table.table-striped
+				table.table.table-striped(ng-show="cart.cartItems.length===0")
+					thead
+						tr
+							th Your cart is empty!
+
+				table.table.table-striped(ng-show="cart.cartItems.length")
 					thead
 						tr
 							th Product

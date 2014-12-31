@@ -3,8 +3,11 @@
 		h3.box-title Orders
 	// /.box-header
 	.box-body.table-responsive
-		{{orders}}
-		table#example1.table.table-bordered.table-striped
+		table.table.table-striped(ng-show="orders.orderDtos.length===0")
+			thead
+				tr
+					th Your don't have any orders!
+		table.table.table-bordered.table-striped
 			thead
 				tr
 					th #
