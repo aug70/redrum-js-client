@@ -1,28 +1,23 @@
 .box
 	.box-header
 		h3.box-title Products
+
+
 	// /.box-header
+	
 	.box-body.table-responsive
-		table#example1.table.table-bordered.table-striped
-			thead
-				tr
-					th
-					th Product
-					th Price
-					th Action
-			tbody
-				tr(ng-repeat="product in products")
-					td {{$index+1}}
-					td
-						| {{product.name}}
-						| {{product.description}}
-					td
-						span(ng-if="product.price===product.discountedPrice") {{product.price}}
-						span(ng-if="product.price!==product.discountedPrice") 
-							strike {{product.price}}
-							|  {{product.discountedPrice}}
-					td
-						div(ng-repeat="link in product.links | filter: {rel: 'addToCart'}")
-							a.btn.btn-primary.btn-xs(href="" ng-click="addToCart(link.href)") {{link.label}}
+		table(ng-table="tableParams", show-filter="true", class="table table-striped")
+			tr(ng-repeat="product in $data")
+				td 
+					| {{$index+1}}
+				td(data-title="'Name'", sortable="name", filter="{'name':'text'}")
+					| {{product.name}}
+				td(data-title="'Description'", sortable="description", filter="{'description':'text'}")
+					| {{product.description}}
+				td(data-title="'Price'", sortable="price", filter="{'price':'text'}")
+					|  {{product.price}} - {{product.onSale}} - {{product.discountedPrice}}
+				td(data-title="'Action'")
+					div(ng-repeat="link in product.links | filter: {rel: 'addToCart'}")
+						a.btn.btn-primary.btn-xs(href="" ng-click="addToCart(link.href)") {{link.label}}
 	// /.box-body
 // /.box

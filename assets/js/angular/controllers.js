@@ -15,14 +15,48 @@ redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', func
 		});
 }]);
 
-redrumApp.controller('MarketController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
-	
-	$scope.getProducts = function() {
-		redrumAppServices.products().then(
-			function(data) {
-				$scope.products = data.products;
+redrumApp.controller('MarketController', ['$scope', 'redrumAppServices', '$filter', 'ngTableParams', function($scope, redrumAppServices, $filter, ngTableParams) {
+
+	$scope.tableParams = new ngTableParams(
+	{
+		page: 1,		// show first page
+		count: 10,		// count per page
+		filter: {
+			name: ''    // initial filter
+		},
+		sorting: {
+			name: 'asc'	// initial sorting
+		}
+	}, 
+	{
+		getData : function($defer, params) {
+			redrumAppServices.products().then(
+
+				function(data) {
+				// use build-in angular filter
+				var filteredData = params.filter() ?
+					$filter('filter')(data.products, params.filter()) :
+						data;
+		        
+				var orderedData = params.sorting() ?
+					$filter('orderBy')(filteredData, params.orderBy()) :
+						data;
+
+				console.log("params -->", params);
+				console.log("orderedData -->", orderedData);
+				params.total(orderedData.length); // set total for recalc pagination
+				//params.groupBy('productType');
+				$defer.resolve(
+					orderedData.slice(
+						(params.page() - 1) * params.count(), 
+						params.page() * params.count()
+					)
+				);					
 			});
-	};
+	    }
+	});
+	
+	
 
 	$scope.getCart = function() {
 		redrumAppServices.cart().then(
