@@ -45,6 +45,12 @@ service.factory('redrumAppServices', function($http) {
 				function(result) {
 					return result.data;
 				});
-			}
+			},
+		orders : function() {
+			return $http.get('/api/orders').then(
+				function(result) {
+					return result.data;
+				});
+			},	
 	}
 });

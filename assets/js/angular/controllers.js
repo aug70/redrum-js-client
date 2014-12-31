@@ -38,6 +38,13 @@ redrumApp.controller('MarketController', ['$scope', 'redrumAppServices', functio
 			});
 	};
 
+	$scope.getOrders = function() {
+		redrumAppServices.orders().then(
+			function(data) {
+				$scope.orders = data;
+			});
+	};
+
 
 }]);
 

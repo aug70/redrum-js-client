@@ -169,7 +169,7 @@ nav.navbar.navbar-static-top(role='navigation')
 						img.img-circle(src='/img/avatar3.png', alt='User Image')
 						p
 							| {{user.fullName}}
-							small Member since {{user.memberSince}}
+							small Member since {{user.memberSince | date:'MMM yyyy'}}
 					// Menu Body
 					li.user-body
 						.col-xs-12.text-center

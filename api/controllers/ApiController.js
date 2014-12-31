@@ -207,6 +207,21 @@ module.exports = {
 		
 		CacheService.add(cacheKey, result);
 		res.json(result);
+	},
+
+	orders : function(req, res) {
+
+		var cacheKey = CacheService.makeKey(req, 'user_orders');
+		if(CacheService.hasKey(cacheKey)) {
+			res.json(CacheService.get(cacheKey));
+			return;
+		}
+
+		RedrumApiService.invokeEndPoint('/market/orders', 'GET', function(result){
+			var resultJSON = JSON.parse(result);
+			CacheService.add(cacheKey, resultJSON);
+			res.json(resultJSON);
+		});
 	}
 
 };
