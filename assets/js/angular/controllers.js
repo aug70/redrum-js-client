@@ -42,8 +42,6 @@ redrumApp.controller('MarketController', ['$scope', 'redrumAppServices', '$filte
 					$filter('orderBy')(filteredData, params.orderBy()) :
 						data;
 
-				console.log("params -->", params);
-				console.log("orderedData -->", orderedData);
 				params.total(orderedData.length); // set total for recalc pagination
 				//params.groupBy('productType');
 				$defer.resolve(

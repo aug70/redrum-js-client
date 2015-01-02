@@ -18,6 +18,6 @@
 					|  {{product.price}} - {{product.onSale}} - {{product.discountedPrice}}
 				td(data-title="'Action'")
 					div(ng-repeat="link in product.links | filter: {rel: 'addToCart'}")
-						a.btn.btn-primary.btn-xs(href="" ng-click="addToCart(link.href)") {{link.label}}
+						a.btn.btn-primary.btn-xs(href="", ng-click="addToCart({{link.href}})") {{link.label}}
 	// /.box-body
 // /.box
