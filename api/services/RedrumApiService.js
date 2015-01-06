@@ -8,7 +8,7 @@ module.exports = {
 		var config = {
 			clientId : sails.config.redrumConfig.clientId,
 			clientSecret : sails.config.redrumConfig.clientSecret,
-			debug : sails.config.redrumConfig.debug
+			debug : false//sails.config.redrumConfig.debug
 		};
 		
 		var redrumSDK = new RedrumSDK(config);

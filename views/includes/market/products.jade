@@ -2,9 +2,7 @@
 	.box-header
 		h3.box-title Products
 
-
-	// /.box-header
-	
+	// /.box-header	
 	.box-body.table-responsive
 		table(ng-table="tableParams", show-filter="true", class="table table-striped")
 			tr(ng-repeat="product in $data")
@@ -18,6 +16,6 @@
 					|  {{product.price}} - {{product.onSale}} - {{product.discountedPrice}}
 				td(data-title="'Action'")
 					div(ng-repeat="link in product.links | filter: {rel: 'addToCart'}")
-						a.btn.btn-primary.btn-xs(href="", ng-click="addToCart({{link.href}})") {{link.label}}
+						a.btn.btn-primary.btn-xs(href="" ng-click="processCart(link.href, link.method)") {{link.label}}
 	// /.box-body
 // /.box

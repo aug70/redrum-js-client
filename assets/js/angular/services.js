@@ -51,6 +51,30 @@ service.factory('redrumAppServices', function($http) {
 				function(result) {
 					return result.data;
 				});
-			},	
+			},
+		processCart : function(callUrl, callMethod) {
+			// console.log('call url' + callUrl);
+			// console.log('call method' + callMethod);
+			return $http({
+				method: 'post',
+				url: '/api/processCart',
+				data: {
+					'callMethod' : callMethod,
+					'callUrl' : callUrl
+				},
+				headers: {'Content-Type': 'application/json;charset=utf-8'}
+			}).then(
+				function(response) {
+					// success
+					console.log('Success');
+					console.log(response.data);
+					}, 
+				function(response) { // optional
+					// failed
+					// success
+					console.log('Failure');
+					console.log(response.data);
+				});
+			}
 	}
 });

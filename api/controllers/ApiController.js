@@ -75,9 +75,9 @@ module.exports = {
 				box_link   : '/game'
 			}
 		};
-		if(budgetBoxHeader!=='$$$') {
-			CacheService.add(cacheKey, result);
-		}
+		//if(budgetBoxHeader!=='$$$') {
+		//	CacheService.add(cacheKey, result);
+		//}
 		res.json(result);
 	},
 
@@ -146,15 +146,8 @@ module.exports = {
 
 	inventory : function(req, res) {
 
-		var cacheKey = CacheService.makeKey(req, 'user_inventory');
-		if(CacheService.hasKey(cacheKey)) {
-			res.json(CacheService.get(cacheKey));
-			return;
-		}
-
 		RedrumApiService.invokeEndPoint('/inventory', 'GET', function(result){
 			var resultJSON = JSON.parse(result);
-			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
 		});
 
@@ -222,6 +215,23 @@ module.exports = {
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
 		});
+	},
+
+	processCart : function(req, res) {
+		var cacheKey = CacheService.makeKey(req, 'user_cart');
+		var callUrl = req.body.callUrl;
+		var callMethod = req.body.callMethod;
+		console.log('Cache key ' + cacheKey + ' is removed.');
+		console.log('Req call url: ' + callUrl);
+		console.log('Req call method: ' + callMethod);
+		CacheService.remove(cacheKey);
+
+		RedrumApiService.invokeEndPoint(callUrl, callMethod, function(result){
+			console.log(result);
+			var resultJSON = JSON.parse(result);
+			CacheService.add(cacheKey, resultJSON);
+			res.json(resultJSON);
+		});				
 	}
 
 };

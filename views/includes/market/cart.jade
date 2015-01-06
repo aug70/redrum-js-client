@@ -26,9 +26,11 @@
 							td
 								div
 									span(ng-repeat="link in cartItem.links | filter: {rel: 'add'}")
-										a.btn.btn-primary.btn-xs(href="" ng-click="addToCart(link.href)") {{link.label}}	
+										a.btn.btn-primary.btn-xs(href="" ng-click="processCart(link.href, link.method)") {{link.label}}
+									| 
 									span(ng-repeat="link in cartItem.links | filter: {rel: 'remove'}")
-										a.btn.btn-info.btn-xs(href="" ng-click="removeFromCart(link.href)") {{link.label}}
+										a.btn.btn-info.btn-xs(href="" ng-click="processCart(link.href, link.method)") {{link.label}}
+										| 
 						tr
 							td
 							th(align="right") Total Amount Due:
@@ -36,13 +38,10 @@
 							td
 								div
 									span(ng-repeat="link in cart.links | filter: {rel: 'emptyCart'}")
-										a.btn.btn-danger.btn-xs {{link.label}}
+										a.btn.btn-danger.btn-xs(href="" ng-click="processCart(link.href, link.method)") {{link.label}}
 									| 
 									span(ng-repeat="link in cart.links | filter: {rel: 'purchase'}")
-										a.btn.btn-success.btn-xs {{link.label}}
-								
-								
-
+										a.btn.btn-success.btn-xs(href="" ng-click="processCart(link.href, link.method)") {{link.label}}
 			// /.col
 		// /.row
 	// /.box-body

@@ -77,6 +77,13 @@ redrumApp.controller('MarketController', ['$scope', 'redrumAppServices', '$filte
 			});
 	};
 
+	$scope.processCart = function(callUrl, callMethod) {
+
+		redrumAppServices.processCart(callUrl, callMethod).then(
+			function(data) {
+				$scope.cart = data;
+			});
+	};
 
 }]);
 

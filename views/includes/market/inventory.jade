@@ -9,12 +9,15 @@
 				table.table.table-striped
 					thead
 						tr
+							td(colspan="3") You have {{inventory.budget}}
+					thead
+						tr
+							th #
 							th Product
 							th Validity
-						tr
-							td(colspan="2") You have {{inventory.budget}}
 					tbody
 						tr(ng-repeat="inventoryItem in inventory.inventoryItems")
+							td {{$index+1}}
 							td {{inventoryItem.name}}
 							td
 								p.text-light-blue {{inventoryItem.validity}}
