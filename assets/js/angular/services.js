@@ -52,6 +52,12 @@ service.factory('redrumAppServices', function($http) {
 					return result.data;
 				});
 			},
+		alerts : function() {
+				return $http.get('/api/alerts').then(
+					function(result) {
+						return result.data;
+				});
+			},	
 		processCart : function(callUrl, callMethod) {
 			// console.log('call url' + callUrl);
 			// console.log('call method' + callMethod);

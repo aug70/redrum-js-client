@@ -102,3 +102,12 @@ redrumApp.controller('StatsController', ['$scope', 'redrumAppServices', function
 	};
 
 }]);
+
+redrumApp.controller('AlertController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
+	$scope.getAlerts = function() {
+		redrumAppServices.alerts().then(
+			function(data) {
+				$scope.alerts = data;
+			});
+	};
+}]);
