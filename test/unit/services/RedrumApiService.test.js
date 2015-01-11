@@ -16,7 +16,7 @@ describe('Redrum API Service tests', function() {
 
 	it('getAccessToken method should return a valid "access_token"', function(done) {
 
-		RedrumApiService.getAccessToken('tester','121212', function(access_token) {
+		redrumApiService.getAccessToken('tester','121212', function(access_token) {
 			assert.notDeepEqual(access_token, 'ERROR');
 			assert.notDeepEqual(access_token, undefined);
 			assert.equal(typeof(access_token), 'string');
@@ -26,7 +26,7 @@ describe('Redrum API Service tests', function() {
 
 	it('invokeEndPoint method should return a valid value', function(done) {
 
-		RedrumApiService.invokeEndPoint('/products','GET', function(result) {
+		redrumApiService.invokeEndPoint('/products','GET', function(result) {
 			assert.notDeepEqual(result, 'ERROR');
 			assert.notDeepEqual(result, undefined);
 			//assert.equal(typeof(access_token), 'string');

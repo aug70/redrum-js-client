@@ -228,9 +228,9 @@ module.exports = {
 		var cacheKey = CacheService.makeKey(req, 'user_cart');
 		var callUrl = req.body.callUrl;
 		var callMethod = req.body.callMethod;
-		console.log('Cache key ' + cacheKey + ' is removed.');
-		console.log('Req call url: ' + callUrl);
-		console.log('Req call method: ' + callMethod);
+		//console.log('Cache key ' + cacheKey + ' is removed.');
+		//console.log('Req call url: ' + callUrl);
+		//console.log('Req call method: ' + callMethod);
 		CacheService.remove(cacheKey);
 		CacheService.remove(CacheService.makeKey(req, 'user_summary'));
 		CacheService.remove(CacheService.makeKey(req, 'user_dashboard'));
@@ -248,11 +248,6 @@ module.exports = {
 	},
 
 	alerts : function(req, res) {
-		// var alerts = { "alerts" : [
-		// 	{"message" : "1 Blood type search permit is added to your cart."}, 
-		// 	{"message" : "1 Blood type search permit is added to your cart."}
-		// ]};
-
 		var alerts = AlertService.consumeAlert(req);
 		console.log(alerts);
 		res.send(alerts);
