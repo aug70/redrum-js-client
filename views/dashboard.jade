@@ -14,20 +14,6 @@ block content
 		.row
 			.col-lg-4.col-xs-6
 				// small box
-				.small-box.bg-blue
-					.inner
-						h3
-							| {{dashboard.game.box_header}}
-						p
-							| {{dashboard.game.box_text}}
-					.icon
-						i.ion.ion-game-controller-b
-					a.small-box-footer(href='{{dashboard.game.box_link}}')
-						| {{dashboard.game.box_label}} 
-						i.fa.fa-arrow-circle-right
-			// ./col-lg-4
-			.col-lg-4.col-xs-6
-				// small box
 				.small-box.bg-aqua
 					.inner
 						h3
@@ -38,6 +24,20 @@ block content
 						i.ion.ion-cash
 					a.small-box-footer(href='{{dashboard.budget.box_link}}')
 						| {{dashboard.budget.box_label}} 
+						i.fa.fa-arrow-circle-right
+			// ./col-lg-4
+			.col-lg-4.col-xs-6
+				// small box
+				.small-box.bg-blue
+					.inner
+						h3
+							| {{dashboard.game.box_header}}
+						p
+							| {{dashboard.game.box_text}}
+					.icon
+						i.ion.ion-game-controller-b
+					a.small-box-footer(href='{{dashboard.game.box_link}}')
+						| {{dashboard.game.box_label}} 
 						i.fa.fa-arrow-circle-right
 			// ./col-lg-4
 			.col-lg-4.col-xs-6

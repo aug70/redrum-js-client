@@ -30,6 +30,6 @@ module.exports = {
   redrumConfig: {
     clientId: 'redrum-php-demo',
     clientSecret: '847e8568-d636-4aef-8d8d-5d6628ddcbbb',
-    debug: true
+    debug: false
   }
 };

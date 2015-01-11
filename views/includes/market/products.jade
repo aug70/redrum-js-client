@@ -9,11 +9,12 @@
 				td 
 					| {{$index+1}}
 				td(data-title="'Name'", sortable="'name'", filter="{'name':'text'}")
-					| {{product.name}}
+					| {{product.name}} <span ng-show="product.onSale" class="label label-warning">On Sale</span>
 				td(data-title="'Description'", sortable="'description'", filter="{'description':'text'}")
 					| {{product.description}}
 				td(data-title="'Price'", sortable="price", filter="{'price':'text'}")
-					|  {{product.price}} - {{product.onSale}} - {{product.discountedPrice}}
+					| <span ng-show="product.onSale"><strike>{{product.price}}</strike> {{product.discountedPrice}}</span>
+					| <span ng-show="!product.onSale">{{product.price}}</span>
 				td(data-title="'Action'")
 					div(ng-repeat="link in product.links | filter: {rel: 'addToCart'}")
 						a.btn.btn-primary.btn-xs(href="" ng-click="processCart(link.href, link.method)") {{link.label}}
