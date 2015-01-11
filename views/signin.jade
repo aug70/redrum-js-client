@@ -2,21 +2,8 @@ extends popup_layout
 block title
   title Redrum | Sign in
 block content
-  #login-box.form-box
+  #login-box.form-box(ng-controller="UserController", ng-init="getFaceBookSignInUrl()")
     .header Sign In
-    form(action='/dashboard', method='post')
       .body.bg-gray
-        .form-group
-          input.form-control(type='text', name='userid', placeholder='User ID')
-        .form-group
-          input.form-control(type='password', name='password', placeholder='Password')
-        .form-group
-          input(type='checkbox', name='remember_me')
-          | Remember me
-      .footer
-        button.btn.bg-olive.btn-block(type='submit') Sign me in
-        p
-          a(href='#') I forgot my password
-        a.text-center(href='/register') Register a new membership
-    .margin.text-center
-    include ./includes/social_buttons
+        button.btn.btn-lg.bg-blue.btn-block(ng-click="facebookLogin(faceBookSignInUrl)")
+          | Sign in with FaceBook

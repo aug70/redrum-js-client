@@ -79,6 +79,12 @@ service.factory('redrumAppServices', function($http) {
 					console.log('Failure');
 					console.log(response.data);
 				});
+			},
+		faceBookSignInUrl : function() {
+			return $http.get('/user/facebook').then(
+					function(result) {
+						return result.data;
+				});
 			}
 	}
 });

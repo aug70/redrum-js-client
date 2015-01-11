@@ -8,6 +8,11 @@
 
 module.exports = {
 
+
+	signOut : function(req, res) {
+		return res.redirect("/signin");
+	},
+
 	facebook: function(req, res) {
 		
 		var Facebook = require('machinepack-facebook');
@@ -19,7 +24,8 @@ module.exports = {
 
     	}).exec({
     		success: function(loginUrl){
-    			res.send('<a href="' + loginUrl+'">Click here to login with FB</a>');
+    			res.send(loginUrl);
+    			//res.send('<a href="'+loginUrl+'">Login with Facebook</a>');
     		}
     	});
 	},

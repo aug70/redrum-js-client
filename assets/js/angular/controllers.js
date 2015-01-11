@@ -96,9 +96,6 @@ redrumApp.controller('MarketController', ['$window', '$scope', 'redrumAppService
 
 }]);
 
-redrumApp.controller('ProfileController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
-}]);
-
 redrumApp.controller('StatsController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
 
 	redrumAppServices.stats().then(
@@ -110,4 +107,17 @@ redrumApp.controller('StatsController', ['$scope', 'redrumAppServices', function
   		return element.label.match(/^Played/) ? false : true;
 	};
 
+}]);
+
+redrumApp.controller('UserController', ['$scope', '$location', '$window', 'redrumAppServices', function($scope, $location, $window, redrumAppServices) {
+	$scope.getFaceBookSignInUrl = function() {
+		redrumAppServices.faceBookSignInUrl().then(
+			function(data) {
+				$scope.faceBookSignInUrl = data;
+			});
+	};
+
+	$scope.facebookLogin = function(url) {
+		$window.location = url;
+	}
 }]);

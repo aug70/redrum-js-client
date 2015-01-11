@@ -60,6 +60,8 @@ module.exports.routes = {
     view: 'signin'
   },
 
+  '/signout': 'UserController.signOut',
+
   'POST /api/processCart': 'ApiController.processCart'
 
 
