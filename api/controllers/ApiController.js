@@ -16,7 +16,7 @@ module.exports = {
 		}
 
 
-		var budgetBoxHeader = '$$$';
+		var budgetBoxHeader = 'Money';
 		var budgetBoxLabel = 'See your shopping cart! ';
 		var userSummaryCacheKey = CacheService.makeKey(req, 'user_summary');
 		if(CacheService.hasKey(userSummaryCacheKey)) {
@@ -73,9 +73,15 @@ module.exports = {
 				box_text   : 'A murder now',
 				box_label  : 'You can do this! ',
 				box_link   : '/game'
+			},
+			recommended : {
+				box_header : 'Know',
+				box_text   : 'What\'s recommended for you?',
+				box_label  : 'See your recommendations! ',
+				box_link   : '/market#recommended'
 			}
 		};
-		if(budgetBoxHeader!=='$$$') {
+		if(budgetBoxHeader!=='Money') {
 			CacheService.add(cacheKey, result);
 		}
 		res.json(result);
