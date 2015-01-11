@@ -15,7 +15,7 @@ redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', func
 		});
 }]);
 
-redrumApp.controller('MarketController', ['$scope', 'redrumAppServices', '$filter', 'ngTableParams', function($scope, redrumAppServices, $filter, ngTableParams) {
+redrumApp.controller('MarketController', ['$window', '$scope', 'redrumAppServices', '$filter', 'ngTableParams', function($window, $scope, redrumAppServices, $filter, ngTableParams) {
 
 	$scope.tableParams = new ngTableParams(
 	{
@@ -82,6 +82,7 @@ redrumApp.controller('MarketController', ['$scope', 'redrumAppServices', '$filte
 		redrumAppServices.processCart(callUrl, callMethod).then(
 			function(data) {
 				$scope.cart = data;
+				$window.location = '/market';
 			});
 	};
 
@@ -107,6 +108,7 @@ redrumApp.controller('AlertController', ['$scope', 'redrumAppServices', function
 	$scope.getAlerts = function() {
 		redrumAppServices.alerts().then(
 			function(data) {
+				console.log(data);
 				$scope.alerts = data;
 			});
 	};

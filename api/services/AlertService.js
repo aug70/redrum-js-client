@@ -3,12 +3,12 @@ module.exports = {
 
 	addAlert : function(req, message) {
 		var cacheKey = CacheService.makeKey(req, 'user_alerts');
+		// console.log('cacheKey ->' + cacheKey);
 		var alerts = [];
 		if(CacheService.hasKey(cacheKey)) {
 			alerts = CacheService.get(cacheKey);
 		}
 		alerts.push(message);
-		console.log('alerts ->' + alerts);
 		CacheService.add(cacheKey, alerts);
 	},
 
@@ -19,8 +19,11 @@ module.exports = {
 			alerts = CacheService.get(cacheKey);
 			CacheService.remove(cacheKey);
 		}
-		console.log('alerts ->' + alerts);
-		return alerts;
+		var result = JSON.parse('{ "alerts" : ' + JSON.stringify(alerts) + ' }');
+		//alerts;//{"alerts" : alerts});
+		// console.log('alerts ->' + result);
+		//JSON.stringify()
+		return result;
 	}
 
 };

@@ -238,22 +238,19 @@ module.exports = {
 		CacheService.remove(CacheService.makeKey(req, 'user_inventory'));
 
 		RedrumApiService.invokeEndPoint(callUrl, callMethod, function(result){
-			console.log(result);
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			if(resultJSON.hasOwnProperty('message')) {
 				AlertService.addAlert(req, resultJSON.message);
-				AlertService.addAlert(req, resultJSON.message);
-				AlertService.addAlert(req, resultJSON.message);
 			}
-			res.json(resultJSON);
+			res.send(resultJSON);
 		});				
 	},
 
 	alerts : function(req, res) {
 		var alerts = AlertService.consumeAlert(req);
 		console.log(alerts);
-		res.send(alerts);
+		res.json(alerts);
 	}
 
 };

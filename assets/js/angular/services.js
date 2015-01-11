@@ -59,8 +59,6 @@ service.factory('redrumAppServices', function($http) {
 				});
 			},	
 		processCart : function(callUrl, callMethod) {
-			// console.log('call url' + callUrl);
-			// console.log('call method' + callMethod);
 			return $http({
 				method: 'post',
 				url: '/api/processCart',
