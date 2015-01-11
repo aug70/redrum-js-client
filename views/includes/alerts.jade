@@ -1,15 +1,14 @@
-.row(ng-controller="AlertController", ng-init="getAlerts()")
-.col-md-6
-  .box.box-danger
+.row
+.col-md-6(ng-show="alerts.length>0")
+  .box.box-info
     .box-header
-      i.fa.fa-warning
-      h3.box-title Alerts {{alerts}}
+      i.fa.fa-info
+      h3.box-title Alerts ({{alerts.length}})
     // /.box-header
     .box-body
-      .alert.alert-danger.alert-dismissable(ng-repeat="alert in alerts")
+      .alert.alert-info.alert-dismissable(ng-repeat="alert in alerts")
         i.fa.fa-ban
         button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
-        b Alert!
         | {{alert.message}}
       //- .alert.alert-info.alert-dismissable
       //-   i.fa.fa-info

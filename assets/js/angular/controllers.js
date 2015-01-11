@@ -86,6 +86,14 @@ redrumApp.controller('MarketController', ['$window', '$scope', 'redrumAppService
 			});
 	};
 
+	$scope.getAlerts = function() {
+		redrumAppServices.alerts().then(
+			function(data) {
+				console.log(data);
+				$scope.alerts = data;
+			});
+	};
+
 }]);
 
 redrumApp.controller('ProfileController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
@@ -102,14 +110,4 @@ redrumApp.controller('StatsController', ['$scope', 'redrumAppServices', function
   		return element.label.match(/^Played/) ? false : true;
 	};
 
-}]);
-
-redrumApp.controller('AlertController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
-	$scope.getAlerts = function() {
-		redrumAppServices.alerts().then(
-			function(data) {
-				console.log(data);
-				$scope.alerts = data;
-			});
-	};
 }]);

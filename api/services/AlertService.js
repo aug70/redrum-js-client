@@ -13,16 +13,25 @@ module.exports = {
 	},
 
 	consumeAlert : function(req) {
-		var cacheKey = CacheService.makeKey(req, 'user_alerts');
+		
 		var alerts = [];
+		var cacheKey = CacheService.makeKey(req, 'user_alerts');
 		if(CacheService.hasKey(cacheKey)) {
 			alerts = CacheService.get(cacheKey);
 			CacheService.remove(cacheKey);
 		}
-		var result = JSON.parse('{ "alerts" : ' + JSON.stringify(alerts) + ' }');
-		//alerts;//{"alerts" : alerts});
-		// console.log('alerts ->' + result);
-		//JSON.stringify()
+		if(alerts.length===0) {
+			return alerts;
+		}
+
+		var result = [];
+		for(var i=0; i<alerts.length; i++) {
+			var item = {
+				"message" : alerts[i]
+			}
+			// console.log('item' + item);
+			result.push(item);
+		}
 		return result;
 	}
 

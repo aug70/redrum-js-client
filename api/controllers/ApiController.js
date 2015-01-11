@@ -248,9 +248,14 @@ module.exports = {
 	},
 
 	alerts : function(req, res) {
+		// var alerts = { "alerts" : [
+		// 	{"message" : "1 Blood type search permit is added to your cart."}, 
+		// 	{"message" : "1 Blood type search permit is added to your cart."}
+		// ]};
+
 		var alerts = AlertService.consumeAlert(req);
 		console.log(alerts);
-		res.json(alerts);
+		res.send(alerts);
 	}
 
 };
