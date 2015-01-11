@@ -51,5 +51,7 @@
     "request": "^2.51.0",
     "xunit-file": "0.0.5"
   },
-  "engine": "node 0.10"
+  "engines": {
+    "node": "0.10.x"
+  }
 }
