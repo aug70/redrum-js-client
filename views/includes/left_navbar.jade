@@ -14,11 +14,11 @@ aside.left-side.sidebar-offcanvas
 		// sidebar menu: : style can be found in sidebar.less
 		ul.sidebar-menu
 			li.active
-				a(href='/dashboard')
+				a(href='/dashboard', target="_top")
 					i.fa.fa-dashboard
 					span Dashboard
 			li
-				a(href='/profile')
+				a(href='/profile', target="_top")
 					i.fa.fa-user
 					span Profile
 			li.treeview
@@ -28,38 +28,38 @@ aside.left-side.sidebar-offcanvas
 					i.fa.fa-angle-left.pull-right
 				ul.treeview-menu
 					li
-						a(href='/market#credit')
+						a(href='/market#credit', target="_top")
 							i.fa.fa-angle-double-right
 							| Buy game credit
 					li
-						a(href='/market#coupons')
+						a(href='/market#coupons', target="_top")
 							i.fa.fa-angle-double-right
 							| Redeem coupons
 					li
-						a(href='/market#products')
+						a(href='/market#products', target="_top")
 							i.fa.fa-angle-double-right
 							| Products
 					li
-						a(href='/market#cart').text-yellow
+						a(href='/market#cart', target="_top").text-yellow
 							i.fa.fa-angle-double-right
 							| Your shopping cart
 							small.badge.pull-right.bg-yellow {{user.cartSize}}
 					li
-						a(href='/market#inventory').text-red
+						a(href='/market#inventory', target="_top").text-red
 							i.fa.fa-angle-double-right
 							| Your inventory
 							small.badge.pull-right.bg-red {{user.inventorySize}}
 					li
-						a(href='/market#orders').text-light-blue
+						a(href='/market#orders', target="_top").text-light-blue
 							i.fa.fa-angle-double-right
 							| Your orders
 							small.badge.pull-right.bg-light-blue {{user.ordersSize}}
 			li
-				a(href='/stats')
+				a(href='/stats', target="_top")
 					i.ion.ion-stats-bars
 					span Statistics
 			li
-				a(href='/game')
+				a(href='/game', target="_top")
 					i.ion.ion-game-controller-b
 					span Game
 	// /.sidebar
