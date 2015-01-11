@@ -93,7 +93,7 @@ module.exports = {
 
 			var jsonObject = JSON.parse(result);
 			var value = {
-				avatar : '/img/avatar3.png',
+				
 				userName : jsonObject.hasOwnProperty('username')? jsonObject.username : 'Unknown',
 				fullName : jsonObject.hasOwnProperty('fullName')? jsonObject.fullName : 'Unknown',
 				email : jsonObject.hasOwnProperty('email')? jsonObject.email : null,
@@ -103,8 +103,19 @@ module.exports = {
 				inventorySize : jsonObject.hasOwnProperty('inventorySize')? jsonObject.inventorySize : '',
 				cartSize : jsonObject.hasOwnProperty('cartSize')? jsonObject.cartSize : '',
 				ordersSize : jsonObject.hasOwnProperty('ordersSize')? jsonObject.ordersSize : '',
-				statistics : jsonObject.hasOwnProperty('statistics')? jsonObject.statistics : null
+				statistics : jsonObject.hasOwnProperty('statistics')? jsonObject.statistics : null,
+				avatar : '/img/avatar3.png'
 			};
+			if(value.email!=null) {
+				GravatarService.getGravatarUrl(value.email, function(gravatarUrl) {
+					if(gravatarUrl!=null||gravatarUrl!=undefined) {
+						console.log(gravatarUrl);
+						value.avatar = gravatarUrl;
+					}	
+				});
+			}
+
+			
 
 			CacheService.add(cacheKey, value);
 			res.json(value);

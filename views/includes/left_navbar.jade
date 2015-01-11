@@ -5,7 +5,7 @@ aside.left-side.sidebar-offcanvas
 		// Sidebar user panel
 		.user-panel
 			.pull-left.image
-				img.img-circle(src='/img/avatar3.png', alt='{{user.userName}}')
+				img.img-circle(ng-src='{{user.avatar}}', alt='{{user.userName}}')
 			.pull-left.info
 				p Hello, {{user.userName}}
 				a(href='/profile')

@@ -166,7 +166,7 @@ nav.navbar.navbar-static-top(role='navigation')
 				ul.dropdown-menu
 					// User image
 					li.user-header.bg-light-blue
-						img.img-circle(src='/img/avatar3.png', alt='User Image')
+						img.img-circle(ng-src='{{user.avatar}}', alt='{{user.userName}}')
 						p
 							| {{user.fullName}}
 							small Member since {{user.memberSince | date:'MMM yyyy'}}
