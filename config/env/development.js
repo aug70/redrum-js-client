@@ -22,9 +22,9 @@ module.exports = {
   // }
 
   facebookConfig: {
-  	apiKey: '175967239248590',
+  	apiKey: '602313753122623',
   	callbackUrl: 'http://localhost:1337/user/facebookcb',
-  	secretKey: '319c7ed2f24fc1ac61269a319a19fe11'
+  	secretKey: 'd346dbac832fcfef953fb4621fd9d889'
   },
 
   redrumConfig: {

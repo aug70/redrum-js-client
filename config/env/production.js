@@ -12,27 +12,16 @@
 
 module.exports = {
 
-  /***************************************************************************
-   * Set the default database connection for models in the production        *
-   * environment (see config/connections.js and config/models.js )           *
-   ***************************************************************************/
+  facebookConfig: {
+    apiKey: '175967239248590',
+    callbackUrl: 'https://redrum-js-client.herokuapp.com/user/facebookcb',
+    secretKey: '319c7ed2f24fc1ac61269a319a19fe11'
+  },
 
-  // models: {
-  //   connection: 'someMysqlServer'
-  // },
-
-  /***************************************************************************
-   * Set the port in the production environment to 80                        *
-   ***************************************************************************/
-
-  // port: 80,
-
-  /***************************************************************************
-   * Set the log level in production environment to "silent"                 *
-   ***************************************************************************/
-
-  // log: {
-  //   level: "silent"
-  // }
+  redrumConfig: {
+    clientId: 'redrum-php-demo',
+    clientSecret: '847e8568-d636-4aef-8d8d-5d6628ddcbbb',
+    debug: false
+  }
 
 };

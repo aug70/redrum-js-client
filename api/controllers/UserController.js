@@ -12,7 +12,7 @@ module.exports = {
 	signOut : function(req, res) {
 		var result = UserService.signOut();
 		req.session.destroy();
-		//req.flash(result.message);
+		//req.flash('alerts', result.message);
 		return res.redirect(result.nextStep);
 	},
 
