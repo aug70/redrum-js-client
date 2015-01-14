@@ -28,7 +28,8 @@
     "sails-mongo": "^0.10.5"
   },
   "scripts": {
-    "start": "sails lift --verbose",
+    "start": "sails lift --prod",
+    "dev": "sails lift --verbose",
     "test": "mocha",
     "debug": "node debug app.js"
   },
