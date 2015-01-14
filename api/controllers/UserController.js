@@ -10,10 +10,13 @@ module.exports = {
 
 
 	signOut : function(req, res) {
-		return res.redirect("/signin");
+		var result = UserService.signOut();
+		req.session.destroy();
+		//req.flash(result.message);
+		return res.redirect(result.nextStep);
 	},
 
-	facebook: function(req, res) {
+	facebook : function(req, res) {
 		
 		var Facebook = require('machinepack-facebook');
     	Facebook.getLoginUrl({
@@ -25,7 +28,6 @@ module.exports = {
     	}).exec({
     		success: function(loginUrl){
     			res.send(loginUrl);
-    			//res.send('<a href="'+loginUrl+'">Login with Facebook</a>');
     		}
     	});
 	},
@@ -42,8 +44,9 @@ module.exports = {
 	    
 	      // Triggered when the Facebook API returns an error (i.e. a non-2xx status code)
 	      error: function (error){
-	        res.json(error);
-
+			var result = UserService.handleSignInError(error);
+			//req.session.flash(result.message);
+			res.redirect(result.nextStep);
 	      },
 	    
 	      // Returns the access token itself, as well as the timestamp when it expires (as a ISO/JSON date)
@@ -57,21 +60,23 @@ module.exports = {
 		    
 		      // Triggered when the Facebook API returns an error (i.e. a non-2xx status code)
 		      error: function (error){
-	        	res.json(error);
+				var result = UserService.handleSignInError(error);
+				//req.session.flash(result.message);
+				res.redirect(result.nextStep);
 		      },
 		    
 		      // Returns all available data for the Facebook user connected to the specified access token.
 		      // Advanced details about each of the keys below are available at
 		      // https://developers.facebook.com/docs/graph-api/reference/v2.2/user.
-		      success: function (result){
-		        res.send(result);
+		      success: function (data){
+		        
+				var result = UserService.signInOrRegister(data);
+				//req.session.flash(result.message);
+				res.redirect(result.nextStep);
 		      },
-		    });
-
-
+			});
 	      },
 	    });
-		
 	}
 };
 
