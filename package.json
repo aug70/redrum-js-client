@@ -29,8 +29,6 @@
   },
   "scripts": {
     "start": "sails lift --verbose",
-    //"start": "sails lift --prod",
-    //"dev": "sails lift --verbose",
     "test": "mocha",
     "debug": "node debug app.js"
   },
