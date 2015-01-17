@@ -49,10 +49,17 @@ module.exports.policies = {
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
 
-  '*': [true, 'flash'],
-  'UserController': {
-    'signOut': ['flash'],
-    'facebookcb': ['flash']
+  // UserController: {
+  //   '*' : false,
+  //   signOut : ['flash', 'sessionAuth'],
+  //   facebookcb : ['flash', 'sessionAuth']
+  // },
+  UserController: {
+    '*' : 'flash'
+  },
+
+  ApiController: {
+    '*' : ['flash', 'sessionAuth'] 
   }
 
 };

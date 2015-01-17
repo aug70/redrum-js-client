@@ -11,7 +11,7 @@ module.exports = {
 
 	signOut : function(req, res) {
 		var result = UserService.signOut();
-		req.session.destroy();
+		//req.session.destroy();
 		FlashService.success(req, result.message);
 		return res.redirect(result.nextStep);
 	},
@@ -71,6 +71,7 @@ module.exports = {
 		      success: function (data){
 		        
 				var result = UserService.signInOrRegister(data);
+				req.session.authenticated = true;
 				FlashService.success(req, result.message);
 				res.redirect(result.nextStep);
 		      },
