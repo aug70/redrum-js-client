@@ -48,4 +48,11 @@ module.exports.policies = {
 		// before letting any users feed our rabbits
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
+
+  '*': [true, 'flash'],
+  'UserController': {
+    'signOut': ['flash'],
+    'facebookcb': ['flash']
+  }
+
 };

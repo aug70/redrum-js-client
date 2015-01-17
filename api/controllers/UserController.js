@@ -12,7 +12,7 @@ module.exports = {
 	signOut : function(req, res) {
 		var result = UserService.signOut();
 		req.session.destroy();
-		//req.flash('alerts', result.message);
+		FlashService.success(req, result.message);
 		return res.redirect(result.nextStep);
 	},
 
@@ -45,7 +45,7 @@ module.exports = {
 	      // Triggered when the Facebook API returns an error (i.e. a non-2xx status code)
 	      error: function (error){
 			var result = UserService.handleSignInError(error);
-			//req.session.flash(result.message);
+			FlashService.error(req, result.message);
 			res.redirect(result.nextStep);
 	      },
 	    
@@ -61,7 +61,7 @@ module.exports = {
 		      // Triggered when the Facebook API returns an error (i.e. a non-2xx status code)
 		      error: function (error){
 				var result = UserService.handleSignInError(error);
-				//req.session.flash(result.message);
+				FlashService.error(req, result.message);
 				res.redirect(result.nextStep);
 		      },
 		    
@@ -71,7 +71,7 @@ module.exports = {
 		      success: function (data){
 		        
 				var result = UserService.signInOrRegister(data);
-				//req.session.flash(result.message);
+				FlashService.success(req, result.message);
 				res.redirect(result.nextStep);
 		      },
 			});
