@@ -1,17 +1,9 @@
 .row
   .col-md-6(ng-controller="AlertController", ng-init="getAlerts()")
-    .box.box-info(ng-show="alerts.length>0")
-      .box-header
-        i.fa.fa-info
-        h3.box-title Alerts
-      // /.box-header
-      .box-body
-        .alert.alert-info.alert-dismissable(ng-repeat="alert in alerts")
-          i.fa.fa-ban
-          button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
-          | {{alert.message}}
-      // /.box-body
-    // /.box
+    .alert.alert-info.alert-dismissable(ng-repeat="alert in alerts")
+      i.fa.fa-ban
+      button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
+      | {{alert.message}}
   // /.col
   .col-md-6
   // /.col
