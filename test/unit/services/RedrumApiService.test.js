@@ -2,6 +2,7 @@
 
 require('../../bootstrap.test.js');
 var assert = require('assert');
+var uuid = require('node-uuid');
 var redrumApiService = require('../../../api/services/RedrumApiService');
 
 describe('Redrum API Service tests', function() {
@@ -32,6 +33,30 @@ describe('Redrum API Service tests', function() {
 			//assert.equal(typeof(access_token), 'string');
 			return done();
 		})
-	});	
+	});
+
+	it('register user', function(done) {
+
+		var guid = uuid.v1().replace(/-/g, '').substring(0,10);
+		//console.log('guid: ' + guid);
+		assert.equal(guid.length>=6 && guid.length<=15, true);
+
+		var userData = {
+			'userName' : guid,
+			'firstName' : 'Albert',
+			'lastName' : 'Einstein',
+			'email' : guid + '@redrum.us',
+			'password' : 'password',
+			'providerClientId' : 'redrum-php-demo',
+			'origin' : 'facebook',
+			'originUserId' : guid
+		};
+
+		redrumApiService.register(userData, function(result) {
+			assert.equal(result, true);
+			return done();
+		})
+	});
+
 
 });

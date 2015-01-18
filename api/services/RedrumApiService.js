@@ -46,6 +46,17 @@ module.exports = {
 		var redrumSDK = new RedrumSDK(config);
 		redrumSDK.getAccessToken(username, password, cb);
 
+	},
+
+	register : function(userData, cb) {
+		var RedrumSDK = require('redrum-js-sdk');
+		var config = {
+			clientId : sails.config.redrumConfig.clientId,
+			clientSecret : sails.config.redrumConfig.clientSecret,
+			debug : sails.config.redrumConfig.debug
+		};
+		var redrumSDK = new RedrumSDK(config);
+		redrumSDK.register(userData, cb);
 	}
 
 };

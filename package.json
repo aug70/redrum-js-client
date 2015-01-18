@@ -50,7 +50,8 @@
     "grunt-mocha": "^0.4.11",
     "mocha": "^2.1.0",
     "request": "^2.51.0",
-    "xunit-file": "0.0.5"
+    "xunit-file": "0.0.5",
+    "node-uuid": "^1.4.2"
   },
   "engines": {
     "node": "0.10.x"
