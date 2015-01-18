@@ -85,6 +85,9 @@ redrumApp.controller('MarketController', ['$window', '$scope', 'redrumAppService
 				$window.location = '/market';
 			});
 	};
+}]);
+
+redrumApp.controller('AlertController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
 
 	$scope.getAlerts = function() {
 		redrumAppServices.alerts().then(

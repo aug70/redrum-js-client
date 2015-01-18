@@ -14,7 +14,12 @@ html(ng-app="redrumApp")
 		
 		.wrapper.row-offcanvas.row-offcanvas-left
 			include ./includes/left_navbar
-			include ./includes/right_navbar
+
+			// Right side column. Contains the bread-crumb menu and content of the page
+			aside.right-side
+				block content
+			// /.right-side
+
 		// ./wrapper
 
 		block message-modal

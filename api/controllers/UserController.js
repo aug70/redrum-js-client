@@ -13,6 +13,7 @@ module.exports = {
 		var result = UserService.signOut();
 		//req.session.destroy();
 		FlashService.success(req, result.message);
+		AlertService.addAlert(req, result.message);
 		return res.redirect(result.nextStep);
 	},
 
@@ -46,6 +47,7 @@ module.exports = {
 	      error: function (error){
 			var result = UserService.handleSignInError(error);
 			FlashService.error(req, result.message);
+			AlertService.addAlert(req, result.message);
 			res.redirect(result.nextStep);
 	      },
 	    
@@ -62,6 +64,7 @@ module.exports = {
 		      error: function (error){
 				var result = UserService.handleSignInError(error);
 				FlashService.error(req, result.message);
+				AlertService.addAlert(req, result.message);
 				res.redirect(result.nextStep);
 		      },
 		    
@@ -73,6 +76,7 @@ module.exports = {
 				var result = UserService.signInOrRegister(data);
 				req.session.authenticated = true;
 				FlashService.success(req, result.message);
+				AlertService.addAlert(req, result.message);
 				res.redirect(result.nextStep);
 		      },
 			});
