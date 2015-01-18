@@ -23,7 +23,7 @@
     "machinepack-gravatar": "^1.1.2",
     "machinepack-facebook": "^1.0.4",
     "rc": "~0.5.0",
-    "redrum-js-sdk": "^0.0.9",
+    "redrum-js-sdk": "^0.0.10",
     "sails": "~0.10.5",
     "sails-disk": "~0.10.0",
     "sails-mongo": "^0.10.5"
