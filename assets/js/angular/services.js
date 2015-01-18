@@ -80,8 +80,8 @@ service.factory('redrumAppServices', function($http) {
 					console.log(response.data);
 				});
 			},
-		faceBookSignInUrl : function() {
-			return $http.get('/user/facebook').then(
+		signInUrls : function() {
+			return $http.get('/user/signInUrls').then(
 					function(result) {
 						return result.data;
 				});

@@ -17,7 +17,7 @@ module.exports = {
 		return res.redirect(result.nextStep);
 	},
 
-	facebook : function(req, res) {
+	signInUrls : function(req, res) {
 		
 		var Facebook = require('machinepack-facebook');
     	Facebook.getLoginUrl({
@@ -28,7 +28,12 @@ module.exports = {
 
     	}).exec({
     		success: function(loginUrl){
-    			res.send(loginUrl);
+    			res.send({
+    				'faceBookSignInUrl' : loginUrl,
+    				'bitBucketSignInUrl' : loginUrl,
+    				'googlePlusSignInUrl' : loginUrl,
+    				'flickrSignInUrl' : loginUrl
+    			});
     		}
     	});
 	},
