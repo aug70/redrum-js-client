@@ -6,8 +6,8 @@ block content
     .header Sign In
       .body.bg-gray
         .box.box-solid(ng-controller="AlertController", ng-init="getAlerts()")
-          .box-body(ng-show="alerts.length>0")
-            blockquote(ng-repeat="alert in alerts")
+          .box-body
+            blockquote(ng-repeat="alert in alerts", ng-show="alerts.length>0")
               span {{alert.message}}
             button.btn.btn-block.btn-large.btn-facebook.btn-social(ng-click="signInWith(signInUrls.faceBookSignInUrl)")
               i.fa.fa-facebook

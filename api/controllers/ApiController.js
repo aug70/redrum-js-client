@@ -95,8 +95,10 @@ module.exports = {
 			return;
 		}
 
-		RedrumApiService.invokeEndPoint('/account/summary', 'GET', function(result){
+		RedrumApiService.invokeEndPoint(req, '/account/summary', 'GET', function(result){
 
+			console.log('Result: '+ result);
+			
 			var jsonObject = JSON.parse(result);
 			var value = {
 				
@@ -137,7 +139,7 @@ module.exports = {
 			return;
 		}
 
-		RedrumApiService.invokeEndPoint('/market/cart', 'GET', function(result){
+		RedrumApiService.invokeEndPoint(req, '/market/cart', 'GET', function(result){
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
@@ -153,7 +155,7 @@ module.exports = {
 			return;
 		}
 
-		RedrumApiService.invokeEndPoint('/products', 'GET', function(result){
+		RedrumApiService.invokeEndPoint(req, '/products', 'GET', function(result){
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
@@ -169,7 +171,7 @@ module.exports = {
 			return;
 		}
 
-		RedrumApiService.invokeEndPoint('/inventory', 'GET', function(result){
+		RedrumApiService.invokeEndPoint(req, '/inventory', 'GET', function(result){
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
@@ -234,7 +236,7 @@ module.exports = {
 			return;
 		}
 
-		RedrumApiService.invokeEndPoint('/market/orders', 'GET', function(result){
+		RedrumApiService.invokeEndPoint(req, '/market/orders', 'GET', function(result){
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
@@ -254,7 +256,7 @@ module.exports = {
 		CacheService.remove(CacheService.makeKey(req, 'user_orders'));
 		CacheService.remove(CacheService.makeKey(req, 'user_inventory'));
 
-		RedrumApiService.invokeEndPoint(callUrl, callMethod, function(result){
+		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(result){
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			if(resultJSON.hasOwnProperty('message')) {

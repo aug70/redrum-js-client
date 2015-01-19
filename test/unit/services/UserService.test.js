@@ -2,6 +2,7 @@
 
 require('../../bootstrap.test.js');
 var assert = require('assert');
+var uuid = require('node-uuid');
 var userService = require('../../../api/services/UserService');
 
 describe('User service tests', function() {
@@ -26,46 +27,66 @@ describe('User service tests', function() {
 	});
 
 	it('Test sign in.', function(done) {
-		
-		var data = { id: '6634254994',
-			email: 'user@facebook.com',
-			first_name: 'Otto',
+		var guid = uuid.v1().replace(/-/g, '').substring(0,10);
+		var data = { id: guid,
+			email: guid + '@redrum.com',
+			first_name: 'Test',
 			gender: 'male',
-			last_name: 'Frank',
-			link: 'http://www.facebook.com/6634254994',
+			last_name: guid,
+			link: 'http://www.facebook.com/' + guid,
 			locale: 'en_US',
-			name: 'Otto Frank',
+			name: guid,
 			timezone: +1,
 			updated_time: '2014-10-12T04:08:30+0000',
 			verified: true };
 
-		var result = userService.signInOrRegister(data);
-
-		assert.equal(result.message, 'You signed in successfully.');
-		assert.equal(result.nextStep, '/dashboard');
-		done();
+		userService.signInOrRegister(data, function(result){
+			console.log('result is ' + result);
+			assert.equal(result.message, 'You signed in successfully.');
+			assert.equal(result.nextStep, '/dashboard');
+			done();
+		});
 	});
 
 	it('Test sign in no email.', function(done) {
-		
-		var data = { id: '6634254994',
-			first_name: 'Otto',
+		var guid = uuid.v1().replace(/-/g, '').substring(0,10);
+		var data = { id: guid,
+			first_name: 'Test',
 			gender: 'male',
-			last_name: 'Frank',
-			link: 'http://www.facebook.com/6634254994',
+			last_name: guid,
+			link: 'http://www.facebook.com/' + guid,
 			locale: 'en_US',
-			name: 'Otto Frank',
+			name: guid,
 			timezone: +1,
 			updated_time: '2014-10-12T04:08:30+0000',
 			verified: true };
 
-		var result = userService.signInOrRegister(data);
-
-		assert.equal(result.message, 'There was a problem using your facebook account.');
-		assert.equal(result.nextStep, '/signin');
-		done();
+		userService.signInOrRegister(data, function(result){
+			assert.equal(result.message, 'Your facebook account email can not accessed.');
+			assert.equal(result.nextStep, '/signin');
+			done();
+		});
 	});
 
 
+	it('Test sign in bad email.', function(done) {
+		var guid = uuid.v1().replace(/-/g, '').substring(0,10);
+		var data = { id: guid,
+			email: guid,
+			first_name: 'Test',
+			gender: 'male',
+			last_name: guid,
+			link: 'http://www.facebook.com/' + guid,
+			locale: 'en_US',
+			name: guid,
+			timezone: +1,
+			updated_time: '2014-10-12T04:08:30+0000',
+			verified: true };
 
+		userService.signInOrRegister(data, function(result){
+			assert.equal(result.message, 'There was an error creating user.');
+			assert.equal(result.nextStep, '/signin');
+			done();
+		});
+	});
 });

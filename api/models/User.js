@@ -7,24 +7,32 @@
 
 module.exports = {
 
-	schema: true,
+	connection : 'mongodb',
+	schema : true,
+	tableName : 'User',
+	autoCreatedAt : true,
+	autoUpdatedAt : true,
 
 	attributes: {
-
-		user_name: {
+		id: {
+			type: 'string',
+			primaryKey: true,
+			unique: true
+		},
+		userName: {
 			type : 'string',
 			required : true,
 			unique : true
 		},
-		first_name : {
+		firstName : {
 			type : 'string',
 			required : true
 		},
-		last_name : {
+		lastName : {
 			type: 'string',
 			required : true
 		},
-		gender : {
+		password : {
 			type : 'string',
 			required : true
 		},
@@ -33,7 +41,22 @@ module.exports = {
 			email : true,
 			required : true,
 			unique : true
+		},
+		originUserId : {
+			type : 'string',
+			required : true
 		}
-  }
-};
+  },
 
+  // Lifecycle Callbacks
+  // beforeCreate: function (values, cb) {
+
+  //   // Encrypt password
+  //   bcrypt.hash(values.password, 10, function(err, hash) {
+  //     if(err) return cb(err);
+  //     values.password = hash;
+  //     //calling cb() with an argument returns an error. Useful for canceling the entire operation if some criteria fails.
+  //     cb();
+  //   });
+  // }
+};

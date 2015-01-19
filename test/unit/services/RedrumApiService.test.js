@@ -26,8 +26,13 @@ describe('Redrum API Service tests', function() {
 	});
 
 	it('invokeEndPoint method should return a valid value', function(done) {
-
-		redrumApiService.invokeEndPoint('/products','GET', function(result) {
+		var req = {
+			session : {
+				userName: 'tester',
+				password: '121212'
+			}
+		};
+		redrumApiService.invokeEndPoint(req, '/products','GET', function(result) {
 			assert.notDeepEqual(result, 'ERROR');
 			assert.notDeepEqual(result, undefined);
 			//assert.equal(typeof(access_token), 'string');

@@ -11,8 +11,8 @@ module.exports = {
 
 	signOut : function(req, res) {
 		var result = UserService.signOut();
-		//req.session.destroy();
-		FlashService.success(req, result.message);
+		req.session.destroy();
+		// FlashService.success(req, result.message);
 		AlertService.addAlert(req, result.message);
 		return res.redirect(result.nextStep);
 	},
@@ -50,15 +50,14 @@ module.exports = {
 	    
 	      // Triggered when the Facebook API returns an error (i.e. a non-2xx status code)
 	      error: function (error){
+
 			var result = UserService.handleSignInError(error);
-			FlashService.error(req, result.message);
 			AlertService.addAlert(req, result.message);
 			res.redirect(result.nextStep);
 	      },
 	    
 	      // Returns the access token itself, as well as the timestamp when it expires (as a ISO/JSON date)
 	      success: function (result){
-	        //res.send('Got:\n', result);
 
 		    // Get information about the Facebook user with the specified access token.
 		    Facebook.getUserByAccessToken({
@@ -68,7 +67,6 @@ module.exports = {
 		      // Triggered when the Facebook API returns an error (i.e. a non-2xx status code)
 		      error: function (error){
 				var result = UserService.handleSignInError(error);
-				FlashService.error(req, result.message);
 				AlertService.addAlert(req, result.message);
 				res.redirect(result.nextStep);
 		      },
@@ -78,15 +76,22 @@ module.exports = {
 		      // https://developers.facebook.com/docs/graph-api/reference/v2.2/user.
 		      success: function (data){
 		        
-				var result = UserService.signInOrRegister(data);
-				req.session.authenticated = true;
-				FlashService.success(req, result.message);
-				AlertService.addAlert(req, result.message);
-				res.redirect(result.nextStep);
+				UserService.signInOrRegister(data, function(result){
+					//console.log(result);
+					req.session.authenticated = true;
+					req.session.username = result.username;
+					req.session.password = result.password;
+					//console.log('username: ' + result.username);
+					//console.log('password: ' + result.password);
+					//console.log('session: ' + req.session);
+
+					//FlashService.success(req, result.message);
+					AlertService.addAlert(req, result.message);
+					res.redirect(result.nextStep);
+				});
 		      },
 			});
 	      },
 	    });
 	}
 };
-

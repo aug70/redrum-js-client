@@ -1,7 +1,7 @@
 
 module.exports = {
 
-    invokeEndPoint : function(endPoint, method, cb) {
+    invokeEndPoint : function(req, endPoint, method, cb) {
     	
 		var RedrumSDK = require('redrum-js-sdk');
 
@@ -12,8 +12,13 @@ module.exports = {
 		};
 		
 		var redrumSDK = new RedrumSDK(config);
-		redrumSDK.getAccessToken('tester', '121212', 
+		//console.log('Invoking end point with');
+		//console.log('User name: ' + req.session.username);
+		//console.log('Password: '+ req.session.password);
+
+		redrumSDK.getAccessToken(req.session.username, req.session.password, 
 			function(accessToken){
+				//console.log('Access Token: ' + accessToken);
 				redrumSDK.invokeEndPoint(endPoint, method, accessToken, cb);	
 		});
     	
