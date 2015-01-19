@@ -46,4 +46,26 @@ describe('User service tests', function() {
 		done();
 	});
 
+	it('Test sign in no email.', function(done) {
+		
+		var data = { id: '6634254994',
+			first_name: 'Otto',
+			gender: 'male',
+			last_name: 'Frank',
+			link: 'http://www.facebook.com/6634254994',
+			locale: 'en_US',
+			name: 'Otto Frank',
+			timezone: +1,
+			updated_time: '2014-10-12T04:08:30+0000',
+			verified: true };
+
+		var result = userService.signInOrRegister(data);
+
+		assert.equal(result.message, 'There was a problem using your facebook account.');
+		assert.equal(result.nextStep, '/signin');
+		done();
+	});
+
+
+
 });

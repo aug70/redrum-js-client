@@ -26,7 +26,8 @@
     "redrum-js-sdk": "^0.0.10",
     "sails": "~0.10.5",
     "sails-disk": "~0.10.0",
-    "sails-mongo": "^0.10.5"
+    "sails-mongo": "^0.10.5",
+    "node-uuid": "^1.4.2"
   },
   "scripts": {
     "start": "sails lift --verbose",
@@ -50,8 +51,7 @@
     "grunt-mocha": "^0.4.11",
     "mocha": "^2.1.0",
     "request": "^2.51.0",
-    "xunit-file": "0.0.5",
-    "node-uuid": "^1.4.2"
+    "xunit-file": "0.0.5"
   },
   "engines": {
     "node": "0.10.x"

@@ -47,7 +47,7 @@ describe('Redrum API Service tests', function() {
 			'lastName' : 'Einstein',
 			'email' : guid + '@redrum.us',
 			'password' : 'password',
-			'providerClientId' : 'redrum-php-demo',
+			'providerClientId' : 'redrum-js-demo',
 			'origin' : 'facebook',
 			'originUserId' : guid
 		};
