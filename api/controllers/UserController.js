@@ -12,7 +12,6 @@ module.exports = {
 	signOut : function(req, res) {
 		var result = UserService.signOut();
 		req.session.destroy();
-		// FlashService.success(req, result.message);
 		AlertService.addAlert(req, result.message);
 		return res.redirect(result.nextStep);
 	},
@@ -77,15 +76,10 @@ module.exports = {
 		      success: function (data){
 		        
 				UserService.signInOrRegister(data, function(result){
-					//console.log(result);
 					req.session.authenticated = true;
 					req.session.username = result.username;
 					req.session.password = result.password;
-					//console.log('username: ' + result.username);
-					//console.log('password: ' + result.password);
-					//console.log('session: ' + req.session);
 
-					//FlashService.success(req, result.message);
 					AlertService.addAlert(req, result.message);
 					res.redirect(result.nextStep);
 				});

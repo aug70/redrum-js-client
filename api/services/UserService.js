@@ -17,7 +17,7 @@ var registerEmail = function(data, cb) {
 			
 			// If error return error result.
 			if(err) {
-				console.log('Error: ' + err);
+				console.error('Error: ', err);
 				var result = {
 					message : 'There was an error searching for existing user.',
 					nextStep : '/signin'
@@ -27,8 +27,8 @@ var registerEmail = function(data, cb) {
 
 			// If found, this user exists
 			if(foundUser) {
-				//console.log('username' + foundUser.userName);
-				//console.log('password' + foundUser.password);
+				//console.log('username: ', foundUser.userName);
+				//console.log('password: ', foundUser.password);
 				var result = {
 					message : 'You signed in successfully.',
 					nextStep : '/dashboard',
@@ -48,7 +48,7 @@ var registerEmail = function(data, cb) {
 					console.log('Trying to create user now.');					
 					if(err) {
 
-						console.log('Error: ' + err);
+						console.error('Error: ' + err);
 						// User creation has a problem
 						var result = {
 							message : 'There was an error creating user.',
@@ -59,7 +59,7 @@ var registerEmail = function(data, cb) {
 
 					// User created successfully, now register with redrum.
 					if(user) {
-						console.log('User created successfully.');
+						//console.log('User created successfully.');
 						RedrumApiService.register(userData, function(success) {
 							if(!success) {
 								var result = {
@@ -69,9 +69,9 @@ var registerEmail = function(data, cb) {
 								cb(result);
 							}
 							
-							console.log('User registered.')
+							console.info('User registered successfully.');
 							var result = {
-								message : 'You signed in successfully.',
+								message : 'You registered and signed in successfully.',
 								nextStep : '/dashboard',
 								username : user.userName,
 								password : user.password
@@ -112,7 +112,7 @@ var convert = function(userData) {
 module.exports = {
 
 	handleSignInError : function(error) {
-		console.log(error);
+		console.error('Error: ', error);
 		var result = {
 			message : 'There was a problem while processing your request.',
 			nextStep : '/signin'
@@ -130,7 +130,6 @@ module.exports = {
 
 	signInOrRegister : function(data, result) {
 
-		console.log(data);
 		registerEmail(data, result);
 		
 	},

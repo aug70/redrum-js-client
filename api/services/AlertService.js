@@ -3,7 +3,7 @@ module.exports = {
 
 	addAlert : function(req, message) {
 		var cacheKey = CacheService.makeKey(req, 'user_alerts');
-		// console.log('cacheKey ->' + cacheKey);
+		// console.log('CacheKey: ', cacheKey);
 		var alerts = [];
 		if(CacheService.hasKey(cacheKey)) {
 			alerts = CacheService.get(cacheKey);
@@ -29,7 +29,7 @@ module.exports = {
 			var item = {
 				"message" : alerts[i]
 			}
-			// console.log('item' + item);
+			// console.log('Item:', item);
 			result.push(item);
 		}
 		return result;

@@ -42,10 +42,11 @@ describe('User service tests', function() {
 
 		userService.signInOrRegister(data, function(result){
 			console.log('result is ' + result);
-			assert.equal(result.message, 'You signed in successfully.');
+			assert.equal(result.message, 'You registered and signed in successfully.');
 			assert.equal(result.nextStep, '/dashboard');
 			done();
 		});
+
 	});
 
 	it('Test sign in no email.', function(done) {

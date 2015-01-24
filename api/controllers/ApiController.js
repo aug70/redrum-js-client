@@ -97,7 +97,7 @@ module.exports = {
 
 		RedrumApiService.invokeEndPoint(req, '/account/summary', 'GET', function(result){
 
-			console.log('Result: '+ result);
+			//console.log('Result: '+ result);
 			
 			var jsonObject = JSON.parse(result);
 			var value = {
@@ -117,7 +117,7 @@ module.exports = {
 			if(value.email!=null) {
 				GravatarService.getGravatarUrl(value.email, function(gravatarUrl) {
 					if(gravatarUrl!=null||gravatarUrl!=undefined) {
-						console.log(gravatarUrl);
+						//console.log('Gravatar Url: ', gravatarUrl);
 						value.avatar = gravatarUrl;
 					}	
 				});
@@ -247,9 +247,9 @@ module.exports = {
 		var cacheKey = CacheService.makeKey(req, 'user_cart');
 		var callUrl = req.body.callUrl;
 		var callMethod = req.body.callMethod;
-		//console.log('Cache key ' + cacheKey + ' is removed.');
-		//console.log('Req call url: ' + callUrl);
-		//console.log('Req call method: ' + callMethod);
+		//console.log('Cache key ', cacheKey, ' is removed.');
+		//console.log('Req call url: ', callUrl);
+		//console.log('Req call method: ', callMethod);
 		CacheService.remove(cacheKey);
 		CacheService.remove(CacheService.makeKey(req, 'user_summary'));
 		CacheService.remove(CacheService.makeKey(req, 'user_dashboard'));
@@ -268,7 +268,7 @@ module.exports = {
 
 	alerts : function(req, res) {
 		var alerts = AlertService.consumeAlert(req);
-		console.log(alerts);
+		//console.log(alerts);
 		res.send(alerts);
 	}
 

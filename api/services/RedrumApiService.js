@@ -12,13 +12,13 @@ module.exports = {
 		};
 		
 		var redrumSDK = new RedrumSDK(config);
-		//console.log('Invoking end point with');
-		//console.log('User name: ' + req.session.username);
-		//console.log('Password: '+ req.session.password);
+		// console.log('Invoking end point with');
+		// console.log('User name: ', req.session.username);
+		// console.log('Password: ', req.session.password);
 
 		redrumSDK.getAccessToken(req.session.username, req.session.password, 
 			function(accessToken){
-				//console.log('Access Token: ' + accessToken);
+				//console.log('Access Token: ', accessToken);
 				redrumSDK.invokeEndPoint(endPoint, method, accessToken, cb);	
 		});
     	
