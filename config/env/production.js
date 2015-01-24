@@ -18,6 +18,12 @@ module.exports = {
     secretKey: '319c7ed2f24fc1ac61269a319a19fe11'
   },
 
+  githubConfig: {
+    apiKey: '9bab472b1f554514792f',
+    callbackUrl: 'https://redrum-js-client.herokuapp.com/user/githubcb',
+    secretKey: '914b62b2aac9c0506e0146f22bab345ffeb2588c'
+  },
+
   redrumConfig: {
     clientId: 'redrum-js-demo',
     clientSecret: '847eacd8-d636-4aef-845d-512128dd09a4',

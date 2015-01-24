@@ -80,11 +80,19 @@ service.factory('redrumAppServices', function($http) {
 					console.log(response.data);
 				});
 			},
-		signInUrls : function() {
-			return $http.get('/user/signInUrls').then(
+
+		signInWithFaceBook : function() {
+			return $http.get('/user/signInWithFaceBook').then(
+					function(result) {
+						return result.data;
+				});
+			},
+
+		signInWithGitHub : function() {
+			return $http.get('/user/signInWithGitHub').then(
 					function(result) {
 						return result.data;
 				});
 			}
-	}
+	};
 });

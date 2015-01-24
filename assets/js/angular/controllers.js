@@ -113,14 +113,19 @@ redrumApp.controller('StatsController', ['$scope', 'redrumAppServices', function
 }]);
 
 redrumApp.controller('UserController', ['$scope', '$location', '$window', 'redrumAppServices', function($scope, $location, $window, redrumAppServices) {
-	$scope.getSignInUrls = function() {
-		redrumAppServices.signInUrls().then(
-			function(data) {
-				$scope.signInUrls = data;
+	
+	$scope.signInWithFaceBook = function() {
+		redrumAppServices.signInWithFaceBook().then(
+			function(url) {
+				$window.location = url;
+			});
+	};
+	
+	$scope.signInWithGitHub = function() {
+		redrumAppServices.signInWithGitHub().then(
+			function(url) {
+				$window.location = url;
 			});
 	};
 
-	$scope.signInWith = function(url) {
-		$window.location = url;
-	}
 }]);

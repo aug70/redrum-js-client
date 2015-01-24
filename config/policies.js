@@ -49,11 +49,6 @@ module.exports.policies = {
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
 
-  // UserController: {
-  //   '*' : false,
-  //   signOut : ['flash', 'sessionAuth'],
-  //   facebookcb : ['flash', 'sessionAuth']
-  // },
   UserController: {
     '*' : 'flash'
   },

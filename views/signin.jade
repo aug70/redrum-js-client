@@ -2,28 +2,20 @@ extends popup_layout
 block title
   title Redrum | Sign in
 block content
-  #login-box.form-box(ng-controller="UserController", ng-init="getSignInUrls()")
+  #login-box.form-box(ng-controller="UserController")
     .header Sign In
       .body.bg-gray
         .box.box-solid(ng-controller="AlertController", ng-init="getAlerts()")
           .box-body
             blockquote(ng-repeat="alert in alerts", ng-show="alerts.length>0")
               span {{alert.message}}
-            button.btn.btn-block.btn-large.btn-facebook.btn-social(ng-click="signInWith(signInUrls.faceBookSignInUrl)")
+            button.btn.btn-block.btn-large.btn-facebook.btn-social(ng-click="signInWithFaceBook()")
               i.fa.fa-facebook
               | Sign in with FaceBook
             // button
-            button.btn.btn-block.btn-large.btn-bitbucket.btn-social(ng-click="signInWith(signInUrls.bitBucketSignInUrl)")
-              i.fa.fa-bitbucket
-              | Sign in with BitBucket
-            // button  
-            button.btn.btn-block.btn-large.btn-google-plus.btn-social(ng-click="signInWith(signInUrls.googlePlusSignInUrl)")
-              i.fa.fa-google-plus
-              | Sign in with Google+
-            // button  
-            button.btn.btn-block.btn-large.btn-flickr.btn-social(ng-click="signInWith(signInUrls.flickrSignInUrl)")
-              i.fa.fa-flickr
-              | Sign in with Flickr
+            button.btn.btn-block.btn-large.btn-bitbucket.btn-social(ng-click="signInWithGitHub()")
+              i.fa.fa-github
+              | Sign in with GitHub
             // button
           // /.box-body
         // /.box

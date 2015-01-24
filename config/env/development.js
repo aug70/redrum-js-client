@@ -27,6 +27,12 @@ module.exports = {
   	secretKey: 'd346dbac832fcfef953fb4621fd9d889'
   },
 
+  githubConfig: {
+    apiKey: '3d81baa79a129f886ba7',
+    callbackUrl: 'http://localhost:1337/user/githubcb',
+    secretKey: '49b11ee5dceedc41ae7f7069980f2849680fd415'
+  },
+
   redrumConfig: {
     clientId: 'redrum-js-demo',
     clientSecret: '847eacd8-d636-4aef-845d-512128dd09a4',
