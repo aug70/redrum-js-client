@@ -1,64 +1,33 @@
-//h2.page-header Custom Tabs
-.row
-.col-md-6
-  // Custom Tabs
-  .nav-tabs-custom
-    ul.nav.nav-tabs
-      li.active
-        a(href='#tab_1', data-toggle='tab') Name
-      li
-        a(href='#tab_2', data-toggle='tab') Email
-      li
-        a(href='#tab_3', data-toggle='tab') Password
-    .tab-content
-      #tab_1.tab-pane.active
-        // general form elements
-        .box.box-primary
-          // form start
-          form(role='form')
-            .box-body
-              .form-group
-                label(for='firstName') First Name :  
-                input#firstName.form-control(type='text', placeholder='Please enter your first name.')
-              .form-group
-                label(for='lastName') Last Name : 
-                input#lastName.form-control(type='text', placeholder='Please enter your last name.')
-            // /.box-body
-            .box-footer
-              button.btn.btn-primary(type='submit') Submit
-        // /.box
-      // /.tab-pane
-      #tab_2.tab-pane
-        // general form elements
-        .box.box-primary
-          // form start
-          form(role='form')
-            .box-body
-              .form-group
-                label(for='email') Email : 
-                input#email.form-control(type='email', placeholder='Please enter your email.')
-            // /.box-body
-            .box-footer
-              button.btn.btn-primary(type='submit') Submit
-        // /.box
-      // /.tab-pane
-      #tab_3.tab-pane
-        // general form elements
-        .box.box-primary
-          // form start
-          form(role='form')
-            .box-body
-              .form-group
-                label(for='password') Password : 
-                input#password.form-control(type='password', placeholder='Password')
-              .form-group
-                label(for='password') Password (repeat) : 
-                input#password.form-control(type='password', placeholder='Password')
-            // /.box-body
-            .box-footer
-              button.btn.btn-primary(type='submit') Submit
-        // /.box
-      // /.tab-pane
-    // /.tab-content
-  // nav-tabs-custom
-// /.col
+.box
+  .box-header
+    h3.box-title Profile
+  // /.box-header 
+  .box-body.table-responsive
+    table.table.table-hover
+      tr
+        td(width="10%") 
+          | Name :
+        td
+          | {{user.fullName}}
+      tr
+        td 
+          | User Name :
+        td
+          | {{user.fullName}}
+      tr
+        td 
+          | Email :
+        td
+          | {{user.email}}
+      tr
+        td 
+          | Date Created :
+        td
+          | {{user.memberSince | date:'MMM dd yyyy, HH:MM:ss'}}
+      tr
+        td 
+          | Gravatar:
+        td
+          img.img-circle(height="40", ng-src="{{user.avatar}}", alt="{{user.userName}}")
+  // /.box-body
+// /.box

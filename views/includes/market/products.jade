@@ -4,7 +4,7 @@
 
 	// /.box-header	
 	.box-body.table-responsive.table-striped
-		table(ng-table="tableParams", show-filter="true", class="table")
+		table.table-hover(ng-table="tableParams", show-filter="true", class="table")
 			tr(ng-repeat="product in $data")
 				td 
 					| {{$index+1}}
