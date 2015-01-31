@@ -5,10 +5,14 @@
 	.box-body
 		.row
 			.col-xs-5
-				// /input-group
-				.input-group.input-group-sm
-					input.form-control(type='text', placeholder='Enter coupon code here')
-					span.input-group-btn
-						button.btn.btn-info.btn-flat(type='button') Redeem!
+				div
+					span(ng-repeat="link in cart.links | filter: {rel: 'redeem'}")
+						a.btn.btn-danger.btn-xs(href="" ng-click="redeemCoupon(link.href, link.method, 'Redrum1K')") {{link.label}}
+
+				//- // /input-group
+				//- .input-group.input-group-sm
+				//- 	input.form-control(type='text', placeholder='Enter coupon code here')
+				//- 	span.input-group-btn(ng-repeat="link in links | filter: {rel: 'redeem'}")
+				//- 		button.btn.btn-info.btn-flat(type='button', ng-click="redeemCoupon(link.href, link.method, 'Redrum1K')") Redeem!
 	// /.box-body
 // /.box

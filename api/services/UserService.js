@@ -2,7 +2,6 @@ var uuid = require('node-uuid');
 
 var registerEmail = function(data, cb) {
 	if(!data.email) {
-
 		var result = {
 			message : 'Your facebook account email can not accessed.',
 			nextStep : '/signin'
@@ -45,7 +44,6 @@ var registerEmail = function(data, cb) {
 
 				// Create the new user in system.
 				User.create(userData, function userCreated(err, user) {
-					console.log('Trying to create user now.');					
 					if(err) {
 
 						console.error('Error: ' + err);

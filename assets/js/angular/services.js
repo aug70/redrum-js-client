@@ -70,17 +70,35 @@ service.factory('redrumAppServices', function($http) {
 			}).then(
 				function(response) {
 					// success
+					//console.log('Success');
+					//console.log(response.data);
+					}, 
+				function(response) { // optional
+					//console.log('Failure');
+					//console.log(response.data);
+				});
+			},
+		redeemCoupon : function(callUrl, callMethod, couponCode) {
+			return $http({
+				method: 'post',
+				url: '/api/redeemCoupon',
+				data: {
+					'callMethod' : callMethod,
+					'callUrl' : callUrl,
+					'couponCode' : couponCode
+				},
+				headers: {'Content-Type': 'application/json;charset=utf-8'}
+			}).then(
+				function(response) {
+					// success
 					console.log('Success');
 					console.log(response.data);
 					}, 
 				function(response) { // optional
-					// failed
-					// success
 					console.log('Failure');
 					console.log(response.data);
 				});
-			},
-
+		},
 		signInWithFaceBook : function() {
 			return $http.get('/user/signInWithFaceBook').then(
 					function(result) {

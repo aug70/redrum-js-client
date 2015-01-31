@@ -4,6 +4,7 @@ var LRU = require("lru-cache")
 //              , dispose: function (key, n) { n.close() }
               , maxAge: 1000 * 60 * 60 }
   , cache = LRU(options);
+var uuid = require('node-uuid');
 
 
 module.exports = {
@@ -25,7 +26,10 @@ module.exports = {
 	},
 
 	makeKey : function(req, prefix) {
-		return prefix + '_' + '12318465';
+		if(req && req.session && req.session.username) {
+			return prefix + '_' + req.session.username;
+		}
+		return prefix + '_' + uuid.v1();
 	}
 
 };

@@ -140,6 +140,7 @@ module.exports = {
 		}
 
 		RedrumApiService.invokeEndPoint(req, '/market/cart', 'GET', function(result){
+			//console.log(result);
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
@@ -244,12 +245,12 @@ module.exports = {
 	},
 
 	processCart : function(req, res) {
-		var cacheKey = CacheService.makeKey(req, 'user_cart');
 		var callUrl = req.body.callUrl;
 		var callMethod = req.body.callMethod;
-		//console.log('Cache key ', cacheKey, ' is removed.');
 		//console.log('Req call url: ', callUrl);
 		//console.log('Req call method: ', callMethod);
+		var cacheKey = CacheService.makeKey(req, 'user_cart');
+		//console.log('Cache key ', cacheKey, ' is removed.');
 		CacheService.remove(cacheKey);
 		CacheService.remove(CacheService.makeKey(req, 'user_summary'));
 		CacheService.remove(CacheService.makeKey(req, 'user_dashboard'));
@@ -263,7 +264,28 @@ module.exports = {
 				AlertService.addAlert(req, resultJSON.message);
 			}
 			res.send(resultJSON);
-		});				
+		});
+	},
+
+	redeemCoupon : function(req, res) {
+		
+		var callUrl = req.body.callUrl + req.body.couponCode;
+		var callMethod = req.body.callMethod;
+		console.log('Req call url: ', callUrl);
+		console.log('Req call method: ', callMethod);
+
+		CacheService.remove(CacheService.makeKey(req, 'user_summary'));
+		CacheService.remove(CacheService.makeKey(req, 'user_dashboard'));
+		CacheService.remove(CacheService.makeKey(req, 'user_inventory'));
+
+		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(result){
+			console.log('Result: ', result);
+			var resultJSON = JSON.parse(result);
+			if(resultJSON.hasOwnProperty('message')) {
+				AlertService.addAlert(req, resultJSON.message);
+			}
+			res.send(resultJSON);
+		});
 	},
 
 	alerts : function(req, res) {

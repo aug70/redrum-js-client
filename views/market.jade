@@ -21,7 +21,7 @@ block content
               tabset
                 tab(heading="Game Credit")
                   include ./includes/market/credit
-                tab(heading="Coupons")
+                tab(heading="Coupons", select="getCart()")
                   include ./includes/market/coupons
                 tab(heading="Products", select="getProducts()")
                   include ./includes/market/products

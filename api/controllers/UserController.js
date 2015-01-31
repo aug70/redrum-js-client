@@ -10,8 +10,15 @@ module.exports = {
 
 
 	signOut : function(req, res) {
+		if(req.session) {
+			CacheService.remove(CacheService.makeKey(req, 'user_summary'));
+			CacheService.remove(CacheService.makeKey(req, 'user_dashboard'));
+			CacheService.remove(CacheService.makeKey(req, 'user_orders'));
+			CacheService.remove(CacheService.makeKey(req, 'user_inventory'));
+		}
 		var result = UserService.signOut();
 		req.session.destroy();
+
 		AlertService.addAlert(req, result.message);
 		return res.redirect(result.nextStep);
 	},

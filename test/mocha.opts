@@ -1,6 +1,6 @@
 --colors
 --recursive
 --require assert
---reporter xunit
+--reporter spec
 --timeout 5000
 --ui bdd

@@ -21,8 +21,13 @@ describe('Cache Service tests', function() {
 
 	it('Cache service make key test.', function() {
 		var prefix = 'prefix';
-		var result = cacheService.makeKey(null, prefix);
-		assert.equal(result, 'prefix_12318465');
+		var req  = {
+			session : {
+				username : 'test-user'
+			}
+		};
+		var result = cacheService.makeKey(req, prefix);
+		assert.equal(result, 'prefix_test-user');
 	});
 
 });

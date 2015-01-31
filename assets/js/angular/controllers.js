@@ -85,6 +85,13 @@ redrumApp.controller('MarketController', ['$window', '$scope', 'redrumAppService
 				$window.location = '/market';
 			});
 	};
+
+	$scope.redeemCoupon = function(callUrl, callMethod, couponCode) {
+		redrumAppServices.redeemCoupon(callUrl, callMethod, couponCode).then(
+			function(data) {
+				$window.location = '/market';
+			});
+	}
 }]);
 
 redrumApp.controller('AlertController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
@@ -92,7 +99,7 @@ redrumApp.controller('AlertController', ['$scope', 'redrumAppServices', function
 	$scope.getAlerts = function() {
 		redrumAppServices.alerts().then(
 			function(data) {
-				console.log(data);
+				//console.log(data);
 				$scope.alerts = data;
 			});
 	};
