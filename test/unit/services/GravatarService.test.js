@@ -11,7 +11,7 @@ describe('Gravatar service tests', function() {
 		var gravatarUrl = 'f80458f2d18e6a15989e1588ee1e3093';
 		var email = 'aug70co@gmail.com';
 		gravatarService.getGravatarUrl(email, function(result){
-			console.log(result);
+			//console.log(result);
 			assert.equal(result.indexOf(gravatarUrl)>=0, true);
 			done();
 		});
@@ -23,7 +23,7 @@ describe('Gravatar service tests', function() {
 		var gravatarUrl = 'd8c3038fbd4560f19a2206071e8a9106';
 		var email = 'unknown.email@some.domain.in.somewhere.com';
 		gravatarService.getGravatarUrl(email, function(result){
-			console.log(result);
+			//console.log(result);
 			assert.equal(result.indexOf(gravatarUrl)>=0, true);
 			done();
 		});

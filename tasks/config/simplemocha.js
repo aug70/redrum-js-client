@@ -1,16 +1,16 @@
 module.exports = function(grunt) {
 
-	grunt.config.set('simplemocha', {
-		simplemocha: {
+    grunt.config.set('simplemocha', {
+        simplemocha: {
+            src: [
+                'test/unit/**/*.test.js'],
             options: {
                 globals: ['assert'],
-                timeout: 5000,
-                recursive: true,
+                timeout: 50000,
                 colors: true,
                 ui: 'bdd',
                 reporter: 'spec'
-            },
-            all: { src: ['test/*.js'] }
+            }
         }
 	});
 

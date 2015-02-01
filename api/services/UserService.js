@@ -6,7 +6,8 @@ var registerEmail = function(data, cb) {
 			message : 'Your facebook account email can not accessed.',
 			nextStep : '/signin'
 		};
-		cb(result);
+		return cb(result);
+
 	}
 
 	// Search for user with email
@@ -16,12 +17,12 @@ var registerEmail = function(data, cb) {
 			
 			// If error return error result.
 			if(err) {
-				console.error('Error: ', err);
+				//console.error('Error: ', err);
 				var result = {
 					message : 'There was an error searching for existing user.',
 					nextStep : '/signin'
 				};
-				cb(result);
+				return cb(result);
 			}
 
 			// If found, this user exists
@@ -34,7 +35,7 @@ var registerEmail = function(data, cb) {
 					username : foundUser.userName,
 					password : foundUser.password
 				};
-				cb(result);
+				return cb(result);
 			}
 
 			// This is a new user.
@@ -52,7 +53,7 @@ var registerEmail = function(data, cb) {
 							message : 'There was an error creating user.',
 							nextStep : '/signin'
 						};
-						cb(result);
+						return cb(result);
 					}
 
 					// User created successfully, now register with redrum.
@@ -64,10 +65,10 @@ var registerEmail = function(data, cb) {
 								message : 'There was an error registering your account.',
 								nextStep : '/signin'
 								};
-								cb(result);
+								return cb(result);
 							}
 							
-							console.info('User registered successfully.');
+							//console.info('User registered successfully.');
 							var result = {
 								message : 'You registered and signed in successfully.',
 								nextStep : '/dashboard',
@@ -75,7 +76,7 @@ var registerEmail = function(data, cb) {
 								password : user.password
 							};
 							
-							cb(result);
+							return cb(result);
 
 						});// end RedrumApiService.register
 
@@ -110,7 +111,7 @@ var convert = function(userData) {
 module.exports = {
 
 	handleSignInError : function(error) {
-		console.error('Error: ', error);
+		//console.error('Error: ', error);
 		var result = {
 			message : 'There was a problem while processing your request.',
 			nextStep : '/signin'
