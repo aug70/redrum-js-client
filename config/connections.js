@@ -83,10 +83,9 @@ module.exports.connections = {
   // }
 
 
-  /***************************************************************************
-  *                                                                          *
-  * More adapters: https://github.com/balderdashy/sails                      *
-  *                                                                          *
-  ***************************************************************************/
+     mongodb : {
+       url : process.env.MONGOLAB_URI || 'mongodb://localhost:27017/redrum-sails',
+       adapter   : 'sails-mongo'
+     }
 
 };
