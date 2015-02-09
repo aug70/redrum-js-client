@@ -4,7 +4,9 @@ language: node_js
 # version numbers
 node_js:
   - "0.10"
-
+# Mongo binds to 127.0.0.1 by default
+services:
+ - mongodb
 # The path for Xunit to output test reports
 env:
   - XUNIT_FILE=shippable/testresults/result.xml
