@@ -82,7 +82,6 @@ module.exports.connections = {
   //   database: 'YOUR_POSTGRES_DB'
   // }
 
-     environment: process.env.NODE_ENV || 'development',
      mongodb : {
        url : process.env.MONGOLAB_URI || 'mongodb://localhost:27017/redrum-sails',
        adapter   : 'sails-mongo'
