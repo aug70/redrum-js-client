@@ -12,6 +12,8 @@
 
 module.exports = {
 
+  port: process.env.PORT || 1337,
+
   facebookConfig: {
     apiKey: '175967239248590',
     callbackUrl: 'https://redrum-js-client.herokuapp.com/user/facebookcb',
