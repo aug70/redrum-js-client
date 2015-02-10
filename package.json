@@ -31,7 +31,6 @@
     "node-uuid": "^1.4.2"
   },
   "scripts": {
-    //"start": "sails lift --verbose",
     "start": "node app.js",
     "debug": "node debug app.js",
     "test": "grunt test"
