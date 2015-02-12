@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
-    grunt.config.set('simplemocha', {
-        simplemocha: {
+    grunt.config.set('mocha_istanbul', {
+        coverage: {
             src: [
                 'test/unit/**/*.test.js'],
             options: {
@@ -9,10 +9,12 @@ module.exports = function(grunt) {
                 timeout: 50000,
                 colors: true,
                 ui: 'bdd',
-                reporter: 'spec'
+                reporter: 'spec',
+                root: 'api/',
+                coverageFolder: 'shippable/coverage',
             }
         }
 	});
 
-	grunt.loadNpmTasks('grunt-simple-mocha');
+	grunt.loadNpmTasks('grunt-mocha-istanbul');
 };
