@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
     grunt.config.set('mocha_istanbul', {
+
         coverage: {
             src: [
                 'test/unit/**/*.test.js'],
@@ -12,8 +13,10 @@ module.exports = function(grunt) {
                 reporter: 'spec',
                 root: 'api/',
                 coverageFolder: 'shippable/coverage',
+                reportFormats: ['cobertura']
             }
         }
+
 	});
 
 	grunt.loadNpmTasks('grunt-mocha-istanbul');
