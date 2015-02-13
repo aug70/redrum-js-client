@@ -12,7 +12,8 @@ module.exports = function(grunt) {
                 ui: 'bdd',
                 reporter: 'spec',
                 root: 'api/',
-                coverageFolder: 'shippable/coverage',
+                coverage: true,
+                coverageFolder: 'shippable/codecoverage',
                 reportFormats: ['cobertura']
             }
         }
