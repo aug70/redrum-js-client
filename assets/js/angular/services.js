@@ -53,7 +53,7 @@ service.factory('redrumAppServices', function($http) {
 				});
 			},
 		alerts : function() {
-				return $http.get('/api/alerts').then(
+				return $http.get('/alerts').then(
 					function(result) {
 						return result.data;
 				});

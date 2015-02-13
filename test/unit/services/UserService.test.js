@@ -21,7 +21,7 @@ describe('User service tests', function() {
 		
 		var result = userService.signOut();
 
-		assert.equal(result.message, 'You signed out successfully.');
+		assert.equal(result.message, null);
 		assert.equal(result.nextStep, '/signin');
 		done();
 	});

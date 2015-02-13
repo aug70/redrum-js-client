@@ -32,27 +32,30 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'dashboard'
-  },
+  '/': '/dashboard',
 
   '/dashboard': {
+    policy: 'sessionAuth',
     view: 'dashboard'
   },
 
   '/market': {
+    policy: 'sessionAuth',
     view: 'market'
   },
 
   '/profile': {
+    policy: 'sessionAuth',
     view: 'profile'
   },
 
   '/stats': {
+    policy: 'sessionAuth',
     view: 'stats'
   },
 
   '/game': {
+    policy: 'sessionAuth',
     view: 'game'
   },
 
@@ -60,6 +63,7 @@ module.exports.routes = {
     view: 'signin'
   },
 
+  '/alerts': 'AlertsController.alerts',
   '/signout': 'UserController.signOut',
 
   'POST /api/processCart': 'ApiController.processCart'

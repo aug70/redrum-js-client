@@ -121,7 +121,7 @@ module.exports = {
 
 	signOut : function() {
 		var result = {
-			message : 'You signed out successfully.',
+			message : null,
 			nextStep : '/signin'
 		};
 		return result;

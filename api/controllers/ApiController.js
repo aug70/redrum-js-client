@@ -276,6 +276,7 @@ module.exports = {
 
 		CacheService.remove(CacheService.makeKey(req, 'user_summary'));
 		CacheService.remove(CacheService.makeKey(req, 'user_dashboard'));
+		CacheService.remove(CacheService.makeKey(req, 'user_orders'));
 		CacheService.remove(CacheService.makeKey(req, 'user_inventory'));
 
 		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(result){
@@ -286,12 +287,6 @@ module.exports = {
 			}
 			res.send(resultJSON);
 		});
-	},
-
-	alerts : function(req, res) {
-		var alerts = AlertService.consumeAlert(req);
-		//console.log(alerts);
-		res.send(alerts);
 	}
 
 };

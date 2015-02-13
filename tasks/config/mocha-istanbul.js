@@ -3,8 +3,9 @@ module.exports = function(grunt) {
     grunt.config.set('mocha_istanbul', {
 
         coverage: {
-            src: [
-                'test/unit/**/*.test.js'],
+            
+            src: ['test/unit/**/*.test.js'],
+
             options: {
                 globals: ['assert'],
                 timeout: 50000,
@@ -14,8 +15,9 @@ module.exports = function(grunt) {
                 root: 'api/',
                 coverage: true,
                 coverageFolder: 'shippable/codecoverage',
-                reportFormats: ['cobertura','lcovonly']
+                reportFormats: ['lcovonly', 'cobertura']
             }
+
         }
 
 	});
