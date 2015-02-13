@@ -10,7 +10,7 @@ module.exports = function(grunt) {
                 timeout: 50000,
                 colors: true,
                 ui: 'bdd',
-                reporter: 'spec',
+                reporter: 'xunit-file',
                 root: 'api/',
                 coverage: true,
                 coverageFolder: 'shippable/codecoverage',
