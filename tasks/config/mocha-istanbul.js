@@ -14,7 +14,7 @@ module.exports = function(grunt) {
                 root: 'api/',
                 coverage: true,
                 coverageFolder: 'shippable/codecoverage',
-                reportFormats: ['cobertura']
+                reportFormats: ['cobertura','lcovonly']
             }
         }
 
