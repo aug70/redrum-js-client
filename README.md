@@ -1,16 +1,19 @@
-[![Build Status](https://api.shippable.com/projects/5496e0c1d46935d5fbc0c0f4/badge?branchName=master)](https://app.shippable.com/projects/5496e0c1d46935d5fbc0c0f4/builds/latest)
-
-redrum-js-client
+# Redrum JavaScript Client
 ================
 
-A Javascript Redrum Rest API client powered by [sails.js](http://sailsjs.org/#/). Visit [https://redrum-js-client.herokuapp.com/](https://redrum-js-client.herokuapp.com/) to see this client in action.
+[![Build Status](https://api.shippable.com/projects/5496e0c1d46935d5fbc0c0f4/badge?branchName=master)](https://app.shippable.com/projects/5496e0c1d46935d5fbc0c0f4/builds/latest)
 
 # Redrum
+
 Redrum is a whodunnit game where players try to solve a computer-generated murder and attempts to identify the killer by asking questions to contacts and suspects.
 
 In every game a unique murder is generated with different names and characters. There is always a victim, a killer and other suspects. A player is the detective of the game who visits places and asks questions around to identify killer and make an accusation.
 
-## Redrum REST API
+## Overview
+
+This is a NodeJS Redrum Rest API client powered by [sails.js](http://sailsjs.org/#/). Visit [https://redrum-js-client.herokuapp.com/](https://redrum-js-client.herokuapp.com/) to see this client in action.
+
+## Redrum REST API (Server)
 
 Redrum REST API is publicly available for developers or end users who wants to build client applications for Redrum. 
 
