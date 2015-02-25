@@ -5,6 +5,8 @@
 
 [![Dependency Status](https://gemnasium.com/aug70/redrum-js-client.svg)](https://gemnasium.com/aug70/redrum-js-client)
 
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/aug70/redrum-js-client/master/LICENSE)
+
 
 # Redrum
 
