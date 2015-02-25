@@ -11,6 +11,9 @@ services:
 env:
   - XUNIT_FILE=shippable/testresults/result.xml
 
+before_install:
+  - npm install -g npm@next
+
 # Create directories for test and coverage reports
 before_script:
   - mkdir -p shippable/testresults
