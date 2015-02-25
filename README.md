@@ -3,6 +3,9 @@
 
 [![Build Status](https://api.shippable.com/projects/5496e0c1d46935d5fbc0c0f4/badge?branchName=master)](https://app.shippable.com/projects/5496e0c1d46935d5fbc0c0f4/builds/latest)
 
+[![Dependency Status](https://gemnasium.com/aug70/redrum-js-client.svg)](https://gemnasium.com/aug70/redrum-js-client)
+
+
 # Redrum
 
 Redrum is a whodunnit game where players try to solve a computer-generated murder and attempts to identify the killer by asking questions to contacts and suspects.
