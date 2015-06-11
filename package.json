@@ -18,7 +18,7 @@
     "machinepack-facebook": "^1.0.5",
     "machinepack-github": "^3.0.4",
     "rc": "~1.0.1",
-    "redrum-js-sdk": "^0.0.17",
+    "redrum-js-sdk": "^0.0.18",
     "sails": "~0.11.0",
     "sails-disk": "~0.10.7",
     "sails-mongo": "^0.11.0",
