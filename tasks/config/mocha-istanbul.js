@@ -7,16 +7,18 @@ module.exports = function(grunt) {
             src: ['test/unit/**/*.test.js'],
 
             options: {
-                globals: ['assert'],
                 timeout: 50000,
                 colors: true,
                 ui: 'bdd',
-                reporter: 'xunit-file',
+                reporter : process.env.USER === 'shippable' ? 'xunit-file' : 'spec',
                 root: 'api/',
+                excludes: ['policies/**', 'responses/**'],
                 coverage: true,
                 coverageFolder: 'shippable/codecoverage',
-                reportFormats: ['lcovonly', 'cobertura']
+                reportFormats: process.env.USER === 'shippable' ? ['lcovonly', 'cobertura'] : ['lcov'],
+                dryRun: false
             }
+
 
         }
 
