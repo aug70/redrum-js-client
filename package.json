@@ -17,9 +17,9 @@
     "machinepack-gravatar": "^1.1.4",
     "machinepack-facebook": "^1.0.5",
     "machinepack-github": "^3.0.4",
-    "rc": "~1.0.1",
+    "rc": "^1.1.0",
     "redrum-js-sdk": "^0.0.18",
-    "sails": "~0.11.0",
+    "sails": "^0.11.0",
     "sails-disk": "~0.10.7",
     "sails-mongo": "^0.11.0",
     "node-uuid": "^1.4.3"
@@ -64,6 +64,6 @@
     "sinon": "^1.14.1"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": ">= 0.12.0"
   }
 }
