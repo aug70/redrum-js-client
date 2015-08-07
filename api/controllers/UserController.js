@@ -31,6 +31,9 @@ module.exports = {
 		 permissions : ['email']
 
 		}).exec({
+			error: function (err){
+				
+			},
 			success: function(loginUrl){
 				res.send(loginUrl);
 			}
