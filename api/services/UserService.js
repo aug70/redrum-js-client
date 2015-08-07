@@ -19,6 +19,7 @@ var registerEmail = function(data, cb) {
 			if(err) {
 				//console.error('Error: ', err);
 				var result = {
+					error: err,
 					message : 'There was an error searching for existing user.',
 					nextStep : '/signin'
 				};
@@ -47,9 +48,9 @@ var registerEmail = function(data, cb) {
 				User.create(userData, function userCreated(err, user) {
 					if(err) {
 
-						console.error('Error: ' + err);
 						// User creation has a problem
 						var result = {
+							error: err,
 							message : 'There was an error creating user.',
 							nextStep : '/signin'
 						};

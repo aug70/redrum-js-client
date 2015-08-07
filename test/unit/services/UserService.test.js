@@ -29,7 +29,7 @@ describe('User service tests', function() {
 	it('Test sign in.', function(done) {
 		var guid = uuid.v1().replace(/-/g, '').substring(0,10);
 		var data = { id: guid,
-			email: guid + '@redrum.com',
+			email: 'user.' + guid + '@redrum.com',
 			first_name: 'Test',
 			gender: 'male',
 			last_name: guid,
