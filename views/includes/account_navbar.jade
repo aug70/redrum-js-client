@@ -1,0 +1,27 @@
+// User Account: style can be found in dropdown.less
+li.dropdown.user.user-menu
+	a.dropdown-toggle(href='#', data-toggle='dropdown')
+		i.glyphicon.glyphicon-user
+		span
+			| {{user.fullName}}
+			i.caret
+	ul.dropdown-menu
+		// User image
+		li.user-header.bg-light-blue
+			img.img-circle(ng-src='{{user.avatar}}', alt='{{user.userName}}')
+			p
+				| {{user.fullName}}
+				small Member since {{user.memberSince | date:'MMM yyyy'}}
+		// Menu Body
+		li.user-body
+			.col-xs-12.text-center
+				a(href='/dashboard', target="_top") Dashboard 
+		// Menu Footer
+		li.user-footer
+			.pull-left
+				a.btn.btn-default.btn-flat(href='/profile', target="_top") Profile
+			.pull-left
+				a.btn.btn-default.btn-flat(href='/market#inventory', target="_top") Inventory
+			.pull-left
+				a.btn.btn-default.btn-flat(href='/signout', target="_top") Sign out
+
