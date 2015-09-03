@@ -54,13 +54,13 @@
     "grunt-contrib-uglify": "~0.9.1",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-sails-linker": "~0.10.1",
-    "grunt-sync": "~0.2.3",
+    "grunt-sync": "~0.4.1",
     "grunt-mocha": "^0.4.12",
-    "grunt-mocha-istanbul": "^2.4.0",
+    "grunt-mocha-istanbul": "^3.0.1",
     "istanbul": "^0.3.13",
     "mocha": "^2.2.4",
     "request": "^2.57.0",
-    "xunit-file": "0.0.6",
+    "xunit-file": "0.0.7",
     "sinon": "^1.14.1"
   },
   "engines": {
