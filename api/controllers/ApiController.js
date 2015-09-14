@@ -97,7 +97,7 @@ module.exports = {
 
 		RedrumApiService.invokeEndPoint(req, '/account/summary', 'GET', function(result){
 
-			//console.log('Result: '+ result);
+			console.log('Result: '+ result);
 			
 			var jsonObject = JSON.parse(result);
 			var value = {
