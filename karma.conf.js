@@ -19,7 +19,8 @@ module.exports = function(config) {
       'assets/css/**/*.css',
       'assets/js/angular/*.js',
       'assets/js/ng-table/**/*',
-      'test/angular/**/*.js'
+      'test/angular/**/*.js',
+      'test/angular/angular-mocks.js'
     ],
 
 
