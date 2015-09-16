@@ -16,8 +16,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'assets/css/**/*.css',
       'assets/js/angular/*.js',
-      'assets/ng-table/**/*',
+      'assets/js/ng-table/**/*',
       'test/angular/**/*.js'
     ],
 
