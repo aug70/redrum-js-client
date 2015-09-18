@@ -1,22 +1,14 @@
 'use strict';
 
-//require('../bootstrap.test.js');
-
 describe('Redrum app services test.', function(){
 
-	var httpBackend, redrumAppServices;
+	var redrumAppServices;
 
 	beforeEach(function() {
 		module('redrumApp');
-		inject(function($httpBackend, _redrumAppServices_) {
-			httpBackend = $httpBackend;
+		inject(function(_redrumAppServices_) {
 			redrumAppServices = _redrumAppServices_;
 		});
-	});
-
-	afterEach(function() {
-    	httpBackend.verifyNoOutstandingExpectation();
-    	httpBackend.verifyNoOutstandingRequest();
 	});
 
 	it('Should have an dashboard function', function(){
@@ -66,20 +58,5 @@ describe('Redrum app services test.', function(){
 	it('Should have an signInWithGitHub function', function(){
 		expect(angular.isFunction(redrumAppServices.signInWithGitHub)).to.be.true;
 	});
-
-
-	// it('signInWithFaceBook function', function(){
-
-	// 	var returnData = { excited: true };
-	// 	httpBackend.expectGET('somthing.json?msg=wee').respond(returnData);
-
-	// 	var returnedPromise = redrumAppServices.signInWithFaceBook();
-	// 	var result;
- //    	returnedPromise.then(function(response) {
- //      		result = response;
- //    	});
-	// 	httpBackend.flush();
-	// 	expect(result).toEqual(returnData);
-	// });
 
 });
