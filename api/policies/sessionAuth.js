@@ -21,7 +21,7 @@ module.exports = function(req, res, next) {
   // (default res.forbidden() behavior can be overridden in `config/403.js`)
   //console.log('You are not permitted to perform this action.');
   //return res.forbidden();	
-  //return next();
+  // return next();
   console.log( 'Request session is NOT authenticated');
   return res.redirect('/signin');
 };

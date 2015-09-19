@@ -13,14 +13,19 @@ block content
               i.ion.ion-stats-bars
                 |  Stats
         // Main content
-        section.content(ng-controller="StatsController")
+        section.content
           include ./includes/alerts
-          include ./includes/stats/stats
+          .box
+            .box-header
+              h3.box-title Your statistics
+            // /.box-header
+            .box-body
+              // Table row
+              .row
+                .col-xs-12.table-responsive
+                  stats
+                // /.col
+              // /.row
+            // /.box-body
+          // /.box
         // /.content
-block javascript
-    // jQuery 2.0.2
-    script(src='//code.jquery.com/jquery-2.0.2.js', type='text/javascript')
-    // Bootstrap
-    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js', type='text/javascript')
-    // AdminLTE App
-    script(src='/js/AdminLTE/app.js', type='text/javascript')

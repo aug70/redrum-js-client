@@ -1,6 +1,6 @@
 'use strict';
 
-var redrumApp = angular.module('redrumApp', ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngTable', 'redrumAppFilters', 'redrumAppServices', 'redrumAppDirectives']).
+var redrumApp = angular.module('redrumApp', ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngTable', 'redrumAppFilters', 'redrumAppDirectives', 'redrumAppServices']).
  	
 	config(['$routeProvider', '$resourceProvider', '$locationProvider', function($routeProvider, $resourceProvider, $locationProvider) {
 		
@@ -10,4 +10,3 @@ var redrumApp = angular.module('redrumApp', ['ui.bootstrap', 'ngRoute', 'ngResou
 		});
 	
 	}]);
-

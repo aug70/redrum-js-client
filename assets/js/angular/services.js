@@ -111,6 +111,13 @@ service.factory('redrumAppServices', function($http) {
 					function(result) {
 						return result.data;
 				});
-			}
+			},
+		gameLevels : function() {
+			return $http.get('/api/gameLevels').then(
+					function(result) {
+						return result.data;
+				});
+			},
+
 	};
 });

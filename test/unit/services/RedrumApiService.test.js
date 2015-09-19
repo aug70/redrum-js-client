@@ -22,7 +22,7 @@ describe('Redrum API Service tests', function() {
 			assert.notDeepEqual(access_token, undefined);
 			assert.equal(typeof(access_token), 'string');
 			return done();
-		})
+		});
 	});
 
 	it('invokeEndPoint method should return a valid value', function(done) {
@@ -37,7 +37,7 @@ describe('Redrum API Service tests', function() {
 			assert.notDeepEqual(result, undefined);
 			//assert.equal(typeof(access_token), 'string');
 			return done();
-		})
+		});
 	});
 
 	it('register user', function(done) {

@@ -191,7 +191,9 @@ module.exports = {
 		var userSummaryCacheValue = CacheService.get(CacheService.makeKey(req, 'user_summary'));
 
 
-		var result = 
+		var result = { 
+			showOverall : userSummaryCacheValue.statistics.gamesPlayed>0,
+			detail : 
 			[{
 				order: 0,
 				label : 'Played',
@@ -224,6 +226,7 @@ module.exports = {
 				percentClass: 'badge bg-red',
 				percent: userSummaryCacheValue.statistics.gamesLostPercentage + '%'
 			}]
+		};
 		
 		CacheService.add(cacheKey, result);
 		res.json(result);
@@ -287,7 +290,22 @@ module.exports = {
 			}
 			res.send(resultJSON);
 		});
-	}
+	},
+
+	gameLevels : function(req, res) {
+
+		var cacheKey = 'game_levels';
+		if(CacheService.hasKey(cacheKey)) {
+			return res.json(CacheService.get(cacheKey));
+		}
+
+		RedrumApiService.invokeEndPoint(req, '/games/levels', 'GET', function(result){
+			var resultJSON = JSON.parse(result);
+			CacheService.add(cacheKey, resultJSON);
+			res.json(resultJSON);
+		});
+	},
+
 
 };
 

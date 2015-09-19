@@ -1,0 +1,17 @@
+<div class="box" data-ng-hide="gameLevels.activeGame">
+	<div class="box-header">
+		<h3 class="box-title">Select a game level</h3>
+	</div>
+	<div class="box-body">
+		<div class="row">
+			<div class="col-xs-12">
+				<div>
+					<ul ng-repeat="gameLevel in gameLevels.links | filter: filterLevelsOnly">
+						<li>{{gameLevel}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
