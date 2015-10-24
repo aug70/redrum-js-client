@@ -1,5 +1,7 @@
 'use strict';
 
+require('../../bootstrap.test.js');
+
 describe('Redrum app services test.', function(){
 
 	var httpBackend, redrumAppServices;

@@ -1,10 +1,18 @@
 'use strict';
 
-redrumApp.controller('MenuController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
+redrumApp.controller('MenuController', ['$location', '$scope', 'redrumAppServices', function($location, $scope, redrumAppServices) {
+	$scope.atLocation = function(currentLocation) {
+			console.log('Current Location: ', currentLocation);
+			console.log('Location Url: ', $location.url());
+			console.log('Location Hash: ', $location.hash());
+			return false;
+	};
+
 	redrumAppServices.user().then(
 		function(data) {
 			$scope.user = data;
 		});
+
 }]);
 
 redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {

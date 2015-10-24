@@ -22,15 +22,15 @@ angular.module('redrumAppDirectives', [])
 }])
 
 
-.directive('gameLevels', ['redrumAppServices', function(redrumAppServices){
+.directive('game', ['redrumAppServices', function(redrumAppServices){
 	return {
 		restrict: 'E',
 		transclude: true,
-		templateUrl: 'templates/gameLevels.html',
+		templateUrl: 'templates/game.html',
 		link: function link(scope) {
 
-			init();
-			function init() {
+			showLevels();
+			function showLevels() {
 				redrumAppServices.gameLevels().then(
 					function(data) {
 						scope.gameLevels = data;
@@ -40,6 +40,10 @@ angular.module('redrumAppDirectives', [])
 			scope.filterLevelsOnly = function(element) {
 				return element.rel.match(/^level/) ? true : false;
 			};
+
+			scope.newGame = function(element) {
+				console.log(element);
+			}
 
 		}
 	};

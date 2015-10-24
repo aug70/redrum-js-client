@@ -19,17 +19,17 @@ block content
             .col-md-12
               // Custom Tabs
               tabset
-                tab(heading="Game Credit")
+                tab(heading="Game Credit", data-ng-class="menuctrl.atLocation('credit')")
                   include ./includes/market/credit
-                tab(heading="Coupons", select="getCart()")
+                tab(heading="Coupons", select="getCart()", data-ng-class="menuctrl.atLocation('coupons')")
                   include ./includes/market/coupons
-                tab(heading="Products", select="getProducts()")
+                tab(heading="Products", select="getProducts()", data-ng-class="menuctrl.atLocation('products')")
                   include ./includes/market/products
-                tab(heading="Shopping Cart", select="getCart()")
+                tab(heading="Shopping Cart", select="getCart()", data-ng-class="menuctrl.atLocation('cart')")
                   include ./includes/market/cart
-                tab(heading="Inventory", select="getInventory()")
+                tab(heading="Inventory", select="getInventory()", data-ng-class="menuctrl.atLocation('inventory')")
                   include ./includes/market/inventory
-                tab(heading="Orders", select="getOrders()")
+                tab(heading="Orders", select="getOrders()", data-ng-class="menuctrl.atLocation('orders')")
                   include ./includes/market/orders
             // /.col
           // /.row

@@ -1,0 +1,25 @@
+<div class="box" data-ng-hide="user.activeGame.activeGame">
+	<div class="box-header">
+		<h3 class="box-title">Select a game level</h3>
+	</div>
+	<div class="box-body">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="btn-group" data-toggle="buttons" ng-repeat="gameLevel in gameLevels.links | filter: filterLevelsOnly">
+					<div>
+						<button class="btn btn-primary btn-lg" ng-click="newGame(gameLevel)">{{gameLevel.label}}</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="box" data-ng-show="user.activeGame.activeGame">
+	<div class="box-header">
+		<h3 class="box-title">Current Game</h3>
+		Current game Key: {{user.activeGame.currentGameKey}}
+		<div ng-repeat="link in user.activeGame.links">
+			{{link}}
+		</div>
+	</div>
+</div>
