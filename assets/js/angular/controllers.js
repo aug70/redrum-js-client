@@ -1,14 +1,7 @@
 'use strict';
 
-redrumApp.controller('MenuController', ['$scope', '$location', 'redrumAppServices', function($scope, $location, redrumAppServices) {
+redrumApp.controller('MenuController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
 	
-	$scope.atLocation = function(currentLocation) {
-			console.log('Current Location: ', currentLocation);
-			console.log('Location Url: ', $location.url());
-			console.log('Location Hash: ', $location.hash());
-			return null;
-	};
-
 	redrumAppServices.user().then(
 		function(data) {
 			$scope.user = data;
@@ -23,7 +16,24 @@ redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', func
 		});
 }]);
 
-redrumApp.controller('MarketController', ['$window', '$scope', 'redrumAppServices', '$filter', 'ngTableParams', function($window, $scope, redrumAppServices, $filter, ngTableParams) {
+redrumApp.controller('MarketController', ['$window', '$scope', '$location', 'redrumAppServices', '$filter', 'ngTableParams', function($window, $scope,  $location, redrumAppServices, $filter, ngTableParams) {
+
+	var atLocation = function(currentElement) {
+			console.log('Current element: ', currentElement);
+			//console.log('Location Url: ', $location.url());
+			console.log('Location Hash: ', $location.hash());
+
+			//return currentElement===$location.hash() ? {active : true} : {active : false};
+			return currentElement===$location.hash();
+	};
+
+	$scope.isCredit = atLocation('credit');
+	$scope.isCoupons = atLocation('coupons');
+	$scope.isRecommended = atLocation('recommended');
+	$scope.isProducts = atLocation('products');
+	$scope.isCart = atLocation('cart');
+	$scope.isInventory = atLocation('inventory');
+	$scope.isOrders = atLocation('orders');
 
 	$scope.tableParams = new ngTableParams(
 	{

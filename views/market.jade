@@ -19,20 +19,28 @@ block content
             .col-md-12
               // Custom Tabs
               tabset
-                tab(heading="Game Credit", data-ng-class="menuctrl.atLocation('credit')")
+                
+                tab(heading="Game Credit", active="isCredit")
                   include ./includes/market/credit
-                tab(heading="Coupons", select="getCart()", data-ng-class="menuctrl.atLocation('coupons')")
+                
+                tab(heading="Coupons", active="isCoupons", select="getCart()")
                   include ./includes/market/coupons
-                tab(heading="Recommended for you", data-ng-class="menuctrl.atLocation('recommended')")
+                
+                tab(heading="Recommended for you", active="isRecommended")
                   include ./includes/market/recommended
-                tab(heading="Products", select="getProducts()", data-ng-class="menuctrl.atLocation('products')")
+                
+                tab(heading="Products", active="isProducts", select="getProducts()")
                   include ./includes/market/products
-                tab(heading="Shopping Cart", select="getCart()", data-ng-class="menuctrl.atLocation('cart')")
+                
+                tab(heading="Shopping Cart", active="isCart", select="getCart()")
                   include ./includes/market/cart
-                tab(heading="Inventory", select="getInventory()", data-ng-class="menuctrl.atLocation('inventory')")
+                
+                tab(heading="Inventory", active="isInventory", select="getInventory()")
                   include ./includes/market/inventory
-                tab(heading="Orders", select="getOrders()", data-ng-class="menuctrl.atLocation('orders')")
+                
+                tab(heading="Orders", active="isOrders" select="getOrders()")
                   include ./includes/market/orders
+
             // /.col
           // /.row
         // /.content
