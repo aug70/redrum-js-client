@@ -23,6 +23,8 @@ block content
                   include ./includes/market/credit
                 tab(heading="Coupons", select="getCart()", data-ng-class="menuctrl.atLocation('coupons')")
                   include ./includes/market/coupons
+                tab(heading="Recommended for you", data-ng-class="menuctrl.atLocation('recommended')")
+                  include ./includes/market/recommended
                 tab(heading="Products", select="getProducts()", data-ng-class="menuctrl.atLocation('products')")
                   include ./includes/market/products
                 tab(heading="Shopping Cart", select="getCart()", data-ng-class="menuctrl.atLocation('cart')")

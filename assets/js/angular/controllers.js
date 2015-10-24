@@ -1,11 +1,12 @@
 'use strict';
 
-redrumApp.controller('MenuController', ['$location', '$scope', 'redrumAppServices', function($location, $scope, redrumAppServices) {
+redrumApp.controller('MenuController', ['$scope', '$location', 'redrumAppServices', function($scope, $location, redrumAppServices) {
+	
 	$scope.atLocation = function(currentLocation) {
 			console.log('Current Location: ', currentLocation);
 			console.log('Location Url: ', $location.url());
 			console.log('Location Hash: ', $location.hash());
-			return false;
+			return null;
 	};
 
 	redrumAppServices.user().then(
@@ -98,7 +99,8 @@ redrumApp.controller('MarketController', ['$window', '$scope', 'redrumAppService
 			function(data) {
 				$window.location = '/market';
 			});
-	}
+	};
+
 }]);
 
 redrumApp.controller('AlertController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {

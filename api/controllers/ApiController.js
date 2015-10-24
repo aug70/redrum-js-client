@@ -114,7 +114,8 @@ module.exports = {
 				statistics : jsonObject.hasOwnProperty('statistics')? jsonObject.statistics : null,
 				avatar : '/img/avatar3.png',
 				activeGame : jsonObject.hasOwnProperty('activeGame')? jsonObject.activeGame : null,
-				missingProducts : jsonObject.hasOwnProperty('missingProducts')? jsonObject.missingProducts : null
+				missingProducts : jsonObject.hasOwnProperty('missingProducts')  
+					? jsonObject.missingProducts : null
 			};
 			if(value.email!=null) {
 				GravatarService.getGravatarUrl(value.email, function(gravatarUrl) {

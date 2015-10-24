@@ -39,6 +39,10 @@ aside.left-side.sidebar-offcanvas
 						a(href='/market#products', target="_top")
 							i.fa.fa-angle-double-right
 							| Products
+					li(data-ng-show="(user.missingProducts | filter:productId).length")
+						a(href='/market#recommended', target="_top")
+							i.fa.fa-angle-double-right
+							| Recommended for you
 					li
 						a(href='/market#cart', target="_top").text-yellow
 							i.fa.fa-angle-double-right
