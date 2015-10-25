@@ -30,6 +30,13 @@ module.exports = {
 			return prefix + '_' + req.session.username;
 		}
 		return prefix + '_' + uuid.v1();
+	},
+
+	invalidateUserCaches : function(req) {
+		CacheService.remove(CacheService.makeKey(req, 'user_summary'));
+		CacheService.remove(CacheService.makeKey(req, 'user_dashboard'));
+		CacheService.remove(CacheService.makeKey(req, 'user_orders'));
+		CacheService.remove(CacheService.makeKey(req, 'user_inventory'));
 	}
 
 };

@@ -258,10 +258,7 @@ module.exports = {
 		var cacheKey = CacheService.makeKey(req, 'user_cart');
 		//console.log('Cache key ', cacheKey, ' is removed.');
 		CacheService.remove(cacheKey);
-		CacheService.remove(CacheService.makeKey(req, 'user_summary'));
-		CacheService.remove(CacheService.makeKey(req, 'user_dashboard'));
-		CacheService.remove(CacheService.makeKey(req, 'user_orders'));
-		CacheService.remove(CacheService.makeKey(req, 'user_inventory'));
+		CacheService.invalidateUserCaches(req);
 
 		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(result){
 			var resultJSON = JSON.parse(result);
@@ -280,10 +277,7 @@ module.exports = {
 		console.log('Req call url: ', callUrl);
 		console.log('Req call method: ', callMethod);
 
-		CacheService.remove(CacheService.makeKey(req, 'user_summary'));
-		CacheService.remove(CacheService.makeKey(req, 'user_dashboard'));
-		CacheService.remove(CacheService.makeKey(req, 'user_orders'));
-		CacheService.remove(CacheService.makeKey(req, 'user_inventory'));
+		CacheService.invalidateUserCaches(req);
 
 		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(result){
 			console.log('Result: ', result);
