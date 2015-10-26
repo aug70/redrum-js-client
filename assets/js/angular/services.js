@@ -115,10 +115,30 @@ service.factory('redrumAppServices', function($http) {
 		gameLevels : function() {
 			return $http.get('/api/gameLevels').then(
 					function(result) {
-						console.log(result);
+						//console.log(result);
 						return result.data;
 				});
 			},
-
+		game : function(callData, bustCache) {
+			bustCache = bustCache || false;
+			return $http({
+				method: 'post',
+				url: '/api/game',
+				data: {
+					'bustCache' : bustCache,
+					'callData' : callData
+				},
+				headers: {'Content-Type': 'application/json;charset=utf-8'}
+			}).then(
+				function(response) {
+					// success
+					console.log('Success');
+					console.log(response.data);
+					}, 
+				function(response) {
+					console.log('Failure');
+					console.log(response.data);
+				});
+		}
 	};
 });

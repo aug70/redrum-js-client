@@ -303,6 +303,31 @@ module.exports = {
 		});
 	},
 
+	game : function(req, res) {
+
+		var callData = req.body.callData;
+		var bustCache = req.body.bustCache;
+		// console.log('Req call data: ', callData);
+		console.log('Req bust cache: ', bustCache);
+		var callUrl = callData.href;
+		// console.log('Req call url: ', callData.href);
+		var callMethod = callData.method;
+		// console.log('Req call method: ', callData.method);
+
+		if(bustCache) {
+			CacheService.invalidateUserCaches(req);
+		}
+		
+		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(result){
+			console.log('Result: ', result);
+			var resultJSON = JSON.parse(result);
+			if(resultJSON.hasOwnProperty('message')) {
+				AlertService.addAlert(req, resultJSON.message);
+			}
+			res.send(resultJSON);
+		});
+	}
+
 
 };
 

@@ -35,15 +35,18 @@ angular.module('redrumAppDirectives', [])
 					function(data) {
 						scope.gameLevels = data;
 				});
-			}
+			};
 
 			scope.filterLevelsOnly = function(element) {
 				return element.rel.match(/^level/) ? true : false;
 			};
 
-			scope.newGame = function(element) {
-				console.log(element);
-			}
+			scope.game = function(callData, bustCache) {
+				redrumAppServices.game(callData, bustCache).then(
+					function(data) {
+						scope.game = data;
+					});
+			};
 
 		}
 	};
