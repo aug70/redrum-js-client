@@ -23,7 +23,7 @@ block content
                 uib-tab(heading="Game Credit", active="isCredit")
                   include ./includes/market/credit
                 
-                uib-tab(heading="Coupons", active="isCoupons", select="getCart()")
+                uib-tab(heading="Coupons", active="isCoupons")
                   include ./includes/market/coupons
                 
                 uib-tab(heading="Recommended for you", active="isRecommended")
@@ -35,10 +35,10 @@ block content
                 uib-tab(heading="Shopping Cart", active="isCart", select="getCart()")
                   include ./includes/market/cart
                 
-                uib-tab(heading="Inventory", active="isInventory", select="getInventory()")
+                uib-tab(heading="Inventory", active="isInventory")
                   include ./includes/market/inventory
                 
-                uib-tab(heading="Orders", active="isOrders" select="getOrders()")
+                uib-tab(heading="Orders", active="isOrders")
                   include ./includes/market/orders
 
             // /.col

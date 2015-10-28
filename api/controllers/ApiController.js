@@ -30,7 +30,7 @@ module.exports = {
 				box_header : budgetBoxHeader,
 				box_text   : 'In your budget',
 				box_label  : budgetBoxLabel,
-				box_link   : '/market'
+				box_link   : '/market#cart'
 			},
 			profile : { 
 				box_header : 'Change',

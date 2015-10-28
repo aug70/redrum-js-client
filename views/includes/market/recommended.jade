@@ -1,11 +1,11 @@
-.box(data-ng-show="(user.missingProducts | filter:productId).length")
+.box
 	.box-header
 		h3.box-title Recommended for you
 
 	// /.box-header	
-	.box-body.table-responsive.table-striped
-		table.table-hover(ng-table="tableParams", show-filter="true", class="table")
-			tr(ng-repeat="missingProduct in user.missingProducts")
+	.box-body.table-responsive.table-striped(data-ng-show="(user.missingProducts | filter:productId).length")
+		table.table-hover(data-ng-table="tableParams", show-filter="true", class="table")
+			tr(data-ng-repeat="missingProduct in user.missingProducts")
 				td 
 					| {{$index+1}}
 				td(data-title="'Name'", sortable="'name'", filter="{'name':'text'}")
@@ -13,10 +13,10 @@
 				td(data-title="'Description'", sortable="'description'", filter="{'description':'text'}")
 					| {{missingProduct.description}}
 				td(data-title="'Price'", sortable="price", filter="{'price':'text'}")
-					| <span ng-show="missingProduct.onSale"><strike>{{missingProduct.price}}</strike> {{missingProduct.discountedPrice}}</span>
-					| <span ng-show="!missingProduct.onSale">{{missingProduct.price}}</span>
+					| <span data-ng-show="missingProduct.onSale"><strike>{{missingProduct.price}}</strike> {{missingProduct.discountedPrice}}</span>
+					| <span data-ng-show="!missingProduct.onSale">{{missingProduct.price}}</span>
 				td(data-title="'Action'")
-					div(ng-repeat="link in missingProduct.links | filter: {rel: 'addToCart'}")
-						a.btn.btn-primary.btn-xs(href="" ng-click="processCart(link.href, link.method)") {{link.label}}
+					div(data-ng-repeat="link in missingProduct.links | filter: {rel: 'addToCart'}")
+						a.btn.btn-primary.btn-xs(href="" data-ng-click="processCart(link.href, link.method)") {{link.label}}
 	// /.box-body
 // /.box

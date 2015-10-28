@@ -3,24 +3,6 @@
 		h3.box-title Orders
 	// /.box-header
 	.box-body.table-responsive
-		table.table.table-striped(ng-show="orders.orderDtos.length===0")
-			thead
-				tr
-					th Your don't have any orders!
-		table.table.table-bordered.table-striped
-			thead
-				tr
-					th #
-					th Order
-					th Date
-					th Detail
-			tbody
-				tr(ng-repeat="order in orders.orderDtos")
-					td {{$index+1}}
-					td {{order.orderId}}
-					td {{order.purchaseDate | date:'MM/dd/yyyy'}}
-					td
-						div(ng-repeat="orderItem in order.orderItemDtoList")
-							| {{orderItem.cost}} {{orderItem.quantity}} {{orderItem.description}} {{orderItem.productId}} {{orderItem.productName}} {{orderItem.productType}}
+		orders
 	// /.box-body
 // /.box

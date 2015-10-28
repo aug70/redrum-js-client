@@ -73,25 +73,10 @@ redrumApp.controller('MarketController', ['$window', '$scope', '$location', 'red
 	});
 	
 	
-
 	$scope.getCart = function() {
 		redrumAppServices.cart().then(
 			function(data) {
 				$scope.cart = data;
-			});
-	};
-	
-	$scope.getInventory = function() {
-		redrumAppServices.inventory().then(
-			function(data) {
-				$scope.inventory = data;
-			});
-	};
-
-	$scope.getOrders = function() {
-		redrumAppServices.orders().then(
-			function(data) {
-				$scope.orders = data;
 			});
 	};
 
@@ -100,14 +85,14 @@ redrumApp.controller('MarketController', ['$window', '$scope', '$location', 'red
 		redrumAppServices.processCart(callUrl, callMethod).then(
 			function(data) {
 				$scope.cart = data;
-				$window.location = '/market';
+				$window.location.href = '/market#products';
 			});
 	};
 
 	$scope.redeemCoupon = function(callUrl, callMethod, couponCode) {
 		redrumAppServices.redeemCoupon(callUrl, callMethod, couponCode).then(
 			function(data) {
-				$window.location = '/market';
+				$window.location.href = '/market#coupons';
 			});
 	};
 
@@ -123,9 +108,13 @@ redrumApp.controller('AlertController', ['$scope', 'redrumAppServices', function
 			});
 	};
 
+	$scope.closeAlert = function(index) {
+		$scope.alerts.splice(index, 1);
+	};
+
 }]);
 
-redrumApp.controller('UserController', ['$scope', '$location', '$window', 'redrumAppServices', function($scope, $location, $window, redrumAppServices) {
+redrumApp.controller('UserController', ['$scope', '$window', 'redrumAppServices', function($scope, $window, redrumAppServices) {
 	
 	$scope.signInWithFaceBook = function() {
 		redrumAppServices.signInWithFaceBook().then(

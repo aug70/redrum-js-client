@@ -74,3 +74,37 @@ angular.module('redrumAppDirectives', [])
 		}
 	};
 }])
+
+.directive('orders', ['redrumAppServices', function(redrumAppServices){
+	return {
+		restrict: 'E',
+		transclude: true,
+		templateUrl: 'templates/orders.html',
+		link: function link(scope) {
+			init();
+			function init() {
+				redrumAppServices.orders().then(
+					function(data) {
+						scope.orders = data;
+				});
+			};
+		}
+	};
+}])
+
+.directive('inventory', ['redrumAppServices', function(redrumAppServices){
+	return {
+		restrict: 'E',
+		transclude: true,
+		templateUrl: 'templates/inventory.html',
+		link: function link(scope) {
+			init();
+			function init() {
+				redrumAppServices.inventory().then(
+					function(data) {
+						scope.inventory = data;
+				});
+			};
+		}
+	};
+}])

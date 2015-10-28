@@ -1,8 +1,6 @@
 .row
   .col-md-6(ng-controller="AlertController", ng-init="getAlerts()")
-    .alert.alert-info.alert-dismissable(ng-repeat="alert in alerts")
-      i.fa.fa-ban
-      button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
+    uib-alert(ng-repeat="alert in alerts", close="closeAlert($index)", type="alert alert-info")
       | {{alert.message}}
   // /.col
   .col-md-6
