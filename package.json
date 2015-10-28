@@ -11,19 +11,19 @@
     "Redrum JavaScript client"
   ],
   "dependencies": {
+    "async": "latest",
     "include-all": "^0.1.6",
     "jade": "^1.11.0",
     "lru-cache": "^2.7.0",
-    "machinepack-gravatar": "^1.2.0",
     "machinepack-facebook": "^1.1.0",
     "machinepack-github": "^3.1.0",
+    "machinepack-gravatar": "^1.2.0",
+    "node-uuid": "^1.4.3",
     "rc": "^1.1.1",
     "redrum-js-sdk": "^0.0.18",
-    "sails": "0.11.0",
+    "sails": "0.11.2",
     "sails-disk": "^0.10.8",
-    "sails-mongo": "^0.11.2",
-    "node-uuid": "^1.4.3",
-    "async": "latest"
+    "sails-mongo": "^0.11.2"
   },
   "scripts": {
     "start": "sails lift --verbose",
