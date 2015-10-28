@@ -32,17 +32,17 @@ module.exports = {
 				box_label  : budgetBoxLabel,
 				box_link   : '/market'
 			},
-			stats : { 
-				box_header : 'Check',
-				box_text   : 'Your results',
-				box_label  : 'See your achievements! ',
-				box_link   : '/stats'
-			},
 			profile : { 
 				box_header : 'Change',
 				box_text   : 'Your profile information',
 				box_label  : 'Edit your profile! ',
 				box_link   : '/profile'
+			},
+			stats : { 
+				box_header : 'Check',
+				box_text   : 'Your results',
+				box_label  : 'See your achievements! ',
+				box_link   : '/stats'
 			},
 			product : { 
 				box_header : 'Browse',
@@ -50,11 +50,11 @@ module.exports = {
 				box_label  : 'Check out the Market! ',
 				box_link   : '/market#products'
 			},
-			redeem : { 
-				box_header : 'Redeem',
-				box_text   : 'Codes and add to your credit',
-				box_label  : 'Use coupons for game credit! ',
-				box_link   : '/market#redeem'
+			recommended : {
+				box_header : 'See',
+				box_text   : 'What\'s recommended for you?',
+				box_label  : 'See your recommendations! ',
+				box_link   : '/market#recommended'
 			},
 			buy : { 
 				box_header : 'Buy',
@@ -74,11 +74,11 @@ module.exports = {
 				box_label  : 'You can do this! ',
 				box_link   : '/game'
 			},
-			recommended : {
-				box_header : 'Know',
-				box_text   : 'What\'s recommended for you?',
-				box_label  : 'See your recommendations! ',
-				box_link   : '/market#recommended'
+			redeem : { 
+				box_header : 'Redeem',
+				box_text   : 'Codes and add to your credit',
+				box_label  : 'Use coupons for game credit! ',
+				box_link   : '/market#redeem'
 			}
 		};
 		if(budgetBoxHeader!=='Money') {

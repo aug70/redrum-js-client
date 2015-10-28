@@ -19,9 +19,9 @@ redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', func
 redrumApp.controller('MarketController', ['$window', '$scope', '$location', 'redrumAppServices', '$filter', 'ngTableParams', function($window, $scope,  $location, redrumAppServices, $filter, ngTableParams) {
 
 	var atLocation = function(currentElement) {
-			console.log('Current element: ', currentElement);
+			//console.log('Current element: ', currentElement);
 			//console.log('Location Url: ', $location.url());
-			console.log('Location Hash: ', $location.hash());
+			//console.log('Location Hash: ', $location.hash());
 
 			//return currentElement===$location.hash() ? {active : true} : {active : false};
 			return currentElement===$location.hash();

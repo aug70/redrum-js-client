@@ -18,27 +18,27 @@ block content
           .row
             .col-md-12
               // Custom Tabs
-              tabset
+              uib-tabset
                 
-                tab(heading="Game Credit", active="isCredit")
+                uib-tab(heading="Game Credit", active="isCredit")
                   include ./includes/market/credit
                 
-                tab(heading="Coupons", active="isCoupons", select="getCart()")
+                uib-tab(heading="Coupons", active="isCoupons", select="getCart()")
                   include ./includes/market/coupons
                 
-                tab(heading="Recommended for you", active="isRecommended")
+                uib-tab(heading="Recommended for you", active="isRecommended")
                   include ./includes/market/recommended
                 
-                tab(heading="Products", active="isProducts", select="getProducts()")
+                uib-tab(heading="Products", active="isProducts", select="getProducts()")
                   include ./includes/market/products
                 
-                tab(heading="Shopping Cart", active="isCart", select="getCart()")
+                uib-tab(heading="Shopping Cart", active="isCart", select="getCart()")
                   include ./includes/market/cart
                 
-                tab(heading="Inventory", active="isInventory", select="getInventory()")
+                uib-tab(heading="Inventory", active="isInventory", select="getInventory()")
                   include ./includes/market/inventory
                 
-                tab(heading="Orders", active="isOrders" select="getOrders()")
+                uib-tab(heading="Orders", active="isOrders" select="getOrders()")
                   include ./includes/market/orders
 
             // /.col

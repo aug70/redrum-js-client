@@ -92,11 +92,11 @@ service.factory('redrumAppServices', function($http) {
 				function(response) {
 					// success
 					console.log('Success');
-					console.log(response.data);
+					//console.log(response.data);
 					}, 
 				function(response) { // optional
 					console.log('Failure');
-					console.log(response.data);
+					//console.log(response.data);
 				});
 		},
 		signInWithFaceBook : function() {
