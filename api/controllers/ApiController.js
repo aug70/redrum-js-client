@@ -19,6 +19,7 @@ module.exports = {
 		var budgetBoxHeader = 'Money';
 		var budgetBoxLabel = 'See your shopping cart! ';
 		var userSummaryCacheKey = CacheService.makeKey(req, 'user_summary');
+
 		if(CacheService.hasKey(userSummaryCacheKey)) {
 			var userSummaryCacheValue = CacheService.get(userSummaryCacheKey);
 			budgetBoxHeader = userSummaryCacheValue.budget;
@@ -95,10 +96,8 @@ module.exports = {
 			return;
 		}
 
-		RedrumApiService.invokeEndPoint(req, '/account/summary', 'GET', function(result){
+		RedrumApiService.invokeEndPoint(req, '/account/summary', 'GET', function(statusCode, headers, result) {
 
-			console.log('Result: '+ result);
-			
 			var jsonObject = JSON.parse(result);
 			var value = {
 				
@@ -142,8 +141,8 @@ module.exports = {
 			return;
 		}
 
-		RedrumApiService.invokeEndPoint(req, '/market/cart', 'GET', function(result){
-			//console.log(result);
+		RedrumApiService.invokeEndPoint(req, '/market/cart', 'GET', function(statusCode, headers, result) {
+			
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
@@ -159,7 +158,8 @@ module.exports = {
 			return;
 		}
 
-		RedrumApiService.invokeEndPoint(req, '/products', 'GET', function(result){
+		RedrumApiService.invokeEndPoint(req, '/products', 'GET', function(statusCode, headers, result) {
+
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
@@ -175,7 +175,8 @@ module.exports = {
 			return;
 		}
 
-		RedrumApiService.invokeEndPoint(req, '/inventory', 'GET', function(result){
+		RedrumApiService.invokeEndPoint(req, '/inventory', 'GET', function(statusCode, headers, result) {
+			
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
@@ -243,7 +244,8 @@ module.exports = {
 			return;
 		}
 
-		RedrumApiService.invokeEndPoint(req, '/market/orders', 'GET', function(result){
+		RedrumApiService.invokeEndPoint(req, '/market/orders', 'GET', function(statusCode, headers, result) {
+
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
@@ -260,7 +262,8 @@ module.exports = {
 		CacheService.remove(cacheKey);
 		CacheService.invalidateUserCaches(req);
 
-		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(result){
+		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(statusCode, headers, result) {
+
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			if(resultJSON.hasOwnProperty('message')) {
@@ -279,8 +282,8 @@ module.exports = {
 
 		CacheService.invalidateUserCaches(req);
 
-		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(result){
-			console.log('Result: ', result);
+		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(statusCode, headers, result) {
+			
 			var resultJSON = JSON.parse(result);
 			if(resultJSON.hasOwnProperty('message')) {
 				AlertService.addAlert(req, resultJSON.message);
@@ -296,10 +299,34 @@ module.exports = {
 			return res.json(CacheService.get(cacheKey));
 		}
 
-		RedrumApiService.invokeEndPoint(req, '/games/levels', 'GET', function(result){
+		RedrumApiService.invokeEndPoint(req, '/games/levels', 'GET', function(statusCode, headers, result) {
+
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
+		});
+	},
+
+	gameNoResponse : function(req,res) {
+
+		var callData = req.body.callData;
+		var bustCache = req.body.bustCache;
+		// console.log('Req call data: ', callData);
+		// console.log('Req bust cache: ', bustCache);
+		var callUrl = callData.href;
+		// console.log('Req call url: ', callUrl);
+		var callMethod = callData.method;
+		// console.log('Req call method: ', callMethod);
+
+		if(bustCache) {
+			CacheService.invalidateUserCaches(req);
+		}
+		
+		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(statusCode, headers, result) {
+
+			res.status(statusCode);
+			res.set(headers);
+			res.send();
 		});
 	},
 
@@ -307,24 +334,26 @@ module.exports = {
 
 		var callData = req.body.callData;
 		var bustCache = req.body.bustCache;
-		// console.log('Req call data: ', callData);
+		console.log('Req call data: ', callData);
 		console.log('Req bust cache: ', bustCache);
 		var callUrl = callData.href;
-		// console.log('Req call url: ', callData.href);
+		console.log('Req call url: ', callUrl);
 		var callMethod = callData.method;
-		// console.log('Req call method: ', callData.method);
+		console.log('Req call method: ', callMethod);
 
 		if(bustCache) {
 			CacheService.invalidateUserCaches(req);
 		}
 		
-		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(result){
-			console.log('Result: ', result);
-			var resultJSON = JSON.parse(result);
-			if(resultJSON.hasOwnProperty('message')) {
-				AlertService.addAlert(req, resultJSON.message);
+		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(statusCode, headers, result) {
+
+			if(result!='') {
+				var resultJSON = JSON.parse(result);
+				if(resultJSON.hasOwnProperty('message')) {
+					AlertService.addAlert(req, resultJSON.message);
+				}
+				res.send(resultJSON);
 			}
-			res.send(resultJSON);
 		});
 	}
 

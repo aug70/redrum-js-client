@@ -36,6 +36,7 @@ module.exports = {
   redrumConfig: {
     clientId: 'redrum-js-demo',
     clientSecret: '847eacd8-d636-4aef-845d-512128dd09a4',
-    debug: false
+    debug: false,
+    trace: false
   }
 };

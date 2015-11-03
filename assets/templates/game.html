@@ -18,7 +18,12 @@
 	<div class="box-header">
 		<h3 class="box-title">Current Game</h3>
 		Current game Key: {{user.activeGame.currentGameKey}}
-		<div ng-repeat="link in user.activeGame.links">
+		<div ng-repeat="link in user.activeGame.links | filter: filterQuit">
+			<div>
+				<button class="btn btn-primary btn-lg" data-ng-click="gameNoResponse(link, true)">{{link.label}}</button>
+			</div>
+		</div>
+		<div ng-repeat="link in user.activeGame.links | filter: filterContinue">
 			<div>
 				<button class="btn btn-primary btn-lg" data-ng-click="game(link, true)">{{link.label}}</button>
 			</div>

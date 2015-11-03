@@ -119,6 +119,27 @@ service.factory('redrumAppServices', function($http) {
 						return result.data;
 				});
 			},
+		gameNoResponse : function(callData, bustCache) {
+			bustCache = bustCache || false;
+			return $http({
+				method: 'post',
+				url: '/api/gameNoResponse',
+				data: {
+					'bustCache' : bustCache,
+					'callData' : callData
+				},
+				headers: {'Content-Type': 'application/json;charset=utf-8'}
+			}).then(
+				function(response) {
+					// success
+					console.log('Success');
+					console.log(response.data);
+					}, 
+				function(response) {
+					console.log('Failure');
+					console.log(response.data);
+				});
+			},	
 		game : function(callData, bustCache) {
 			bustCache = bustCache || false;
 			return $http({

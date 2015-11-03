@@ -62,7 +62,12 @@ aside.left-side.sidebar-offcanvas
 				a(href='/stats', target="_top")
 					i.ion.ion-stats-bars
 					span Statistics
-			li
+			li(data-ng-show="user.activeGame.activeGame")
+				a(href='/game', target="_top")
+					i.ion.ion-game-controller-b
+					span Game
+					small.badge.pull-right.bg-red Active
+			li(data-ng-show="!user.activeGame.activeGame")
 				a(href='/game', target="_top")
 					i.ion.ion-game-controller-b
 					span Game

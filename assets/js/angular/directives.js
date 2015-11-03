@@ -41,6 +41,14 @@ angular.module('redrumAppDirectives', [])
 				return element.rel.match(/^level/) ? true : false;
 			};
 
+			scope.filterQuit = function(element) {
+				return element.rel.match(/^quit/) ? true : false;
+			};
+
+			scope.filterContinue = function(element) {
+				return element.rel.match(/^continue/) ? true : false;
+			};
+
 			scope.game = function(callData, bustCache) {
 				redrumAppServices.game(callData, bustCache).then(
 					function(data) {
@@ -48,6 +56,12 @@ angular.module('redrumAppDirectives', [])
 					});
 			};
 
+			scope.gameNoResponse = function(callData, bustCache) {
+				redrumAppServices.gameNoResponse(callData, bustCache).then(
+					function(data) {
+						scope.game = data;
+					});
+			};
 		}
 	};
 }])
