@@ -150,6 +150,13 @@ module.exports = {
 
 	},
 
+	creditClientToken : function(req, res) {
+		RedrumApiService.getCreditClientToken(function(statusCode, headers, result){
+			res.json(result);	
+		});
+		
+	},
+
 	products : function(req, res) {
 
 		var cacheKey = 'products';
@@ -272,6 +279,11 @@ module.exports = {
 			res.send(resultJSON);
 		});
 	},
+
+	processCredit : function(req, res) {
+		//RedrumApiService.getCreditClientToken(req, )
+	},
+
 
 	redeemCoupon : function(req, res) {
 		

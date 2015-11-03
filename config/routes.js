@@ -66,7 +66,8 @@ module.exports.routes = {
   '/alerts': 'AlertsController.alerts',
   '/signout': 'UserController.signOut',
 
-  'POST /api/processCart': 'ApiController.processCart'
+  'POST /api/processCart': 'ApiController.processCart',
+  'POST /api/processCredit': 'ApiController.processCredit'
 
 
   /***************************************************************************

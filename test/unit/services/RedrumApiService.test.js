@@ -25,7 +25,7 @@ describe('Redrum API Service tests', function() {
 		});
 	});
 
-	it('invokeEndPoint method should return a valid value', function(done) {
+	it('InvokeEndPoint method should return a valid value', function(done) {
 		var req = {
 			session : {
 				userName: 'tester',
@@ -40,7 +40,7 @@ describe('Redrum API Service tests', function() {
 		});
 	});
 
-	it('register user', function(done) {
+	it('Register user', function(done) {
 
 		var guid = uuid.v1().replace(/-/g, '').substring(0,10);
 		//console.log('guid: ' + guid);
@@ -59,6 +59,17 @@ describe('Redrum API Service tests', function() {
 
 		redrumApiService.register(userData, function(result) {
 			assert.equal(result, true);
+			return done();
+		})
+	});
+
+	it('Get client token for credit', function(done) {
+
+		redrumApiService.getCreditClientToken(function(result) {
+			
+			assert.notDeepEqual(result, 'ERROR');
+			assert.notDeepEqual(result, undefined);
+			// assert.equal(result, true);
 			return done();
 		})
 	});

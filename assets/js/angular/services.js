@@ -20,6 +20,14 @@ service.factory('redrumAppServices', function($http) {
 				});
 			},
 
+
+		creditClientToken : function() {
+			return $http.get('/api/creditClientToken').then(
+				function(result){
+					return result.data;
+				});
+			},
+
 		cart : function() {
 			return $http.get('/api/cart').then(
 				function(result) {
