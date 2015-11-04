@@ -123,20 +123,18 @@ angular.module('redrumAppDirectives', [])
 	};
 }])
 
-.directive('credit', ['$window', 'redrumAppServices', function($window, redrumAppServices){
+.directive('credit', ['redrumAppServices', function(redrumAppServices){
 	return {
 		restrict: 'E',
 		transclude: true,
 		templateUrl: 'templates/credit.html',
 		link: function link(scope) {
-			init();
-			function init() {
-				redrumAppServices.creditClientToken().then(
-					function(data) {
-						scope.clientToken = data;
-						$window.clientToken = data;
-				});
-			};
+			
+			redrumAppServices.creditClientToken().then(
+				function(data) {
+					scope.clientToken = data;
+					braintree.setup(data, {container: "payment-form"});
+			});
 		}
 	};
 }])
