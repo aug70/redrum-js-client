@@ -1,11 +1,11 @@
 <table class="table table-striped">
 
-	<thead ng-show="stats.showOverall">
+	<thead data-ng-show="stats.showOverall">
 		<tr>
 			<td>Overall</td>
 			<td colspan="2">
 				<div class="progress">
-					<div class="progress-bar progress-bar-{{stat.type}}" style="width: {{stat.percent}}" ng-repeat="stat in stats.detail | filter:filterFunction  | orderBy:'order'">
+					<div class="progress-bar progress-bar-{{stat.type}}" style="width: {{stat.percent}}" data-ng-repeat="stat in stats.detail | filter:filterFunction  | orderBy:'order'">
 						<span class="tooltip-content"> {{stat.label}} ({{stat.value}} - {{stat.percent}})</span>
 					</div>
 				</div>
@@ -19,7 +19,7 @@
 			<td> Count</td>
 			<td style="width: 50px"> Percent</td>
 		</tr>
-		<tr ng-repeat="stat in stats.detail | orderBy:'order'">
+		<tr data-ng-repeat="stat in stats.detail | orderBy:'order'">
 			<td>{{stat.label}} ({{stat.value}} games)</td>
 			<td>
 				<div class="progress-bar progress-bar-{{stat.type}}" role="progressbar" aria-valuenow="{{stat.value}}" style="width: {{stat.percent}}">
@@ -27,7 +27,7 @@
 				</div>
 			</td>
 			<td>
-				<span class='{{stat.percentClass}}'>{{stat.percent}}</span>
+				<span data-ng-show="stat.percentClass" class="{{stat.percentClass}}">{{stat.percent}}</span>
 			</td>
 		</tr>
 	</tbody>

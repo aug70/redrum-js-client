@@ -4,19 +4,19 @@
 
 	// /.box-header	
 	.box-body.table-responsive.table-striped
-		table.table-hover(ng-table="tableParams", show-filter="true", class="table")
-			tr(ng-repeat="product in $data")
+		table.table-hover(data-ng-table="tableParams", show-filter="true", class="table")
+			tr(data-ng-repeat="product in $data")
 				td 
 					| {{$index+1}}
 				td(data-title="'Name'", sortable="'name'", filter="{'name':'text'}")
-					| {{product.name}} <span ng-show="product.onSale" class="label label-warning">On Sale</span>
+					| {{product.name}} <span data-ng-show="product.onSale" class="label label-warning">On Sale</span>
 				td(data-title="'Description'", sortable="'description'", filter="{'description':'text'}")
 					| {{product.description}}
 				td(data-title="'Price'", sortable="price", filter="{'price':'text'}")
-					| <span ng-show="product.onSale"><strike>{{product.price}}</strike> {{product.discountedPrice}}</span>
-					| <span ng-show="!product.onSale">{{product.price}}</span>
+					| <span data-ng-show="product.onSale"><strike>{{product.price}}</strike> {{product.discountedPrice}}</span>
+					| <span data-ng-show="!product.onSale">{{product.price}}</span>
 				td(data-title="'Action'")
-					div(ng-repeat="link in product.links | filter: {rel: 'addToCart'}")
-						a.btn.btn-primary.btn-xs(href="" ng-click="processCart(link.href, link.method)") {{link.label}}
+					div(data-ng-repeat="link in product.links | filter: {rel: 'addToCart'}")
+						a.btn.btn-primary.btn-xs(href="" data-ng-click="processCart(link)") {{link.label}}
 	// /.box-body
 // /.box

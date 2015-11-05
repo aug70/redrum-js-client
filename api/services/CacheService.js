@@ -37,6 +37,8 @@ module.exports = {
 		CacheService.remove(CacheService.makeKey(req, 'user_dashboard'));
 		CacheService.remove(CacheService.makeKey(req, 'user_orders'));
 		CacheService.remove(CacheService.makeKey(req, 'user_inventory'));
+		CacheService.remove(CacheService.makeKey(req, 'user_cart'));
+
 	}
 
 };

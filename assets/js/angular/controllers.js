@@ -1,11 +1,64 @@
 'use strict';
 
-redrumApp.controller('MenuController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
+redrumApp.controller('MenuController', ['$window', '$scope', 'redrumAppServices', function($window, $scope, redrumAppServices) {
 	
 	redrumAppServices.user().then(
 		function(data) {
 			$scope.user = data;
+			// $scope.game = getGame(data);
 		});
+
+		$scope.continueGame = function(callData) {
+			redrumAppServices.postAction(callData).then(
+				function(response) {
+					//console.log(response.data.links);
+					redrumAppServices.postAction(response.data.links[0]).then(
+						function(response){
+							$window.location.href = '/game';
+							$scope.game = response.data;
+						});
+				});
+		};
+
+
+		// $scope.quitGame = function(callData) {
+		// 	redrumAppServices.postAction(callData, true).then(
+		// 		function(data) {
+		// 			$window.location.href = '/game';
+		// 		});
+		// };
+
+		// var getGame = function(user) {
+		// 	if(!user.activeGame.activeGame) {
+		// 		return null;
+		// 	}
+		// 	var link;
+		// 	for(link in user.activeGame.links) {
+		// 		//console.log('link: '+ link);
+		// 		var linkObject = user.activeGame.links[link];
+		// 		if(linkObject.rel.match(/^continue/)) {
+		// 			redrumAppServices.postAction(linkObject).then(
+		// 				function(response) {
+		// 					//console.log(response.data.links);
+		// 					redrumAppServices.postAction(response.data.links[0]).then(
+		// 						function(response){
+		// 							return response.data;
+		// 						});
+		// 				});		
+		// 		}
+		// 	}
+			
+		// };
+
+		$scope.filterQuit = function(element) {
+			return element.rel.match(/^quit/) ? true : false;
+		};
+
+		$scope.filterContinue = function(element) {
+			return element.rel.match(/^continue/) ? true : false;
+		};
+
+
 
 }]);
 
@@ -16,7 +69,7 @@ redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', func
 		});
 }]);
 
-redrumApp.controller('MarketController', ['$window', '$scope', '$location', 'redrumAppServices', '$filter', 'ngTableParams', function($window, $scope,  $location, redrumAppServices, $filter, ngTableParams) {
+redrumApp.controller('MarketController', ['$scope', '$window', '$location', 'redrumAppServices', '$filter', 'ngTableParams', function($scope, $window, $location, redrumAppServices, $filter, ngTableParams) {
 
 	var atLocation = function(currentElement) {
 			//console.log('Current element: ', currentElement);
@@ -80,17 +133,24 @@ redrumApp.controller('MarketController', ['$window', '$scope', '$location', 'red
 			});
 	};
 
-	$scope.processCart = function(callUrl, callMethod) {
-
-		redrumAppServices.processCart(callUrl, callMethod).then(
+	$scope.processCart = function(callData) {
+		var bustCache = true;
+		redrumAppServices.postAction(callData, bustCache).then(
 			function(data) {
 				$scope.cart = data;
-				$window.location.href = '/market#products';
+				$window.location.href = '/market#cart';
 			});
 	};
 
-	$scope.redeemCoupon = function(callUrl, callMethod, couponCode) {
-		redrumAppServices.redeemCoupon(callUrl, callMethod, couponCode).then(
+	$scope.redeemCoupon = function(callData, couponCode) {
+		
+		var bustCache = true;
+		var redeemData = {
+			method : callData.method,
+			href : callData.href + couponCode
+		}
+		
+		redrumAppServices.postAction(redeemData, true).then(
 			function(data) {
 				$window.location.href = '/market#coupons';
 			});
@@ -119,14 +179,14 @@ redrumApp.controller('UserController', ['$scope', '$window', 'redrumAppServices'
 	$scope.signInWithFaceBook = function() {
 		redrumAppServices.signInWithFaceBook().then(
 			function(url) {
-				$window.location = url;
+				$window.location.href = url;
 			});
 	};
 	
 	$scope.signInWithGitHub = function() {
 		redrumAppServices.signInWithGitHub().then(
 			function(url) {
-				$window.location = url;
+				$window.location.href = url;
 			});
 	};
 

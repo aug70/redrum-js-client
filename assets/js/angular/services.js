@@ -65,48 +65,7 @@ service.factory('redrumAppServices', function($http) {
 					function(result) {
 						return result.data;
 				});
-			},	
-		processCart : function(callUrl, callMethod) {
-			return $http({
-				method: 'post',
-				url: '/api/processCart',
-				data: {
-					'callMethod' : callMethod,
-					'callUrl' : callUrl
-				},
-				headers: {'Content-Type': 'application/json;charset=utf-8'}
-			}).then(
-				function(response) {
-					// success
-					//console.log('Success');
-					//console.log(response.data);
-					}, 
-				function(response) { // optional
-					//console.log('Failure');
-					//console.log(response.data);
-				});
 			},
-		redeemCoupon : function(callUrl, callMethod, couponCode) {
-			return $http({
-				method: 'post',
-				url: '/api/redeemCoupon',
-				data: {
-					'callMethod' : callMethod,
-					'callUrl' : callUrl,
-					'couponCode' : couponCode
-				},
-				headers: {'Content-Type': 'application/json;charset=utf-8'}
-			}).then(
-				function(response) {
-					// success
-					console.log('Success');
-					//console.log(response.data);
-					}, 
-				function(response) { // optional
-					console.log('Failure');
-					//console.log(response.data);
-				});
-		},
 		signInWithFaceBook : function() {
 			return $http.get('/user/signInWithFaceBook').then(
 					function(result) {
@@ -127,11 +86,11 @@ service.factory('redrumAppServices', function($http) {
 						return result.data;
 				});
 			},
-		gameNoResponse : function(callData, bustCache) {
+		postAction : function(callData, bustCache) {
 			bustCache = bustCache || false;
 			return $http({
 				method: 'post',
-				url: '/api/gameNoResponse',
+				url: '/api/postAction',
 				data: {
 					'bustCache' : bustCache,
 					'callData' : callData
@@ -142,32 +101,17 @@ service.factory('redrumAppServices', function($http) {
 					// success
 					console.log('Success');
 					console.log(response.data);
+					console.log(response.headers);
+					console.log(response.status);
+					return response;
 					}, 
 				function(response) {
 					console.log('Failure');
 					console.log(response.data);
+					console.log(response.headers);
+					console.log(response.status);
+					return response;
 				});
-			},	
-		game : function(callData, bustCache) {
-			bustCache = bustCache || false;
-			return $http({
-				method: 'post',
-				url: '/api/game',
-				data: {
-					'bustCache' : bustCache,
-					'callData' : callData
-				},
-				headers: {'Content-Type': 'application/json;charset=utf-8'}
-			}).then(
-				function(response) {
-					// success
-					console.log('Success');
-					console.log(response.data);
-					}, 
-				function(response) {
-					console.log('Failure');
-					console.log(response.data);
-				});
-		}
+			}
 	};
 });

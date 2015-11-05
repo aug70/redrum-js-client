@@ -17,6 +17,6 @@
 					| <span data-ng-show="!missingProduct.onSale">{{missingProduct.price}}</span>
 				td(data-title="'Action'")
 					div(data-ng-repeat="link in missingProduct.links | filter: {rel: 'addToCart'}")
-						a.btn.btn-primary.btn-xs(href="" data-ng-click="processCart(link.href, link.method)") {{link.label}}
+						a.btn.btn-primary.btn-xs(href="" data-ng-click="processCart(link)") {{link.label}}
 	// /.box-body
 // /.box

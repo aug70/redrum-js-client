@@ -2,6 +2,7 @@
 
 var redrumApp = angular.module('redrumApp', ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngTable', 'redrumAppFilters', 'redrumAppDirectives', 'redrumAppServices']).
  	
+
 	config(['$locationProvider', '$httpProvider', function($locationProvider, $httpProvider) {
 		
 		$locationProvider.html5Mode({
@@ -9,5 +10,16 @@ var redrumApp = angular.module('redrumApp', ['ui.bootstrap', 'ngRoute', 'ngResou
 		  requireBase: false
 		});
 		$httpProvider.defaults.useXDomain = true;
+
 	
 	}]);
+
+// redrumApp.run(function($rootScope, redrumAppServices) {
+// 			$rootScope.postAction = function(callData, bustCache) {
+// 			redrumAppServices.postAction(callData, bustCache).then(
+// 				function(data) {
+// 					$rootScope.postActionResult = data;
+// 				});
+// 		};
+//     });
+

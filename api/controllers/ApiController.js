@@ -210,7 +210,7 @@ module.exports = {
 				label : 'Played',
 				value: userSummaryCacheValue.statistics.gamesPlayed,
 				type: 'primary',
-				percentClass: 'badge bg-blue',
+				percentClass: null,
 				percent: userSummaryCacheValue.statistics.gamesPlayedPercentage + '%'
 			},
 			{
@@ -259,34 +259,12 @@ module.exports = {
 		});
 	},
 
-	processCart : function(req, res) {
-		var callUrl = req.body.callUrl;
-		var callMethod = req.body.callMethod;
-		//console.log('Req call url: ', callUrl);
-		//console.log('Req call method: ', callMethod);
-		var cacheKey = CacheService.makeKey(req, 'user_cart');
-		//console.log('Cache key ', cacheKey, ' is removed.');
-		CacheService.remove(cacheKey);
-		CacheService.invalidateUserCaches(req);
-
-		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(statusCode, headers, result) {
-
-			var resultJSON = JSON.parse(result);
-			CacheService.add(cacheKey, resultJSON);
-			if(resultJSON.hasOwnProperty('message')) {
-				AlertService.addAlert(req, resultJSON.message);
-			}
-			res.send(resultJSON);
-		});
-	},
-
 	processCredit : function(req, res) {
 		//RedrumApiService.getCreditClientToken(req, )
 	},
 
-
 	redeemCoupon : function(req, res) {
-		
+	
 		var callUrl = req.body.callUrl + req.body.couponCode;
 		var callMethod = req.body.callMethod;
 		console.log('Req call url: ', callUrl);
@@ -295,7 +273,7 @@ module.exports = {
 		CacheService.invalidateUserCaches(req);
 
 		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(statusCode, headers, result) {
-			
+		
 			var resultJSON = JSON.parse(result);
 			if(resultJSON.hasOwnProperty('message')) {
 				AlertService.addAlert(req, resultJSON.message);
@@ -319,16 +297,19 @@ module.exports = {
 		});
 	},
 
-	gameNoResponse : function(req,res) {
+	postAction : function(req,res) {
 
 		var callData = req.body.callData;
 		var bustCache = req.body.bustCache;
-		// console.log('Req call data: ', callData);
-		// console.log('Req bust cache: ', bustCache);
 		var callUrl = callData.href;
-		// console.log('Req call url: ', callUrl);
 		var callMethod = callData.method;
-		// console.log('Req call method: ', callMethod);
+
+		if(sails.config.redrumConfig.debug) {
+			console.log('Req call data: ', callData);
+			console.log('Req bust cache: ', bustCache);
+			console.log('Req call url: ', callUrl);
+			console.log('Req call method: ', callMethod);
+		}
 
 		if(bustCache) {
 			CacheService.invalidateUserCaches(req);
@@ -338,37 +319,19 @@ module.exports = {
 
 			res.status(statusCode);
 			res.set(headers);
-			res.send();
-		});
-	},
+			//console.log('result :' + result);
 
-	game : function(req, res) {
-
-		var callData = req.body.callData;
-		var bustCache = req.body.bustCache;
-		console.log('Req call data: ', callData);
-		console.log('Req bust cache: ', bustCache);
-		var callUrl = callData.href;
-		console.log('Req call url: ', callUrl);
-		var callMethod = callData.method;
-		console.log('Req call method: ', callMethod);
-
-		if(bustCache) {
-			CacheService.invalidateUserCaches(req);
-		}
-		
-		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(statusCode, headers, result) {
-
-			if(result!='') {
+			if(result) {
 				var resultJSON = JSON.parse(result);
 				if(resultJSON.hasOwnProperty('message')) {
 					AlertService.addAlert(req, resultJSON.message);
 				}
 				res.send(resultJSON);
 			}
+
+			res.send();
 		});
 	}
-
 
 };
 

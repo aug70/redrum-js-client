@@ -22,7 +22,7 @@ angular.module('redrumAppDirectives', [])
 }])
 
 
-.directive('game', ['redrumAppServices', function(redrumAppServices){
+.directive('game', ['$window', 'redrumAppServices', function($window, redrumAppServices){
 	return {
 		restrict: 'E',
 		transclude: true,
@@ -33,39 +33,73 @@ angular.module('redrumAppDirectives', [])
 			function showLevels() {
 				redrumAppServices.gameLevels().then(
 					function(data) {
-						scope.gameLevels = data;
+						scope.gameLevelRows = splitRow(data.links, 3);
 				});
+			};
+
+			function splitRow(input, count) {
+				// console.log("input:" + input);
+				// console.log("count:" + count);
+				var out = [];
+					if(typeof input === "object"){
+			  			for (var i=0, j=input.length; i < j;) {
+			  				//console.log('input[i].rel: ' + input[i].rel);
+			  				if(input[i].rel==='self') {
+			  					i += 1;
+			  					continue;
+			  				}
+			  				out.push(input.slice(i, i+count));
+			  				i+=count;
+			  			}
+			  		}
+		   		return out;
+			}
+
+			// scope.quitGame = function(callData) {
+			// 	redrumAppServices.postAction(callData, true).then(
+			// 		function(data) {
+			// 			$window.location.href = '/game';
+			// 		});
+			// };
+
+			scope.continueGame = function(callData) {
+				redrumAppServices.postAction(callData).then(
+					function(response) {
+						console.log(response.data.links);
+						redrumAppServices.postAction(response.data.links[0]).then(
+							function(response){
+								//$window.location.href = '/game';
+								scope.game = response.data;
+							});
+					});
+			};
+
+			scope.newGame = function(callData) {
+				redrumAppServices.postAction(callData, true).then(
+					function(response) {
+						console.log(response.data.links);
+						redrumAppServices.postAction(response.data.links[0]).then(
+							function(response){
+								$window.location.href = '/game';
+								scope.game = response.data;
+							});
+					});
 			};
 
 			scope.filterLevelsOnly = function(element) {
 				return element.rel.match(/^level/) ? true : false;
 			};
 
-			scope.filterQuit = function(element) {
-				return element.rel.match(/^quit/) ? true : false;
-			};
+			// scope.filterQuit = function(element) {
+			// 	return element.rel.match(/^quit/) ? true : false;
+			// };
 
 			scope.filterContinue = function(element) {
 				return element.rel.match(/^continue/) ? true : false;
 			};
-
-			scope.game = function(callData, bustCache) {
-				redrumAppServices.game(callData, bustCache).then(
-					function(data) {
-						scope.game = data;
-					});
-			};
-
-			scope.gameNoResponse = function(callData, bustCache) {
-				redrumAppServices.gameNoResponse(callData, bustCache).then(
-					function(data) {
-						scope.game = data;
-					});
-			};
 		}
 	};
 }])
-
 
 .directive('stats', ['redrumAppServices', function(redrumAppServices){
 	return {
@@ -133,7 +167,7 @@ angular.module('redrumAppDirectives', [])
 			redrumAppServices.creditClientToken().then(
 				function(data) {
 					scope.clientToken = data;
-					braintree.setup(data, {container: "payment-form"});
+					//braintree.setup(data, {container: "payment-form"});
 			});
 		}
 	};

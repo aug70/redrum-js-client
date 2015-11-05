@@ -13,7 +13,7 @@ block content
               i.fa.fa-shopping-cart
                 |  Market
         // Main content
-        section.content(ng-controller="MarketController")
+        section.content(data-ng-controller="MarketController")
           include ./includes/alerts
           .row
             .col-md-12
@@ -23,7 +23,7 @@ block content
                 uib-tab(heading="Game Credit", active="isCredit")
                   include ./includes/market/credit
                 
-                uib-tab(heading="Coupons", active="isCoupons")
+                uib-tab(heading="Coupons", active="isCoupons", select="getCart()")
                   include ./includes/market/coupons
                 
                 uib-tab(heading="Recommended for you", active="isRecommended")
