@@ -1,3 +1,50 @@
-<div data-ng-controller="GameController" data-ng-init="init()">
-	Game: {{game}}
+<div data-ng-controller="GameController">
+	<div id="summary" ng-show="game.summary!=''">{{game.summary}}</div>
+	<div ng-show="!game.answers.empty">
+		<ul>
+			<li ng-repeat="answer in game.answers">{{answer}}</li>
+		</ul>
+	</div>
+	<div id ="locations" ng-show="game.locations.length">
+		Locations:</br>
+		<div ng-repeat="location in game.locations">
+			<div ng-repeat="link in location.links | filter: {rel: 'visit'}">
+				<a href="" ng-click="action(link)">{{location.locationName}}</a> {{location.detail}}
+			</div>
+			<div ng-show="!location.links.length">{{location.locationName}} {{location.detail}}</div>
+		</div>
+	</div>
+
+	<div id ="suspects" ng-show="game.suspects.length">
+		Suspects:<br />
+		<div ng-repeat="suspect in game.suspects">
+			{{suspect.fullName}}
+			<span ng-repeat="link in suspect.links | filter: {rel: 'visit'}">
+				[<a href="" ng-click="action(link)">{{suspect.address}}</a>]
+			</span>
+		</div>
+	</div>
+
+	<div id="currentAddress" ng-show="game.currentAddress!=''">
+		Persons in {{game.currentAddress}}:
+		<div ng-repeat="witness in game.witnesses">
+			{{witness.fullName}} <span ng-show="!witness.available">is not available</span>
+			<div ng-repeat="link in witness.links | filter: {rel: 'question'}">
+				<a href="" ng-click="action(link)">{{link.label}}</a>
+			</div>
+			<div ng-repeat="link in witness.links | filter: {rel: 'visit'}">
+				<a href="" ng-click="action(link)">{{link.label}}</a>
+			</div>
+			<div ng-repeat="link in witness.links | filter: {rel: 'search'}">
+				<a href="" ng-click="action(link)">{{link.label}}</a>
+			</div>
+			<div ng-repeat="link in witness.links | filter: {rel: 'accuse'}">
+				<a href="" ng-click="action(link)">{{link.label}}</a>
+			</div>
+		</div>
+	</div>
+
+
+
+
 </div>

@@ -65,22 +65,17 @@ angular.module('redrumAppDirectives', [])
 			scope.continueGame = function(callData) {
 				redrumAppServices.postAction(callData).then(
 					function(response) {
-						scope.gameLink = response.data.links[0];
-						//console.log(response.data.links);
-						//$window.location.href = '/game';
-						var modalInstance = $uibModal.open({
-							animation: false,
-							templateUrl: '/templates/gamePlay.html',
-							controller: 'GameController',
-							scope : scope,
-							size: 'lg'
-							// resolve: {
-							// 	gameLink : function() {
-							// 		console.log('Game link called.: ' + response.data.links[0]);
-							// 		return response.data.links[0];	
-							// 	}
-							// }
-						});
+						redrumAppServices.postAction(response.data.links[0]).then(
+							function(response){
+								scope.game = response.data;
+							});
+							var modalInstance = $uibModal.open({
+								animation: false,
+								templateUrl: '/templates/gamePlay.html',
+								controller: 'GameController',
+								scope : scope,
+								size: 'lg'
+							});
 					});
 			};
 

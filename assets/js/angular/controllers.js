@@ -71,14 +71,15 @@ redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', func
 
 redrumApp.controller('GameController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
 	 
-	$scope.init = function() {
-		console.log('init called with [gameLink]: ' + $scope.gameLink);
-		redrumAppServices.postAction($scope.gameLink).then(
-			function(response){
+	$scope.action = function(callData) {
+		redrumAppServices.postAction(callData).then(
+			function(response) {
 				$scope.game = response.data;
-			});	
-	}
-	
+			});
+		};
+
+
+
 
 }]);
 
