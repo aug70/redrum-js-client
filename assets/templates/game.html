@@ -22,9 +22,38 @@
 	<div class="box-body">
 		<div class="row">
 			<div class="col-xs-12">
-				<div>
-					{{game}}
+				<div ng-repeat="link in user.activeGame.links | filter: filterQuit">
+					<div>
+						<button class="btn btn-primary btn-lg" data-ng-click="quitGame(link, true)">{{link.label}}</button>
+					</div>
+				</div>
+				<div ng-repeat="link in user.activeGame.links | filter: filterContinue">
+					<div>
+						<button class="btn btn-primary btn-lg" data-ng-click="continueGame(link, true)">{{link.label}}</button>
+					</div>
 				</div>
 			</div>
 		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>

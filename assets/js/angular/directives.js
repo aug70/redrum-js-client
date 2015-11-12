@@ -22,7 +22,7 @@ angular.module('redrumAppDirectives', [])
 }])
 
 
-.directive('game', ['$window', 'redrumAppServices', function($window, redrumAppServices){
+.directive('game', ['$window', '$uibModal', 'redrumAppServices', function($window, $uibModal, redrumAppServices){
 	return {
 		restrict: 'E',
 		transclude: true,
@@ -55,21 +55,26 @@ angular.module('redrumAppDirectives', [])
 		   		return out;
 			}
 
-			// scope.quitGame = function(callData) {
-			// 	redrumAppServices.postAction(callData, true).then(
-			// 		function(data) {
-			// 			$window.location.href = '/game';
-			// 		});
-			// };
+			scope.quitGame = function(callData) {
+				redrumAppServices.postAction(callData, true).then(
+					function(data) {
+						$window.location.href = '/game';
+					});
+			};
 
 			scope.continueGame = function(callData) {
 				redrumAppServices.postAction(callData).then(
 					function(response) {
-						console.log(response.data.links);
 						redrumAppServices.postAction(response.data.links[0]).then(
 							function(response){
-								//$window.location.href = '/game';
 								scope.game = response.data;
+								var modalInstance = $uibModal.open({
+									animation: false,
+									templateUrl: '/templates/gamePlay.html',
+									controller: 'GameController',
+									scope : scope,
+									size: 'lg'
+								});
 							});
 					});
 			};
@@ -90,9 +95,9 @@ angular.module('redrumAppDirectives', [])
 				return element.rel.match(/^level/) ? true : false;
 			};
 
-			// scope.filterQuit = function(element) {
-			// 	return element.rel.match(/^quit/) ? true : false;
-			// };
+			scope.filterQuit = function(element) {
+				return element.rel.match(/^quit/) ? true : false;
+			};
 
 			scope.filterContinue = function(element) {
 				return element.rel.match(/^continue/) ? true : false;

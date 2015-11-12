@@ -13,13 +13,3 @@ var redrumApp = angular.module('redrumApp', ['ui.bootstrap', 'ngRoute', 'ngResou
 
 	
 	}]);
-
-// redrumApp.run(function($rootScope, redrumAppServices) {
-// 			$rootScope.postAction = function(callData, bustCache) {
-// 			redrumAppServices.postAction(callData, bustCache).then(
-// 				function(data) {
-// 					$rootScope.postActionResult = data;
-// 				});
-// 		};
-//     });
-
