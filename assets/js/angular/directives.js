@@ -68,13 +68,13 @@ angular.module('redrumAppDirectives', [])
 						redrumAppServices.postAction(response.data.links[0]).then(
 							function(response){
 								scope.game = response.data;
-							});
-							var modalInstance = $uibModal.open({
-								animation: false,
-								templateUrl: '/templates/gamePlay.html',
-								controller: 'GameController',
-								scope : scope,
-								size: 'lg'
+								var modalInstance = $uibModal.open({
+									animation: false,
+									templateUrl: '/templates/gamePlay.html',
+									controller: 'GameController',
+									scope : scope,
+									size: 'lg'
+								});
 							});
 					});
 			};

@@ -8,58 +8,6 @@ redrumApp.controller('MenuController', ['$window', '$scope', 'redrumAppServices'
 			// $scope.game = getGame(data);
 		});
 
-		$scope.continueGame = function(callData) {
-			redrumAppServices.postAction(callData).then(
-				function(response) {
-					//console.log(response.data.links);
-					redrumAppServices.postAction(response.data.links[0]).then(
-						function(response){
-							$window.location.href = '/game';
-							$scope.game = response.data;
-						});
-				});
-		};
-
-
-		// $scope.quitGame = function(callData) {
-		// 	redrumAppServices.postAction(callData, true).then(
-		// 		function(data) {
-		// 			$window.location.href = '/game';
-		// 		});
-		// };
-
-		// var getGame = function(user) {
-		// 	if(!user.activeGame.activeGame) {
-		// 		return null;
-		// 	}
-		// 	var link;
-		// 	for(link in user.activeGame.links) {
-		// 		//console.log('link: '+ link);
-		// 		var linkObject = user.activeGame.links[link];
-		// 		if(linkObject.rel.match(/^continue/)) {
-		// 			redrumAppServices.postAction(linkObject).then(
-		// 				function(response) {
-		// 					//console.log(response.data.links);
-		// 					redrumAppServices.postAction(response.data.links[0]).then(
-		// 						function(response){
-		// 							return response.data;
-		// 						});
-		// 				});		
-		// 		}
-		// 	}
-			
-		// };
-
-		$scope.filterQuit = function(element) {
-			return element.rel.match(/^quit/) ? true : false;
-		};
-
-		$scope.filterContinue = function(element) {
-			return element.rel.match(/^continue/) ? true : false;
-		};
-
-
-
 }]);
 
 redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
@@ -70,6 +18,8 @@ redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', func
 }]);
 
 redrumApp.controller('GameController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
+	
+	$scope.isCollapsed = true;
 	 
 	$scope.action = function(callData) {
 		redrumAppServices.postAction(callData).then(
@@ -77,8 +27,10 @@ redrumApp.controller('GameController', ['$scope', 'redrumAppServices', function(
 				$scope.game = response.data;
 			});
 		};
-
-
+	
+	$scope.closeModal = function () {
+		//$uibModalInstance.close();
+	};
 
 
 }]);

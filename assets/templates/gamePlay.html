@@ -1,50 +1,76 @@
 <div data-ng-controller="GameController">
-	<div id="summary" ng-show="game.summary!=''">{{game.summary}}</div>
-	<div ng-show="!game.answers.empty">
-		<ul>
-			<li ng-repeat="answer in game.answers">{{answer}}</li>
-		</ul>
-	</div>
-	<div id ="locations" ng-show="game.locations.length">
-		Locations:</br>
-		<div ng-repeat="location in game.locations">
-			<div ng-repeat="link in location.links | filter: {rel: 'visit'}">
-				<a href="" ng-click="action(link)">{{location.locationName}}</a> {{location.detail}}
-			</div>
-			<div ng-show="!location.links.length">{{location.locationName}} {{location.detail}}</div>
-		</div>
+
+	<div id="summary" class="modal-header" data-ng-show="game.summary!=''">
+		<h3 class="modal-title">{{game.summary}}</h3>
 	</div>
 
-	<div id ="suspects" ng-show="game.suspects.length">
-		Suspects:<br />
-		<div ng-repeat="suspect in game.suspects">
-			{{suspect.fullName}}
-			<span ng-repeat="link in suspect.links | filter: {rel: 'visit'}">
-				[<a href="" ng-click="action(link)">{{suspect.address}}</a>]
-			</span>
-		</div>
-	</div>
-
-	<div id="currentAddress" ng-show="game.currentAddress!=''">
-		Persons in {{game.currentAddress}}:
-		<div ng-repeat="witness in game.witnesses">
-			{{witness.fullName}} <span ng-show="!witness.available">is not available</span>
-			<div ng-repeat="link in witness.links | filter: {rel: 'question'}">
-				<a href="" ng-click="action(link)">{{link.label}}</a>
-			</div>
-			<div ng-repeat="link in witness.links | filter: {rel: 'visit'}">
-				<a href="" ng-click="action(link)">{{link.label}}</a>
-			</div>
-			<div ng-repeat="link in witness.links | filter: {rel: 'search'}">
-				<a href="" ng-click="action(link)">{{link.label}}</a>
-			</div>
-			<div ng-repeat="link in witness.links | filter: {rel: 'accuse'}">
-				<a href="" ng-click="action(link)">{{link.label}}</a>
+	<div class="modal-body">
+		
+		<div class="row" id="answers" data-ng-show="!game.answers.empty">
+			<div class="col-md-12">
+				<ul>
+					<li data-ng-repeat="answer in game.answers">{{answer}}</li>
+				</ul>
 			</div>
 		</div>
+
+		<div class="row">
+			<div id="locations" class="col-md-4">
+				<div data-ng-show="game.locations.length">
+					Locations:</br>
+					<div data-ng-repeat="location in game.locations">
+						<div data-ng-repeat="link in location.links | filter: {rel: 'visit'}">
+							<a href="" data-ng-click="action(link)">{{location.locationName}}</a> {{location.detail}}
+						</div>
+						<div data-ng-show="!location.links.length">{{location.locationName}} {{location.detail}}</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="suspects" class="col-md-4">
+				<div data-ng-show="game.suspects.length">
+					Suspects:<br />
+					<div data-ng-repeat="suspect in game.suspects">
+						{{suspect.fullName}}
+						<span data-ng-repeat="link in suspect.links | filter: {rel: 'visit'}">
+							[<a href="" data-ng-click="action(link)">{{suspect.address}}</a>]
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<div id="witnesses" class="col-md-4">
+				<div data-ng-show="game.witnesses.length && game.currentAddress!=''">
+					Persons in {{game.currentAddress}}:
+					<div data-ng-repeat="witness in game.witnesses">
+						{{witness.fullName}} <span data-ng-show="!witness.available">is not available</span>
+						<div data-ng-repeat="link in witness.links | filter: {rel: 'question'}">
+							<a href="" data-ng-click="action(link)">{{link.label}}</a>
+						</div>
+						<div data-ng-repeat="link in witness.links | filter: {rel: 'visit'}">
+							<a href="" data-ng-click="action(link)">{{link.label}}</a>
+						</div>
+						<div data-ng-repeat="link in witness.links | filter: {rel: 'search'}">
+							<a href="" data-ng-click="action(link)">{{link.label}}</a>
+						</div>
+						<div data-ng-repeat="link in witness.links | filter: {rel: 'accuse'}">
+							<a href="" data-ng-click="action(link)">{{link.label}}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
-
-
+	<div class="modal-footer">
+		<div class="row">
+			<div class="col-md-1"><button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Game data</button></div>
+			<div class="col-md-11" uib-collapse="isCollapsed">{{game}}</div>
+		</div>
+		
+		<div class="row"><div class="col-md-12"><button class="btn btn-primary" type="button" data-ng-click="close()">Close</button></div></div>
+		
+	</div>
 
 </div>
