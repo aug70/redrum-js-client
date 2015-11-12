@@ -19,7 +19,7 @@ redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', func
 
 redrumApp.controller('GameController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
 	
-	$scope.isCollapsed = true;
+	$scope.debugCollapsed = true;
 	 
 	$scope.action = function(callData) {
 		redrumAppServices.postAction(callData).then(
@@ -31,6 +31,31 @@ redrumApp.controller('GameController', ['$scope', 'redrumAppServices', function(
 	$scope.closeModal = function () {
 		//$uibModalInstance.close();
 	};
+
+	$scope.owns = function (item) {
+		return $scope.game.inventory.indexOf(item)>=0;
+	};
+
+	$scope.ownsOffice = function () {
+		return $scope.owns('Office')>0;
+	};
+
+	$scope.ownsComputer = function () {
+		return $scope.owns('Computer')>0;
+	};	
+
+	$scope.criminalRecordUnknown = function(suspect) {
+		return suspect.criminalRecord=='Unknown.';
+	};
+	
+	$scope.bloodTypeUnknown = function(suspect) {
+		return suspect.bloodType=='Unknown.';
+	};
+	
+	$scope.weaponUnknown = function(suspect) {
+		return suspect.weapon=='Unknown.';
+	};
+
 
 
 }]);

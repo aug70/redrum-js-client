@@ -99,17 +99,17 @@ service.factory('redrumAppServices', function($http) {
 			}).then(
 				function(response) {
 					// success
-					console.log('Success');
-					console.log(response.data);
-					console.log(response.headers);
-					console.log(response.status);
+					// console.log('Success');
+					// console.log(response.data);
+					// console.log(response.headers);
+					// console.log(response.status);
 					return response;
 					}, 
 				function(response) {
-					console.log('Failure');
-					console.log(response.data);
-					console.log(response.headers);
-					console.log(response.status);
+					// console.log('Failure');
+					// console.log(response.data);
+					// console.log(response.headers);
+					// console.log(response.status);
 					return response;
 				});
 			}

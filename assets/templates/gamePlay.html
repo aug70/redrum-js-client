@@ -5,68 +5,190 @@
 	</div>
 
 	<div class="modal-body">
+
+
+	<uib-tabset>
+		<uib-tab heading="Game">
+
+			<div class="row" id="answers">
+				<div class="col-md-12">
+					<uib-alert data-ng-show="game.answers.length">
+						<ul>
+							<li data-ng-repeat="answer in game.answers">{{answer}}</li>
+						</ul>
+					</uib-alert>	
+				</div>
+			</div>
+
+			<div class="row">
+				<div id="locations" class="col-md-4">
+					<div data-ng-show="game.locations.length">
+						Locations:</br>
+						<div data-ng-repeat="location in game.locations">
+							<div data-ng-repeat="link in location.links | filter: {rel: 'visit'}">
+								<a href="" data-ng-click="action(link)">{{location.locationName}}</a> {{location.detail}}
+							</div>
+							<div data-ng-show="!location.links.length">{{location.locationName}} {{location.detail}}</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="suspects" class="col-md-4">
+					<div data-ng-show="game.suspects.length">
+						Suspects:<br />
+						<div data-ng-repeat="suspect in game.suspects">
+							{{suspect.fullName}}
+							<span data-ng-repeat="link in suspect.links | filter: {rel: 'visit'}">
+								[<a href="" data-ng-click="action(link)">{{suspect.address}}</a>]
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div id="witnesses" class="col-md-4">
+					<div data-ng-show="game.witnesses.length && game.currentAddress!=''">
+						Persons in {{game.currentAddress}}:
+						<div data-ng-repeat="witness in game.witnesses">
+							{{witness.fullName}} <span data-ng-show="!witness.available">is not available</span>
+							<div data-ng-repeat="link in witness.links | filter: {rel: 'question'}">
+								<a href="" data-ng-click="action(link)">{{link.label}}</a>
+							</div>
+							<div data-ng-repeat="link in witness.links | filter: {rel: 'visit'}">
+								<a href="" data-ng-click="action(link)">{{link.label}}</a>
+							</div>
+							<div data-ng-repeat="link in witness.links | filter: {rel: 'search'}">
+								<a href="" data-ng-click="action(link)">{{link.label}}</a>
+							</div>
+							<div data-ng-repeat="link in witness.links | filter: {rel: 'accuse'}">
+								<a href="" data-ng-click="action(link)">{{link.label}}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</uib-tab>
+
+		<uib-tab heading="Office">
+			<div ng-show="ownsOffice">
+				<uib-accordion close-others="oneAtATime">
+					<uib-accordion-group heading="Victim: {{game.victimName}}">
+						<div ng-show="game.murderInfo.length">
+						  {{game.victimName}} {{game.murderInfo}}
+						</div>
+					</uib-accordion-group>
+					<uib-accordion-group heading="{{$index+1}} - {{suspect.fullName}}" ng-repeat="suspect in game.suspects">
+						<div>
+							Age: {{suspect.age}}
+							<br/>Gender: {{suspect.gender}}
+							<br/>Blood Type: {{suspect.bloodType}}
+							<br/>Address: {{suspect.address}}
+							<span ng-repeat="link in suspect.links | filter: {rel: 'visit'}">
+								<a href="" ng-click="action(link)">visit</a>
+							</span>
+							<br/>Relation: {{suspect.relation}}
+							<br/>Motive: {{suspect.motive}} 
+							<br/>Alibi: {{suspect.alibi}}
+							<br/>Finger print captured: {{suspect.fingerPrintCaptured}}
+							<br/>Criminal Record: {{suspect.criminalRecord}}
+							<br/>Weapon: {{suspect.weapon}}
+						</div>
+					</uib-accordion-group>
+				</uib-accordion>
+			</div>
+			<div ng-show="!ownsOffice"><goToMarket></goToMarket> and rent an office!</div>
+
+		</uib-tab>
+
+		<uib-tab heading="Computer">
+
+			<div ng-show="ownsOffice">
+
+				<div id="computer" ng-show="ownsComputer">
+					
+					<div ng-show="!game.suspects.length">
+						There are no identified suspects yet.
+					</div>
+					<!-- Criminal Record Search -->
+					<div ng-show="owns('CriminalRecordSearchPermit')">
+						<div ng-show="game.suspects.length">
+							<li class="dropdown"><!-- Drop down for criminal search -->
+								<a class="dropdown-toggle">Make a criminal record search for:</a>
+								<ul class="dropdown-menu">
+									<li ng-repeat="suspect in game.suspects | filter: criminalRecordUnknown">
+										<span ng-repeat="link in suspect.links | filter: {rel: 'criminalsearch'}">
+											<a href="" ng-click="action(link)">{{suspect.fullName}}</a>
+										</span>
+									</li>
+								</ul>
+							</li>
+						</div><!-- /game suspects -->
+					</div>
+
+					<div ng-show="!owns('CriminalRecordSearchPermit')">
+						<goToMarket></goToMarket> and buy criminal record search permits!
+					</div><!-- /crsp -->
+
+					<!-- Blood Type search -->
+					<div ng-show="owns('BloodTypeSearchPermit')">
+						<div ng-show="game.suspects.length">
+							<li class="dropdown"><!-- Drop down for blood type search -->
+							  <a class="dropdown-toggle">Make a blood type search for:</a>
+							  <ul class="dropdown-menu">
+							    <li ng-repeat="suspect in game.suspects | filter: bloodTypeUnknown">
+									<span ng-repeat="link in suspect.links | filter: {rel: 'bloodtypesearch'}">
+										<a href="" ng-click="action(link)">{{suspect.fullName}}</a>
+									</span>
+							    </li>
+							  </ul>
+							</li>
+						</div><!-- /game suspects -->
+					</div>
+					<div ng-show="!owns('BloodTypeSearchPermit')">
+						<goToMarket></goToMarket> and buy blood type search permits!
+					</div><!-- /btsp -->
+					
+					
+					<!-- Blood Type search -->
+					<div ng-show="owns('GunRegistrySearchPermit')">
+						<div ng-show="game.suspects.length">
+							<li class="dropdown"><!-- Drop down for gun registry search -->
+								<a class="dropdown-toggle">Make a gun registry search for:</a>
+							 	<ul class="dropdown-menu">
+									<li ng-repeat="suspect in game.suspects | filter: weaponUnknown">
+										<span ng-repeat="link in suspect.links | filter: {rel: 'gunregistrysearch'}">
+											<a href="" ng-click="action(link)">{{suspect.fullName}}</a>
+										</span>
+									</li>
+								</ul>
+							</li>
+						</div><!-- /game suspects -->
+					</div>
+					<div ng-show="!owns('GunRegistrySearchPermit')">
+						<goToMarket></goToMarket> and buy gun registry search permits!
+					</div><!-- /grsp -->
+					
+				</div><!-- /computer -->
+				<div id="computer" ng-show="!ownsComputer"><goToMarket></goToMarket> and buy a computer!</div>
+			</div>
+			<div ng-show="!ownsOffice"><goToMarket></goToMarket> and rent an office!</div>
+		</uib-tab>
+
+		<!-- <uib-tab heading="Debug">
+			<div>
+				<pre ng-bind-html="game | prettify"></pre>
+			</div>
+		</uib-tab> -->
+
+	</uib-tabset>
 		
-		<div class="row" id="answers" data-ng-show="!game.answers.empty">
-			<div class="col-md-12">
-				<ul>
-					<li data-ng-repeat="answer in game.answers">{{answer}}</li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="row">
-			<div id="locations" class="col-md-4">
-				<div data-ng-show="game.locations.length">
-					Locations:</br>
-					<div data-ng-repeat="location in game.locations">
-						<div data-ng-repeat="link in location.links | filter: {rel: 'visit'}">
-							<a href="" data-ng-click="action(link)">{{location.locationName}}</a> {{location.detail}}
-						</div>
-						<div data-ng-show="!location.links.length">{{location.locationName}} {{location.detail}}</div>
-					</div>
-				</div>
-			</div>
-
-			<div id="suspects" class="col-md-4">
-				<div data-ng-show="game.suspects.length">
-					Suspects:<br />
-					<div data-ng-repeat="suspect in game.suspects">
-						{{suspect.fullName}}
-						<span data-ng-repeat="link in suspect.links | filter: {rel: 'visit'}">
-							[<a href="" data-ng-click="action(link)">{{suspect.address}}</a>]
-						</span>
-					</div>
-				</div>
-			</div>
-
-			<div id="witnesses" class="col-md-4">
-				<div data-ng-show="game.witnesses.length && game.currentAddress!=''">
-					Persons in {{game.currentAddress}}:
-					<div data-ng-repeat="witness in game.witnesses">
-						{{witness.fullName}} <span data-ng-show="!witness.available">is not available</span>
-						<div data-ng-repeat="link in witness.links | filter: {rel: 'question'}">
-							<a href="" data-ng-click="action(link)">{{link.label}}</a>
-						</div>
-						<div data-ng-repeat="link in witness.links | filter: {rel: 'visit'}">
-							<a href="" data-ng-click="action(link)">{{link.label}}</a>
-						</div>
-						<div data-ng-repeat="link in witness.links | filter: {rel: 'search'}">
-							<a href="" data-ng-click="action(link)">{{link.label}}</a>
-						</div>
-						<div data-ng-repeat="link in witness.links | filter: {rel: 'accuse'}">
-							<a href="" data-ng-click="action(link)">{{link.label}}</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
 	</div>
 
 	<div class="modal-footer">
 		<div class="row">
-			<div class="col-md-1"><button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Game data</button></div>
-			<div class="col-md-11" uib-collapse="isCollapsed">{{game}}</div>
+			<div class="col-md-1"><button type="button" class="btn btn-default" ng-click="debugCollapsed = !debugCollapsed">Game data</button></div>
+			<div class="col-md-11" uib-collapse="debugCollapsed">{{game}}</div>
 		</div>
 		
 		<div class="row"><div class="col-md-12"><button class="btn btn-primary" type="button" data-ng-click="close()">Close</button></div></div>
