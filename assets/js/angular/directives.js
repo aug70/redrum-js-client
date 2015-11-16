@@ -16,7 +16,7 @@ angular.module('redrumAppDirectives', [])
 					function(data) {
 						scope.dashboard = data;
 				});
-			};
+			}
 		}
 	};
 }])
@@ -35,7 +35,7 @@ angular.module('redrumAppDirectives', [])
 					function(data) {
 						scope.gameLevelRows = splitRow(data.links, 3);
 				});
-			};
+			}
 
 			function splitRow(input, count) {
 				// console.log("input:" + input);
@@ -119,7 +119,7 @@ angular.module('redrumAppDirectives', [])
 					function(data) {
 						scope.stats = data;
 				});
-			};
+			}
 
 			scope.filterFunction = function(element) {
 				return element.label.match(/^Played/) ? false : true;
@@ -140,7 +140,7 @@ angular.module('redrumAppDirectives', [])
 					function(data) {
 						scope.orders = data;
 				});
-			};
+			}
 		}
 	};
 }])
@@ -157,7 +157,7 @@ angular.module('redrumAppDirectives', [])
 					function(data) {
 						scope.inventory = data;
 				});
-			};
+			}
 		}
 	};
 }])
@@ -168,7 +168,7 @@ angular.module('redrumAppDirectives', [])
 		transclude: true,
 		templateUrl: 'templates/credit.html',
 		link: function link(scope) {
-			
+
 			redrumAppServices.creditClientToken().then(
 				function(data) {
 					scope.clientToken = data;
@@ -176,4 +176,4 @@ angular.module('redrumAppDirectives', [])
 			});
 		}
 	};
-}])
+}]);
