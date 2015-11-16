@@ -34,9 +34,11 @@ module.exports = {
   },
 
   redrumConfig: {
+    host : ['localhost'],
+    port : 8443,
     clientId: 'redrum-js-demo',
     clientSecret: '847eacd8-d636-4aef-845d-512128dd09a4',
-    debug: false,
-    trace: false
+    debug: true,
+    trace: true
   }
 };
