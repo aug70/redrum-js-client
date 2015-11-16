@@ -6,6 +6,8 @@ module.exports = {
 		
 
 		var config = {
+			host : sails.config.redrumConfig.host,
+			port: sails.config.redrumConfig.port,
 			clientId : sails.config.redrumConfig.clientId,
 			clientSecret : sails.config.redrumConfig.clientSecret,
 			debug : sails.config.redrumConfig.debug
@@ -33,6 +35,8 @@ module.exports = {
 	isApiOffline : function(cb) {
 
 		var config = {
+			host : sails.config.redrumConfig.host,
+			port: sails.config.redrumConfig.port,
 			clientId : sails.config.redrumConfig.clientId,
 			clientSecret : sails.config.redrumConfig.clientSecret,
 			debug : sails.config.redrumConfig.debug
@@ -46,6 +50,8 @@ module.exports = {
 	getAccessToken : function(username, password, cb) {
 
 		var config = {
+			host : sails.config.redrumConfig.host,
+			port: sails.config.redrumConfig.port,
 			clientId : sails.config.redrumConfig.clientId,
 			clientSecret : sails.config.redrumConfig.clientSecret,
 			debug : sails.config.redrumConfig.debug
@@ -59,6 +65,8 @@ module.exports = {
 	register : function(userData, cb) {
 
 		var config = {
+			host : sails.config.redrumConfig.host,
+			port: sails.config.redrumConfig.port,
 			clientId : sails.config.redrumConfig.clientId,
 			clientSecret : sails.config.redrumConfig.clientSecret,
 			debug : sails.config.redrumConfig.debug
@@ -70,6 +78,8 @@ module.exports = {
 
 	getCreditClientToken : function(cb) {
 		var config = {
+			host : sails.config.redrumConfig.host,
+			port: sails.config.redrumConfig.port,
 			clientId : sails.config.redrumConfig.clientId,
 			clientSecret : sails.config.redrumConfig.clientSecret,
 			debug : sails.config.redrumConfig.debug
