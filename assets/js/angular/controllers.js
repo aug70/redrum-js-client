@@ -19,13 +19,11 @@ redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', func
 
 redrumApp.controller('GameController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
 
-	$scope.debugCollapsed = true;
-
 	$scope.action = function(callData) {
 		redrumAppServices.postAction(callData).then(
 			function(response) {
 				$scope.game = response.data;
-			});
+ 			});
 		};
 
 	$scope.closeModal = function () {
