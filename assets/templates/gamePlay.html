@@ -16,7 +16,7 @@
 						<ul>
 							<li data-ng-repeat="answer in game.answers">{{answer}}</li>
 						</ul>
-					</uib-alert>	
+					</uib-alert>
 				</div>
 			</div>
 
@@ -87,7 +87,7 @@
 								<a href="" ng-click="action(link)">visit</a>
 							</span>
 							<br/>Relation: {{suspect.relation}}
-							<br/>Motive: {{suspect.motive}} 
+							<br/>Motive: {{suspect.motive}}
 							<br/>Alibi: {{suspect.alibi}}
 							<br/>Finger print captured: {{suspect.fingerPrintCaptured}}
 							<br/>Criminal Record: {{suspect.criminalRecord}}
@@ -105,7 +105,7 @@
 			<div ng-show="ownsOffice">
 
 				<div id="computer" ng-show="ownsComputer">
-					
+
 					<div ng-show="!game.suspects.length">
 						There are no identified suspects yet.
 					</div>
@@ -147,8 +147,8 @@
 					<div ng-show="!owns('BloodTypeSearchPermit')">
 						<goToMarket></goToMarket> and buy blood type search permits!
 					</div><!-- /btsp -->
-					
-					
+
+
 					<!-- Blood Type search -->
 					<div ng-show="owns('GunRegistrySearchPermit')">
 						<div ng-show="game.suspects.length">
@@ -167,32 +167,38 @@
 					<div ng-show="!owns('GunRegistrySearchPermit')">
 						<goToMarket></goToMarket> and buy gun registry search permits!
 					</div><!-- /grsp -->
-					
+
 				</div><!-- /computer -->
 				<div id="computer" ng-show="!ownsComputer"><goToMarket></goToMarket> and buy a computer!</div>
 			</div>
 			<div ng-show="!ownsOffice"><goToMarket></goToMarket> and rent an office!</div>
 		</uib-tab>
 
-		<!-- <uib-tab heading="Debug">
-			<div>
-				<pre ng-bind-html="game | prettify"></pre>
-			</div>
-		</uib-tab> -->
+		<uib-tab heading="Debug">
+      <div>
+
+        <style>
+          pre {outline: 1px solid #ccc; padding: 1px; margin: 1px; font-size: 0.8em;}
+          .string { color: green; font-size: 1.2em;}
+          .number { color: darkorange; font-size: 1.2em;}
+          .boolean { color: blue; font-size: 1.2em;}
+          .null { color: magenta; font-size: 1.2em;}
+          .key { color: red; font-size: 1.2em;}
+        </style>
+
+        <pre data-ng-bind-html="game | prettify"></pre>
+      </div>
+		</uib-tab>
 
 	</uib-tabset>
-		
+
 
 	</div>
 
 	<div class="modal-footer">
-		<div class="row">
-			<div class="col-md-1"><button type="button" class="btn btn-default" ng-click="debugCollapsed = !debugCollapsed">Game data</button></div>
-			<div class="col-md-11" uib-collapse="debugCollapsed">{{game}}</div>
-		</div>
-		
+
 		<div class="row"><div class="col-md-12"><button class="btn btn-primary" type="button" data-ng-click="close()">Close</button></div></div>
-		
+
 	</div>
 
 </div>
