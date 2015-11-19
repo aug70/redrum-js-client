@@ -27,25 +27,25 @@ module.exports = {
 		}
 
 	    var result = {
-			budget : { 
+			budget : {
 				box_header : budgetBoxHeader,
 				box_text   : 'In your budget',
 				box_label  : budgetBoxLabel,
 				box_link   : '/market#cart'
 			},
-			profile : { 
+			profile : {
 				box_header : 'Change',
 				box_text   : 'Your profile information',
 				box_label  : 'Edit your profile! ',
 				box_link   : '/profile'
 			},
-			stats : { 
+			stats : {
 				box_header : 'Check',
 				box_text   : 'Your results',
 				box_label  : 'See your achievements! ',
 				box_link   : '/stats'
 			},
-			product : { 
+			product : {
 				box_header : 'Browse',
 				box_text   : 'Products available in the market',
 				box_label  : 'Check out the Market! ',
@@ -57,29 +57,29 @@ module.exports = {
 				box_label  : 'See your recommendations! ',
 				box_link   : '/market#recommended'
 			},
-			buy : { 
+			buy : {
 				box_header : 'Buy',
 				box_text   : 'Game credit',
 				box_label  : 'Add money to your budget! ',
 				box_link   : '/market#credit'
 			},
-			shop : { 
+			shop : {
 				box_header : 'Shop',
 				box_text   : 'Add more products to your inventory',
 				box_label  : 'Buy gear for your next case! ',
 				box_link   : '/market#cart'
 			},
-			game : { 
+			game : {
 				box_header : 'Solve',
 				box_text   : 'A murder now',
 				box_label  : 'You can do this! ',
 				box_link   : '/game'
 			},
-			redeem : { 
+			redeem : {
 				box_header : 'Redeem',
 				box_text   : 'Codes and add to your credit',
 				box_label  : 'Use coupons for game credit! ',
-				box_link   : '/market#redeem'
+				box_link   : '/market#coupons'
 			}
 		};
 		if(budgetBoxHeader!=='Money') {
@@ -100,7 +100,7 @@ module.exports = {
 
 			var jsonObject = JSON.parse(result);
 			var value = {
-				
+
 				userName : jsonObject.hasOwnProperty('username')? jsonObject.username : 'Unknown',
 				fullName : jsonObject.hasOwnProperty('fullName')? jsonObject.fullName : 'Unknown',
 				email : jsonObject.hasOwnProperty('email')? jsonObject.email : null,
@@ -113,7 +113,7 @@ module.exports = {
 				statistics : jsonObject.hasOwnProperty('statistics')? jsonObject.statistics : null,
 				avatar : '/img/avatar3.png',
 				activeGame : jsonObject.hasOwnProperty('activeGame')? jsonObject.activeGame : null,
-				missingProducts : jsonObject.hasOwnProperty('missingProducts')  
+				missingProducts : jsonObject.hasOwnProperty('missingProducts')
 					? jsonObject.missingProducts : null
 			};
 			if(value.email!=null) {
@@ -121,16 +121,16 @@ module.exports = {
 					if(gravatarUrl!=null||gravatarUrl!=undefined) {
 						//console.log('Gravatar Url: ', gravatarUrl);
 						value.avatar = gravatarUrl;
-					}	
+					}
 				});
 			}
 
-			
+
 
 			CacheService.add(cacheKey, value);
 			res.json(value);
 		});
-		
+
 	},
 
 	cart : function(req, res) {
@@ -142,7 +142,7 @@ module.exports = {
 		}
 
 		RedrumApiService.invokeEndPoint(req, '/market/cart', 'GET', function(statusCode, headers, result) {
-			
+
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
@@ -152,9 +152,9 @@ module.exports = {
 
 	creditClientToken : function(req, res) {
 		RedrumApiService.getCreditClientToken(function(statusCode, headers, result){
-			res.json(result);	
+			res.json(result);
 		});
-		
+
 	},
 
 	products : function(req, res) {
@@ -183,7 +183,7 @@ module.exports = {
 		}
 
 		RedrumApiService.invokeEndPoint(req, '/inventory', 'GET', function(statusCode, headers, result) {
-			
+
 			var resultJSON = JSON.parse(result);
 			CacheService.add(cacheKey, resultJSON);
 			res.json(resultJSON);
@@ -192,7 +192,7 @@ module.exports = {
 	},
 
 	stats : function(req,res) {
-		
+
 		var cacheKey = CacheService.makeKey(req, 'user_stats');
 		if(CacheService.hasKey(cacheKey)) {
 			res.json(CacheService.get(cacheKey));
@@ -202,9 +202,9 @@ module.exports = {
 		var userSummaryCacheValue = CacheService.get(CacheService.makeKey(req, 'user_summary'));
 
 
-		var result = { 
+		var result = {
 			showOverall : userSummaryCacheValue.statistics.gamesPlayed>0,
-			detail : 
+			detail :
 			[{
 				order: 0,
 				label : 'Played',
@@ -238,7 +238,7 @@ module.exports = {
 				percent: userSummaryCacheValue.statistics.gamesLostPercentage + '%'
 			}]
 		};
-		
+
 		CacheService.add(cacheKey, result);
 		res.json(result);
 	},
@@ -264,7 +264,7 @@ module.exports = {
 	},
 
 	redeemCoupon : function(req, res) {
-	
+
 		var callUrl = req.body.callUrl + req.body.couponCode;
 		var callMethod = req.body.callMethod;
 		console.log('Req call url: ', callUrl);
@@ -273,7 +273,7 @@ module.exports = {
 		CacheService.invalidateUserCaches(req);
 
 		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(statusCode, headers, result) {
-		
+
 			var resultJSON = JSON.parse(result);
 			if(resultJSON.hasOwnProperty('message')) {
 				AlertService.addAlert(req, resultJSON.message);
@@ -314,7 +314,7 @@ module.exports = {
 		if(bustCache) {
 			CacheService.invalidateUserCaches(req);
 		}
-		
+
 		RedrumApiService.invokeEndPoint(req, callUrl, callMethod, function(statusCode, headers, result) {
 
 			res.status(statusCode);

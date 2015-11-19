@@ -1,17 +1,17 @@
 doctype html
-html(ng-app="redrumApp")
-	
+html(data-ng-app="redrumApp")
+
 	include ./includes/header.jade
-	
+
 	body.skin-blue(data-ng-controller="MenuController as menuctrl")
-		
+
 		// header logo: style can be found in header.less
 		header.header
 			a.logo(href='/', target="_top")
 				// Add the class icon to your logo image or logo icon to add the margining
 				| Redrum
 			include ./includes/header_navbar
-		
+
 		.wrapper.row-offcanvas.row-offcanvas-left
 			include ./includes/left_navbar
 
