@@ -21,7 +21,7 @@
     "node-uuid": "^1.4.4",
     "rc": "^1.1.5",
     "redrum-js-sdk": "^0.0.24",
-    "sails": "0.11.2",
+    "sails": "0.11.0",
     "sails-disk": "^0.10.8",
     "sails-mongo": "^0.11.2"
   },
