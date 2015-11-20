@@ -70,13 +70,16 @@
 		</uib-tab>
 
 		<uib-tab heading="Office">
+
 			<div ng-show="ownsOffice">
 				<uib-accordion close-others="oneAtATime">
+
 					<uib-accordion-group heading="Victim: {{game.victimName}}">
 						<div ng-show="game.murderInfo.length">
 						  {{game.victimName}} {{game.murderInfo}}
 						</div>
 					</uib-accordion-group>
+
 					<uib-accordion-group heading="{{$index+1}} - {{suspect.fullName}}" ng-repeat="suspect in game.suspects">
 						<div>
 							Age: {{suspect.age}}
@@ -94,6 +97,7 @@
 							<br/>Weapon: {{suspect.weapon}}
 						</div>
 					</uib-accordion-group>
+
 				</uib-accordion>
 			</div>
 			<div ng-show="!ownsOffice"><goToMarket></goToMarket> and rent an office!</div>
@@ -122,14 +126,14 @@
 									</li>
 								</ul>
 							</li>
-						</div><!-- /game suspects -->
+						</div><!-- /Game Suspects -->
 					</div>
 
 					<div ng-show="!owns('CriminalRecordSearchPermit')">
 						<goToMarket></goToMarket> and buy criminal record search permits!
-					</div><!-- /crsp -->
+					</div><!-- /Criminal Record Search -->
 
-					<!-- Blood Type search -->
+					<!-- Blood Type search permit -->
 					<div ng-show="owns('BloodTypeSearchPermit')">
 						<div ng-show="game.suspects.length">
 							<li class="dropdown"><!-- Drop down for blood type search -->
@@ -142,14 +146,14 @@
 							    </li>
 							  </ul>
 							</li>
-						</div><!-- /game suspects -->
+						</div><!-- /Game Suspects -->
 					</div>
 					<div ng-show="!owns('BloodTypeSearchPermit')">
 						<goToMarket></goToMarket> and buy blood type search permits!
-					</div><!-- /btsp -->
+					</div><!-- /Blood Type search permit -->
 
 
-					<!-- Blood Type search -->
+					<!-- Gun Registry search permit -->
 					<div ng-show="owns('GunRegistrySearchPermit')">
 						<div ng-show="game.suspects.length">
 							<li class="dropdown"><!-- Drop down for gun registry search -->
@@ -162,11 +166,11 @@
 									</li>
 								</ul>
 							</li>
-						</div><!-- /game suspects -->
+						</div><!-- /Game suspects -->
 					</div>
 					<div ng-show="!owns('GunRegistrySearchPermit')">
 						<goToMarket></goToMarket> and buy gun registry search permits!
-					</div><!-- /grsp -->
+					</div><!-- /Gun Registry search permit -->
 
 				</div><!-- /computer -->
 				<div id="computer" ng-show="!ownsComputer"><goToMarket></goToMarket> and buy a computer!</div>
