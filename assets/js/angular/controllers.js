@@ -17,7 +17,7 @@ redrumApp.controller('DashBoardController', ['$scope', 'redrumAppServices', func
 		});
 }]);
 
-redrumApp.controller('GameController', ['$scope', 'redrumAppServices', function($scope, redrumAppServices) {
+redrumApp.controller('GameController', ['$scope', '$uibModalInstance', 'redrumAppServices', function($scope, $uibModalInstance, redrumAppServices) {
 
 	$scope.action = function(callData) {
 		redrumAppServices.postAction(callData).then(
@@ -27,7 +27,7 @@ redrumApp.controller('GameController', ['$scope', 'redrumAppServices', function(
 		};
 
 	$scope.closeModal = function () {
-		//$uibModalInstance.close();
+		$uibModalInstance.close();
 	};
 
 	$scope.owns = function (item) {
