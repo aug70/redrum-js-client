@@ -26,7 +26,7 @@ angular.module('redrumAppDirectives', [])
 	return {
 		restrict: 'E',
 		transclude: true,
-		templateUrl: 'templates/game.html',
+		templateUrl: '/templates/game.html',
 		link: function link(scope) {
 
 			showLevels();
