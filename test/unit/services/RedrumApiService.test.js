@@ -66,12 +66,33 @@ describe('Redrum API Service tests', function() {
 	it('Get client token for credit', function(done) {
 
 		redrumApiService.getCreditClientToken(function(result) {
-			
+
 			assert.notDeepEqual(result, 'ERROR');
 			assert.notDeepEqual(result, undefined);
 			// assert.equal(result, true);
 			return done();
 		})
+	});
+
+	it('Payment checkout', function(done) {
+
+		var req = {
+			session : {
+				username: 'tester',
+				password: '121212'
+			}
+		};
+		var amount = '3.99';
+		var nonce = 'fake-valid-nonce';
+		
+		redrumApiService.paymentCheckout(req, amount, nonce, function(statusCode, result) {
+
+			//assert.notDeepEqual(result, 'ERROR');
+			//assert.notDeepEqual(result, undefined);
+			console.log(result);
+			assert.equal(statusCode, 201);
+			return done();
+		});
 	});
 
 

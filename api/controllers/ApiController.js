@@ -259,8 +259,22 @@ module.exports = {
 		});
 	},
 
-	processCredit : function(req, res) {
-		//RedrumApiService.getCreditClientToken(req, )
+	paymentCheckout : function(req, res) {
+
+		console.log('Request body payment method nonce ' + req.body.payment_method_nonce);
+		var amount = '3.00';
+
+		RedrumApiService.paymentCheckout(amount, req.body.payment_method_nonce, function(statusCode, result) {
+			if(statusCode===201) {
+				CacheService.invalidateUserCaches(req);
+			}
+			var resultJSON = JSON.parse(result);
+			if(resultJSON.hasOwnProperty('message')) {
+				AlertService.addAlert(req, resultJSON.message);
+			}
+			res.send(resultJSON);
+		});
+
 	},
 
 	redeemCoupon : function(req, res) {

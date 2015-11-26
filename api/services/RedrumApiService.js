@@ -87,6 +87,33 @@ module.exports = {
 
 		var redrumSDK = new RedrumSDK(config);
 		redrumSDK.getCreditClientToken(cb);	
+	},
+
+	paymentCheckout : function(req, amount, nonce, cb) {
+		var config = {
+			host : sails.config.redrumConfig.host,
+			port: sails.config.redrumConfig.port,
+			clientId : sails.config.redrumConfig.clientId,
+			clientSecret : sails.config.redrumConfig.clientSecret,
+			debug : sails.config.redrumConfig.debug
+		};
+
+		var redrumSDK = new RedrumSDK(config);
+
+		redrumSDK.getAccessToken(req.session.username, req.session.password, 
+			function(accessToken){
+				if(config.debug) {
+					console.log('**************************************');
+					if(config.trace) {
+						console.log('User name: ', req.session.username);
+						console.log('Password: ', req.session.password);
+					}
+					console.log('Access Token: ', accessToken);
+					console.log('**************************************');
+				}
+				redrumSDK.paymentCheckout(amount, nonce, accessToken, cb); 	
+		});
+		
 	}
 
 
