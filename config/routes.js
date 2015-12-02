@@ -66,7 +66,13 @@ module.exports.routes = {
   '/alerts': 'AlertsController.alerts',
   '/signout': 'UserController.signOut',
 
-  'POST /api/processCredit': 'ApiController.processCredit'
+  'POST /api/paymentCheckout': 'ApiController.paymentCheckout'
+
+  // 'POST /api/paymentCheckout': { 
+  //   policy: 'sessionAuth',
+  //   controller: 'ApiController',
+  //   action: 'paymentCheckout'
+  // }
 
 
   /***************************************************************************

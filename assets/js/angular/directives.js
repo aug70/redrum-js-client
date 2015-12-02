@@ -171,8 +171,7 @@ angular.module('redrumAppDirectives', [])
 
 			redrumAppServices.creditClientToken().then(
 				function(data) {
-					scope.clientToken = data;
-					//braintree.setup(data, {container: "payment-form"});
+					braintree.setup(data, "dropin", {container: "payment-form"});
 			});
 		}
 	};

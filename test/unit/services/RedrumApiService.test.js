@@ -89,7 +89,7 @@ describe('Redrum API Service tests', function() {
 
 			//assert.notDeepEqual(result, 'ERROR');
 			//assert.notDeepEqual(result, undefined);
-			console.log(result);
+			//console.log(result);
 			assert.equal(statusCode, 201);
 			return done();
 		});
