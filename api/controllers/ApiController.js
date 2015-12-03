@@ -261,20 +261,16 @@ module.exports = {
 
 	paymentCheckout : function(req, res) {
 
-		console.log('Request body payment method nonce ' + req.body.payment_method_nonce);
-		var amount = '3.00';
+		console.log('Payment method nonce ', req.body.payment_method_nonce);
+    console.log('Amount ', req.body.amount);
 
-		RedrumApiService.paymentCheckout(req, amount, req.body.payment_method_nonce, function(statusCode, result) {
-			
+		RedrumApiService.paymentCheckout(req, req.body.amount, req.body.payment_method_nonce, function(statusCode, result) {
+
 			console.log(statusCode);
 			console.log(result);
 
 			if(statusCode===201) {
 				CacheService.invalidateUserCaches(req);
-			}
-			//var resultJSON = JSON.parse(result);
-			if(result.hasOwnProperty('message') && result.message!=null ) {
-				AlertService.addAlert(req, result.message);
 			}
 			res.send(result);
 		});

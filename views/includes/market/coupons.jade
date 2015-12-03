@@ -1,14 +1,14 @@
 .box
-	.box-header
-		h3.box-title Redeem coupons
-	// /.box-header
-	.box-body
-		.row
-			.col-xs-5(data-ng-repeat="link in cart.links | filter: {rel:'redeem'}")
-				.input-group.input-group-sm
-					.input-group-btn
-						form(data-ng-submit="redeemCoupon(link, couponCode)")
-							input.form-control(type='text', placeholder='Enter coupon code here', data-ng-model='couponCode')
-							button.btn.btn-info.btn-flat(type='submit') Redeem!
-	// /.box-body
-// /.box
+  .box-body
+    .row
+      .col-md-6
+        .box.box-warning
+          .box-header
+            h3.box-title Redeem coupons
+          .box-body
+            div(data-ng-repeat="link in cart.links | filter: {rel:'redeem'}")
+              form(data-ng-submit="redeemCoupon(link, couponCode)")
+                .input-group.input-group-sm
+                  input.form-control(type="text", placeholder="Enter coupon code here", data-ng-model="couponCode")
+                  .input-group-btn
+                    button.btn.btn-info.btn-flat(type='submit') Redeem!

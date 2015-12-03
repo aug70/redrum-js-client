@@ -1,4 +1,24 @@
-<form id="checkout" method="post" action="/api/paymentCheckout">
-  <div id="payment-form"></div>
-  <input type="submit" value="Submit Payment" class="btn btn-primary btn-lg">
+<span><p ng-bind="message"></p></span>
+
+<form name="payment" data-ng-submit="processPayment()" data-ng-show="showForm">
+
+  <div class="input-group input-group-sm">
+    <label for="amount">Amount:</label>
+    <input name="amount" type="number" placeholder="7.00" data-ng-model="amount"/>
+  </div>
+
+  <div class="input-group input-group-sm">
+    <label for="creditCardNumber">Credit Card Number:</label>
+    <input name="creditCardNumber" type="number"  placeholder="4009348888881881" data-ng-model="creditCardNumber"/>
+  </div>
+
+  <div class="input-group input-group-sm">
+    <label for="expirationDate">Expiration Date (MM/YY):</label>
+    <input name="expirationDate" type="text" placeholder="12/23" data-ng-model="expirationDate"/>
+  </div>
+
+  <div class="input-group input-group-sm">
+    <input type="submit" value="Purchase Credit" class="btn btn-info btn-flat">
+  </div>
+
 </form>

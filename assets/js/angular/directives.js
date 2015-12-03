@@ -162,17 +162,61 @@ angular.module('redrumAppDirectives', [])
 	};
 }])
 
-.directive('credit', ['redrumAppServices', function(redrumAppServices){
+.directive('credit', ['$http', 'redrumAppServices', function($http, redrumAppServices){
 	return {
 		restrict: 'E',
 		transclude: true,
 		templateUrl: 'templates/credit.html',
 		link: function link(scope) {
 
-			redrumAppServices.creditClientToken().then(
-				function(data) {
-					braintree.setup(data, "dropin", {container: "payment-form"});
-			});
-		}
+      scope.showForm = true;
+
+
+      scope.processPayment = function () {
+
+        //$scope.message = 'Processing payment...';
+        scope.showForm = true;
+
+
+        redrumAppServices.creditClientToken().then(
+          function(data) {
+            // create new client and tokenize card
+            var client = new braintree.api.Client({clientToken: data});
+            client.tokenizeCard({
+              number: scope.creditCardNumber,
+              expirationDate: scope.expirationDate
+            }, function (err, nonce) {
+
+              $http({
+                method: 'POST',
+                url: '/api/paymentCheckout',
+                data: {
+                  amount: scope.amount,
+                  payment_method_nonce: nonce
+                }
+              }).success(function (data) {
+
+                //console.log('Success...', data);
+                scope.showForm = false;
+                //
+                if (data.success) {
+                  scope.message = 'Payment successful.';
+                } else {
+                  scope.message = data.message + ': ' + data.errorMessages[0];
+                }
+
+              }).error(function (error) {
+                //console.log('Error...', error);
+                scope.message = 'There was a problem connecting to server. Please try again.';
+                scope.showForm = false;
+              });
+
+            });
+
+          });
+
+      };
+
+    }
 	};
 }]);
