@@ -14,22 +14,22 @@ module.exports = {
 			CacheService.invalidateUserCaches(req);
 		}
 		req.session.destroy();
-		var result = UserService.signOut();		
+		var result = UserService.signOut();
 		return res.redirect(result.nextStep);
 	},
 
 	signInWithFaceBook : function(req, res) {
-		
+
 		var Facebook = require('machinepack-facebook');
 		Facebook.getLoginUrl({
-		 
+
 		 appId : sails.config.facebookConfig.apiKey,
 		 callbackUrl : sails.config.facebookConfig.callbackUrl,
 		 permissions : ['email']
 
 		}).exec({
 			error: function (err){
-				
+
 			},
 			success: function(loginUrl){
 				res.send(loginUrl);
@@ -37,48 +37,8 @@ module.exports = {
 		});
 	},
 
-	signInWithGitHub : function(req, res) {
-		
-		var Github = require('machinepack-github');
-		Github.getLoginUrl({
-		 
-		 clientId : sails.config.githubConfig.apiKey,
-		 callbackUrl : sails.config.githubConfig.callbackUrl,
-		 scope : [ 'public_repo' ]
+  facebookcb : function(req, res) {
 
-		}).exec({
-			success: function(loginUrl){
-				res.send(loginUrl);
-			}
-		});
-	},
-
-	githubcb : function(req, res) {
-		var Github = require('machinepack-github');
-		
-	    Github.getAccessToken({
-	      clientId : sails.config.githubConfig.apiKey,
-	      callbackUrl : sails.config.githubConfig.callbackUrl,
-	      clientSecret : sails.config.githubConfig.secretKey,
-	      code : req.param('code')
-	    }).exec({
-
-			error: function (error){
-
-				var result = UserService.handleSignInError(error);
-				AlertService.addAlert(req, result.message);
-				res.redirect(result.nextStep);
-			},
-
-	    	success: function(result) {
-	    		console.log('Result: '+ result);
-	    		res.send(result.token);
-	    	},
-	    });
-
-	},
-	facebookcb : function(req, res) {
-	    
 	    var Facebook = require('machinepack-facebook');
 	    Facebook.getAccessToken({
 	      appId : sails.config.facebookConfig.apiKey,
@@ -86,7 +46,7 @@ module.exports = {
 	      appSecret : sails.config.facebookConfig.secretKey,
 	      code : req.param('code')
 	    }).exec({
-	    
+
 	      // Triggered when the Facebook API returns an error (i.e. a non-2xx status code)
 			error: function (error){
 
@@ -94,7 +54,7 @@ module.exports = {
 				AlertService.addAlert(req, result.message);
 				res.redirect(result.nextStep);
 			},
-	    
+
 			// Returns the access token itself, as well as the timestamp when it expires (as a ISO/JSON date)
 			success: function (result){
 
