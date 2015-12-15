@@ -14,7 +14,6 @@
     "async": "latest",
     "include-all": "^0.1.6",
     "jade": "^1.11.0",
-    "kerberos": "0.0.17",
     "lru-cache": "^2.7.3",
     "machinepack-facebook": "^1.1.0",
     "machinepack-github": "^4.2.0",
