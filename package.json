@@ -16,7 +16,6 @@
     "jade": "^1.11.0",
     "lru-cache": "^2.7.3",
     "machinepack-facebook": "^1.1.0",
-    "machinepack-github": "^4.2.0",
     "machinepack-gravatar": "^1.2.0",
     "node-uuid": "^1.4.3",
     "rc": "^1.1.2",
